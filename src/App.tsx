@@ -247,7 +247,7 @@ const App = () => {
     {
       id: 1,
       title: "Студия и менеджер",
-      subtitle: "Фундамент высоких чеков",
+      subtitle: "Фу����дамент высоких чеков",
       desc: "Как выглядеть и позиционировать себя, чтобы цена не пугала, а обосновывала качество.",
       icon: <Layers className="w-5 h-5" />,
       style: "dark",
@@ -325,7 +325,7 @@ const App = () => {
     {
       name: "Артем",
       studio: "Новосибирск",
-      text: "Отличная структура курса. Все по делу, без воды. Применили сразу и получили результат.",
+      text: "Отличная структура курса. Все по делу, без воды. Пр��м����нили сразу и получили результат.",
       rating: 5
     },
     {
@@ -884,15 +884,34 @@ const App = () => {
               </motion.div>
             </div>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="text-center text-2xl sm:text-3xl md:text-4xl mt-10 sm:mt-14 text-[#0A0A0A] font-bold"
+              className="text-center mt-10 sm:mt-14 max-w-5xl mx-auto"
             >
-              Мы придумали способ, как это исправить
-            </motion.p>
+              {/* Основной заголовок */}
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#0A0A0A] font-bold leading-tight mb-6 sm:mb-8 px-4">
+                Мы создали единственный курс в России, который реально работает для детейлингов.
+              </h3>
+              
+              {/* Карточка с результатами */}
+              <motion.div 
+                className="inline-block bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-[#0A0A0A]/10 shadow-sm mx-4"
+                initial={{ scale: 0.95, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+              >
+                <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A]/70 mb-3 sm:mb-4 font-medium">
+                  Проверили на 155 студиях
+                </p>
+                <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-[#e3ee6b] text-[#0A0A0A] rounded-xl font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+                  +40-100% к чеку
+                </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
 
           <motion.a 
@@ -900,11 +919,11 @@ const App = () => {
             href="https://t.me/clubmanagers_bot"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#0A0A0A] text-white px-10 py-5 sm:py-6 rounded-full hover:bg-[#1A1A1A] transition-all inline-flex items-center gap-3 group text-lg sm:text-xl md:text-2xl font-semibold touch-manipulation"
+            className="bg-[#0A0A0A] text-white px-10 py-5 sm:py-6 rounded-full hover:bg-[#1A1A1A] transition-all inline-flex items-center gap-3 group text-lg sm:text-xl md:text-2xl font-semibold touch-manipulation mt-8 sm:mt-10 md:mt-12"
             whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="font-bold">Записаться на курс</span>
+            <span className="font-bold">Присоединиться</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </motion.a>
         </motion.div>
