@@ -177,11 +177,11 @@ const LiveIndicator = () => {
 // Loss Calculator Component
 const LossCalculator = () => {
   const [callsPerDay, setCallsPerDay] = useState(10);
-  const [lostClientsPerMonth, setLostClientsPerMonth] = useState(5);
+  const [lostClientsPerDay, setLostClientsPerDay] = useState(2);
   const [avgCheck, setAvgCheck] = useState(50000);
 
-  // Calculate monthly loss
-  const monthlyLoss = lostClientsPerMonth * avgCheck;
+  // Calculate monthly loss (daily lost clients × 30 days × average check)
+  const monthlyLoss = lostClientsPerDay * 30 * avgCheck;
 
   const formatNumber = (num: number) => {
     return new Intl.NumberFormat('ru-RU').format(num);
@@ -221,7 +221,7 @@ const LossCalculator = () => {
           />
         </motion.div>
 
-        {/* Lost clients per month */}
+        {/* Lost clients per day */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -229,19 +229,19 @@ const LossCalculator = () => {
           transition={{ delay: 0.2 }}
         >
           <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
-            Сколько из них не записалось <span className="text-[#0A0A0A]/40 text-[10px]">(не договорились)</span>
+            Сколько из них не записалось в день <span className="text-[#0A0A0A]/40 text-[10px]">(не договорились)</span>
           </label>
           <input
             type="number"
-            value={lostClientsPerMonth}
+            value={lostClientsPerDay}
             onChange={(e) => {
               const val = parseInt(e.target.value) || 1;
-              setLostClientsPerMonth(Math.max(1, Math.min(val, 500)));
+              setLostClientsPerDay(Math.max(1, Math.min(val, 100)));
             }}
             className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
             min="1"
-            max="500"
-            placeholder="5"
+            max="100"
+            placeholder="2"
           />
         </motion.div>
 
