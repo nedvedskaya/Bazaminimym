@@ -128,6 +128,55 @@
     @apply bg-background text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* iOS specific fixes */
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    /* Better font rendering on all devices */
+    text-rendering: optimizeLegibility;
+    /* Prevent horizontal overflow on mobile */
+    overflow-x: hidden;
+    /* Better scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    /* Fill available space on mobile */
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  html {
+    /* Prevent iOS zoom on input focus */
+    -webkit-text-size-adjust: 100%;
+    /* Smooth scrolling */
+    scroll-behavior: smooth;
+    /* Better font rendering */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Better touch target sizes for mobile (minimum 44x44px) */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Remove tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
+    /* Better touch response */
+    touch-action: manipulation;
+  }
+  
+  /* Prevent iOS input zoom */
+  input, select, textarea {
+    font-size: max(16px, 1em);
+  }
+  
+  /* Better image rendering */
+  img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
   }
 }
 
@@ -223,5 +272,69 @@ html {
 @media (min-width: 641px) {
   html {
     font-size: 16px;
+  }
+}
+
+/* Safe area support for devices with notches (iPhone X and newer) */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Better scroll performance on mobile */
+@layer utilities {
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Optimize animations for mobile */
+  .smooth-transform {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+/* Prevent overscroll bounce on iOS/Android */
+html {
+  overscroll-behavior-y: none;
+}
+
+/* Better handling of orientation changes */
+@media screen and (orientation: landscape) {
+  body {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Support for high DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+/* Fix for Android Chrome address bar */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+/* Better focus states for keyboard navigation (desktop) */
+@media (pointer: fine) {
+  :focus-visible {
+    outline: 2px solid #e3ee6b;
+    outline-offset: 2px;
+  }
+}
+
+/* Remove focus outline on touch devices */
+@media (pointer: coarse) {
+  :focus {
+    outline: none;
   }
 }

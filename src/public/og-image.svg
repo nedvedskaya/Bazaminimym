@@ -1,0 +1,71 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0A0A0A"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0A0A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e3ee6b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c5d060;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0%" style="stop-color:#e3ee6b;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#e3ee6b;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#grad1)"/>
+  
+  <!-- Glow effects -->
+  <circle cx="900" cy="150" r="200" fill="url(#glow)"/>
+  <circle cx="300" cy="480" r="150" fill="url(#glow)"/>
+  
+  <!-- Decorative lines -->
+  <line x1="100" y1="100" x2="1100" y2="100" stroke="#e3ee6b" stroke-width="2" opacity="0.2"/>
+  <line x1="100" y1="530" x2="1100" y2="530" stroke="#e3ee6b" stroke-width="2" opacity="0.2"/>
+  
+  <!-- Main title -->
+  <text x="600" y="220" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="72" font-weight="900" fill="white" text-anchor="middle">
+    БАЗОВЫЙ МИНИМУМ
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="36" font-weight="600" fill="white" text-anchor="middle" opacity="0.9">
+    Курс по продажам для автосервисов
+  </text>
+  
+  <!-- Accent line -->
+  <rect x="400" y="320" width="400" height="4" fill="url(#grad2)" rx="2"/>
+  
+  <!-- Features -->
+  <g transform="translate(250, 380)">
+    <!-- Icon circle -->
+    <circle cx="20" cy="20" r="18" fill="#e3ee6b"/>
+    <text x="20" y="28" font-family="-apple-system" font-size="20" font-weight="bold" fill="#0A0A0A" text-anchor="middle">5</text>
+    <text x="55" y="28" font-family="-apple-system" font-size="28" font-weight="600" fill="white">модулей</text>
+  </g>
+  
+  <g transform="translate(480, 380)">
+    <circle cx="20" cy="20" r="18" fill="#e3ee6b"/>
+    <text x="20" y="28" font-family="-apple-system" font-size="18" font-weight="bold" fill="#0A0A0A" text-anchor="middle">₽</text>
+    <text x="55" y="28" font-family="-apple-system" font-size="28" font-weight="600" fill="white">2490₽</text>
+  </g>
+  
+  <g transform="translate(680, 380)">
+    <circle cx="20" cy="20" r="18" fill="#e3ee6b"/>
+    <text x="20" y="28" font-family="-apple-system" font-size="16" font-weight="bold" fill="#0A0A0A" text-anchor="middle">📅</text>
+    <text x="55" y="28" font-family="-apple-system" font-size="28" font-weight="600" fill="white">Старт 12.01</text>
+  </g>
+  
+  <!-- Bottom badge -->
+  <g transform="translate(400, 480)">
+    <rect x="0" y="0" width="400" height="60" fill="#e3ee6b" rx="30"/>
+    <text x="200" y="40" font-family="-apple-system" font-size="24" font-weight="900" fill="#0A0A0A" text-anchor="middle">
+      +89% КОНВЕРСИИ В ПРОДАЖАХ
+    </text>
+  </g>
+</svg>

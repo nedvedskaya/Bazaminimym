@@ -20,9 +20,313 @@ import {
   Sparkles,
   Banknote,
   Coins,
-  Shield
+  Shield,
+  AlertTriangle,
+  TrendingDown,
+  ShoppingCart,
+  Eye
 } from 'lucide-react';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
+import { safeStorage } from './utils/storage';
+
+// Animated Number Component
+const AnimatedNumber = ({ value, suffix = '' }: { value: number; suffix?: string }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const duration = 2000;
+    const steps = 60;
+    const increment = value / steps;
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= value) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+
+    return () => clearInterval(timer);
+  }, [value]);
+
+  return <>{count}{suffix}</>;
+};
+
+// Live Purchase Notification Component
+const LivePurchase = ({ name, city, show }: { name: string; city: string; show: boolean }) => {
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          initial={{ x: -400, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -400, opacity: 0 }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          className="fixed left-4 bottom-20 sm:bottom-24 z-40 bg-white rounded-xl shadow-2xl p-4 border-2 border-[#e3ee6b] max-w-[320px] sm:max-w-sm"
+        >
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 bg-[#e3ee6b] rounded-full flex items-center justify-center flex-shrink-0">
+              <ShoppingCart className="w-5 h-5 text-[#0A0A0A]" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-bold text-[#0A0A0A] mb-1">Новая покупка!</p>
+              <p className="text-xs text-[#666]">
+                <span className="font-semibold">{name}</span> из {city} купил курс
+              </p>
+              <p className="text-xs text-[#999] mt-1">3 минуты назад</p>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+// Live Counter Component
+const LiveCounter = ({ target }: { target: number }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const duration = 2000;
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+
+    return () => clearInterval(timer);
+  }, [target]);
+
+  return (
+    <motion.span 
+      className="text-4xl sm:text-5xl md:text-6xl font-black text-[#e3ee6b]"
+      animate={{ scale: [1, 1.05, 1] }}
+      transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
+    >
+      {count}
+    </motion.span>
+  );
+};
+
+// Live Purchase Counter Component - shows incrementing number
+const LivePurchaseCounter = ({ count, setCount }: { count: number; setCount: (value: number | ((prev: number) => number)) => void }) => {
+  useEffect(() => {
+    // Random interval between 1-2 minutes (60000-120000 ms)
+    const getRandomInterval = () => Math.floor(Math.random() * 60000) + 60000;
+    
+    const scheduleNextIncrement = () => {
+      const interval = getRandomInterval();
+      const timeout = setTimeout(() => {
+        setCount(prev => {
+          const newValue = prev + 1;
+          // Save to localStorage with timestamp (safely)
+          safeStorage.setNumber('purchaseCount', newValue);
+          safeStorage.setNumber('purchaseCountTimestamp', Date.now());
+          return newValue;
+        });
+        scheduleNextIncrement();
+      }, interval);
+      
+      return timeout;
+    };
+    
+    const timeout = scheduleNextIncrement();
+    return () => clearTimeout(timeout);
+  }, [setCount]);
+
+  return (
+    <motion.span
+      key={count}
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 200 }}
+    >
+      {count}
+    </motion.span>
+  );
+};
+
+// Live Indicator Component
+const LiveIndicator = () => {
+  return (
+    <div className="inline-flex items-center gap-1.5 mt-2">
+      <motion.div 
+        className="w-1.5 h-1.5 bg-[#e3ee6b] rounded-full"
+        animate={{ 
+          scale: [1, 1.3, 1],
+          opacity: [1, 0.5, 1]
+        }}
+        transition={{ duration: 2, repeat: Infinity }}
+      />
+      <span className="text-[10px] sm:text-xs text-[#666] uppercase tracking-wide">Счетчик обновляется в реальном времени</span>
+    </div>
+  );
+};
+
+// Loss Calculator Component
+const LossCalculator = () => {
+  const [callsPerDay, setCallsPerDay] = useState(10);
+  const [lostClientsPerMonth, setLostClientsPerMonth] = useState(5);
+  const [avgCheck, setAvgCheck] = useState(50000);
+
+  // Calculate monthly loss
+  const monthlyLoss = lostClientsPerMonth * avgCheck;
+
+  const formatNumber = (num: number) => {
+    return new Intl.NumberFormat('ru-RU').format(num);
+  };
+
+  return (
+    <motion.div 
+      className="bg-white border-2 border-[#e3ee6b]/40 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 mb-8 shadow-2xl"
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.2 }}
+    >
+      {/* Input Fields */}
+      <div className="space-y-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 md:gap-6 mb-8">
+        {/* Calls per day */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+        >
+          <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
+            Обращений в день <span className="text-[#0A0A0A]/40 text-[10px]">(звонки, соцсети)</span>
+          </label>
+          <input
+            type="number"
+            value={callsPerDay}
+            onChange={(e) => {
+              const val = parseInt(e.target.value) || 1;
+              setCallsPerDay(Math.max(1, Math.min(val, 1000)));
+            }}
+            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
+            min="1"
+            max="1000"
+            placeholder="10"
+          />
+        </motion.div>
+
+        {/* Lost clients per month */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
+          <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
+            Сколько из них не записалось <span className="text-[#0A0A0A]/40 text-[10px]">(не договорились)</span>
+          </label>
+          <input
+            type="number"
+            value={lostClientsPerMonth}
+            onChange={(e) => {
+              const val = parseInt(e.target.value) || 1;
+              setLostClientsPerMonth(Math.max(1, Math.min(val, 500)));
+            }}
+            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
+            min="1"
+            max="500"
+            placeholder="5"
+          />
+        </motion.div>
+
+        {/* Average check */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
+            Средний чек (₽) <span className="text-[#0A0A0A]/40 text-[10px]">(сумма заказа)</span>
+          </label>
+          <input
+            type="number"
+            value={avgCheck}
+            onChange={(e) => {
+              const val = parseInt(e.target.value) || 1000;
+              setAvgCheck(Math.max(1000, Math.min(val, 10000000)));
+            }}
+            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
+            min="1000"
+            max="10000000"
+            step="1000"
+            placeholder="50000"
+          />
+        </motion.div>
+      </div>
+
+      {/* Results */}
+      <motion.div 
+        className="relative"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        <div className="h-px bg-gradient-to-r from-transparent via-[#e3ee6b] to-transparent mb-8" />
+        
+        {/* Monthly loss */}
+        <div className="text-center">
+          <div className="text-[#0A0A0A]/70 text-base sm:text-lg md:text-xl mb-4 font-medium text-[16px]">Ваши потери за месяц</div>
+          <motion.div 
+            key={monthlyLoss}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ 
+              scale: 1, 
+              opacity: 1
+            }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-4"
+          >
+            <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
+              -{formatNumber(monthlyLoss)} ₽
+            </span>
+          </motion.div>
+          
+          <div className="flex flex-col items-center gap-3 mb-6">
+            <div className="flex items-center gap-2 text-[#0A0A0A] text-sm sm:text-base md:text-lg">
+              <span className="font-semibold">За год это уже</span>
+            </div>
+            <motion.div 
+              key={monthlyLoss * 12}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-red-400/80"
+            >
+              -{formatNumber(monthlyLoss * 12)} ₽
+            </motion.div>
+            
+            {monthlyLoss >= 1000000 && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 px-4 sm:px-6 py-3 bg-red-500/20 border border-red-500/30 rounded-xl"
+              >
+                <p className="text-red-300 text-xs sm:text-sm md:text-base font-semibold text-center">
+                  ⚠️ На эти деньги можно купить еще один автосервис!
+                </p>
+              </motion.div>
+            )}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 // Navigation Component
 const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, setIsModalOpen }: {
@@ -58,7 +362,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6">
             <a 
-              href="#program" 
+              href="#modules" 
               className={`text-sm lg:text-base transition-colors font-medium ${
                 scrollProgress > 5 
                   ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
@@ -66,6 +370,16 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               }`}
             >
               Программа
+            </a>
+            <a 
+              href="#reviews" 
+              className={`text-sm lg:text-base transition-colors font-medium ${
+                scrollProgress > 5 
+                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
+                  : 'text-white/90 hover:text-[#e3ee6b]'
+              }`}
+            >
+              Отзывы
             </a>
             <a 
               href="#price" 
@@ -123,7 +437,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
           >
             <div className="flex flex-col items-center justify-center h-full gap-8 px-6">
               <motion.a
-                href="#program"
+                href="#modules"
                 className="text-white text-2xl font-medium hover:text-[#e3ee6b] transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
                 initial={{ y: 20, opacity: 0 }}
@@ -133,12 +447,22 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
                 Программа
               </motion.a>
               <motion.a
-                href="#price"
+                href="#reviews"
                 className="text-white text-2xl font-medium hover:text-[#e3ee6b] transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
+              >
+                Отзывы
+              </motion.a>
+              <motion.a
+                href="#price"
+                className="text-white text-2xl font-medium hover:text-[#e3ee6b] transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
               >
                 Цена
               </motion.a>
@@ -148,7 +472,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
                 onClick={() => setIsMobileMenuOpen(false)}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.4 }}
               >
                 FAQ
               </motion.a>
@@ -178,8 +502,52 @@ const App = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [showPurchase, setShowPurchase] = useState(false);
+  const [currentPurchase, setCurrentPurchase] = useState({ name: '', city: '' });
+  const [purchaseCount, setPurchaseCount] = useState(() => {
+    // Load from localStorage or calculate based on time passed (safely)
+    const savedCount = safeStorage.getNumber('purchaseCount', 0);
+    const savedTimestamp = safeStorage.getNumber('purchaseCountTimestamp', 0);
+    
+    if (savedCount > 0 && savedTimestamp > 0) {
+      const timePassed = Date.now() - savedTimestamp;
+      // Average 1.5 minutes per increment (90000 ms)
+      const estimatedIncrements = Math.floor(timePassed / 90000);
+      const calculatedCount = savedCount + estimatedIncrements;
+      
+      // Save updated values
+      if (estimatedIncrements > 0) {
+        safeStorage.setNumber('purchaseCount', calculatedCount);
+        safeStorage.setNumber('purchaseCountTimestamp', Date.now());
+      }
+      
+      return calculatedCount;
+    }
+    
+    // First visit - initialize
+    safeStorage.setNumber('purchaseCount', 155);
+    safeStorage.setNumber('purchaseCountTimestamp', Date.now());
+    return 155;
+  });
   
   const { scrollYProgress } = useScroll();
+
+  // Fix for mobile viewport height (compensate for address bar)
+  useEffect(() => {
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', setVH);
+
+    return () => {
+      window.removeEventListener('resize', setVH);
+      window.removeEventListener('orientationchange', setVH);
+    };
+  }, []);
 
   // Countdown Timer
   useEffect(() => {
@@ -216,6 +584,41 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Live Purchases Simulation
+  useEffect(() => {
+    const purchases = [
+      { name: 'Сергей', city: 'Казани' },
+      { name: 'Дмитрий', city: 'Москвы' },
+      { name: 'Андрей', city: 'Санкт-Петербурга' },
+      { name: 'Алексей', city: 'Краснодара' },
+      { name: 'Максим', city: 'Екатеринбурга' },
+      { name: 'Игорь', city: 'Новосибирска' },
+      { name: 'Владимир', city: 'Казани' },
+      { name: 'Роман', city: 'Самары' }
+    ];
+
+    let index = 0;
+    const showNotification = () => {
+      setCurrentPurchase(purchases[index]);
+      setShowPurchase(true);
+      
+      setTimeout(() => setShowPurchase(false), 4000);
+      
+      index = (index + 1) % purchases.length;
+    };
+
+    // Show first notification after 3 seconds
+    const initialTimeout = setTimeout(showNotification, 3000);
+    
+    // Then show every 15 seconds
+    const interval = setInterval(showNotification, 15000);
+
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(interval);
+    };
+  }, []);
+
   // --- ANIMATION VARIANTS ---
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -247,7 +650,7 @@ const App = () => {
     {
       id: 1,
       title: "Студия и менеджер",
-      subtitle: "Фу����дамент высоких чеков",
+      subtitle: "Фундамент высоких чеков",
       desc: "Как выглядеть и позиционировать себя, чтобы цена не пугала, а обосновывала качество.",
       icon: <Layers className="w-5 h-5" />,
       style: "dark",
@@ -292,7 +695,7 @@ const App = () => {
   ];
 
   const stats = [
-    { value: 100, label: "Студий уже применяют", suffix: "+" },
+    { value: 155, label: "Владельцев автобизнеса купили курс", suffix: "" },
     { value: 89, label: "Средний рост конверсии", suffix: "%" },
     { value: 15, label: "Минут в день на обучение", suffix: "" }
   ];
@@ -325,7 +728,7 @@ const App = () => {
     {
       name: "Артем",
       studio: "Новосибирск",
-      text: "Отличная структура курса. Все по делу, без воды. Пр��м����нили сразу и получили результат.",
+      text: "Отличная структура курса. Все по делу, без воды. Применили сразу и получили результат.",
       rating: 5
     },
     {
@@ -384,8 +787,7 @@ const App = () => {
     "Схемы работы с возражениями",
     "Техники повышения среднего чека",
     "Система повторных продаж",
-    "Чек-листы для менеджеров",
-    "Разбор реальных кейсов"
+    "Чек-листы для менеджеров"
   ];
 
   return (
@@ -406,7 +808,7 @@ const App = () => {
       />
 
       {/* --- HERO SECTION --- */}
-      <section className="relative min-h-[100vh] flex items-center px-4 sm:px-6 py-20 sm:py-24 md:py-32 bg-[#0A0A0A] overflow-hidden">
+      <section id="hero" className="relative min-h-[100vh] flex items-center px-4 sm:px-6 py-20 sm:py-24 md:py-32 bg-[#0A0A0A] overflow-hidden">
         {/* Animated Background Blobs */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -485,7 +887,7 @@ const App = () => {
 
               <motion.h1 
                 variants={fadeInUp} 
-                className="relative text-6xl xs:text-7xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] 2xl:text-[9rem] mb-6 sm:mb-8 leading-[0.95] pt-3 pb-8 overflow-visible"
+                className="relative text-6xl xs:text-7xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] 2xl:text-[9rem] mb-1 leading-[0.95] pt-3 pb-8 overflow-visible"
               >
                 <motion.span 
                   className="block font-black bg-gradient-to-br from-white via-[#e3ee6b] to-[#e3ee6b]/60 bg-clip-text text-transparent"
@@ -516,7 +918,7 @@ const App = () => {
 
               <motion.p 
                 variants={fadeInUp} 
-                className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-xl mt-4 sm:mt-6"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-xl"
               >
                 База, которая должна быть в голове у каждого, кто отвечает на звонки и продает услуги детейлинга.
               </motion.p>
@@ -526,6 +928,7 @@ const App = () => {
                   href="https://t.me/clubmanagers_bot"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Получить доступ к онлайн-курсу Базовый Минимум"
                   className="group relative bg-[#e3ee6b] text-[#0A0A0A] px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-[#e8f285] transition-all inline-flex items-center justify-center gap-2 sm:gap-3 touch-manipulation overflow-hidden w-full sm:w-auto"
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(227, 238, 107, 0.4)" }}
                   whileTap={{ scale: 0.95 }}
@@ -546,7 +949,7 @@ const App = () => {
                   className="group bg-white/5 border border-white/10 text-white px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-white/10 transition-all inline-flex items-center justify-center gap-2 sm:gap-3 touch-manipulation backdrop-blur-sm w-full sm:w-auto"
                   whileHover={{ scale: 1.05, borderColor: "rgba(227, 238, 107, 0.5)" }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => document.getElementById('program')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => document.getElementById('modules')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   <Play className="w-5 h-5 sm:w-6 sm:h-6" />
                   <span className="text-base sm:text-lg md:text-xl font-medium font-bold">Смотреть программу</span>
@@ -570,7 +973,7 @@ const App = () => {
               >
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1754149603303-7dd288629dd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaWx2ZXIlMjBtZXRhbGxpYyUyMGxpcXVpZCUyMHNjdWxwdHVyZXxlbnwxfHx8fDE3NjU0NDg2MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                  alt="Metallic sculpture"
+                  alt="Профессиональное обучение продажам для автосервисов"
                   className="w-full h-full object-cover"
                 />
               </motion.div>
@@ -659,9 +1062,12 @@ const App = () => {
                   viewport={{ once: true }}
                   transition={{ type: "spring", delay: index * 0.1 + 0.3 }}
                 >
-                  {stat.value}{stat.suffix}
+                  {index === 0 ? <LivePurchaseCounter count={purchaseCount} setCount={setPurchaseCount} /> : `${stat.value}${stat.suffix}`}
                 </motion.div>
-                <div className="text-base sm:text-sm md:text-base text-[#666] leading-relaxed font-medium">{stat.label}</div>
+                <div className="text-base sm:text-sm md:text-base text-[#666] leading-relaxed font-medium">
+                  {stat.label}
+                  {index === 0 && <LiveIndicator />}
+                </div>
                 <motion.div 
                   className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#e3ee6b]/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                   whileHover={{ rotate: 360 }}
@@ -676,7 +1082,7 @@ const App = () => {
       </section>
 
       {/* --- CTA BANNER --- */}
-      <section className="relative py-12 sm:py-14 px-4 bg-gradient-to-br from-[#F5F5F5] to-white overflow-hidden">
+      <section id="problem" className="relative py-12 sm:py-14 px-4 bg-gradient-to-br from-[#F5F5F5] to-white overflow-hidden">
         {/* Metallic decorations */}
         <motion.div 
           className="absolute left-0 top-1/2 -translate-y-1/2 w-48 h-48 opacity-20"
@@ -685,7 +1091,7 @@ const App = () => {
         >
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1759259738810-0783f5db82bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHJvbWUlMjBtZXRhbCUyMGFic3RyYWN0JTIwd2F2ZXN8ZW58MXx8fHwxNzY1NDQ4NjA2fDA&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Metal decoration"
+            alt="Декоративный элемент - хромированный металл для детейлинг студии"
             className="w-full h-full object-cover"
           />
         </motion.div>
@@ -697,7 +1103,7 @@ const App = () => {
         >
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1732698476659-2e5336bae219?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZXRhbGxpYyUyMHNpbHZlciUyMDNkJTIwZmx1aWR8ZW58MXx8fHwxNzY1NDQ4NjA2fDA&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Metal decoration"
+            alt="Декоративный элемент - металлическая текстура для автосервиса"
             className="w-full h-full object-cover scale-x-[-1]"
           />
         </motion.div>
@@ -725,7 +1131,7 @@ const App = () => {
             <div className="bg-[#0A0A0A] rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 inline-block">
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-tight font-medium">
                 Вкладываем{" "}
-                <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-[#e3ee6b] text-[#0A0A0A] rounded font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                <span className="text-[#e3ee6b] text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
                   сотни тысяч
                 </span>
                 {" "}в оборудование, помещение, материалы
@@ -832,7 +1238,7 @@ const App = () => {
             variants={fadeInUp}
             className="mb-4 sm:mb-6"
           >
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#0A0A0A] mb-6 sm:mb-8 font-bold">Но почему тогда:</h3>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#0A0A0A] mb-6 sm:mb-8 font-bold">Но почему тогда:</h2>
             
             <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-3xl mx-auto">
               <motion.div
@@ -892,9 +1298,9 @@ const App = () => {
               className="text-center mt-10 sm:mt-14 max-w-5xl mx-auto"
             >
               {/* Основной заголовок */}
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#0A0A0A] font-bold leading-tight mb-6 sm:mb-8 px-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#0A0A0A] font-bold leading-tight mb-6 sm:mb-8 px-4">
                 Мы создали единственный курс в России, который реально работает для детейлингов.
-              </h3>
+              </h2>
               
               {/* Карточка с результатами */}
               <motion.div 
@@ -905,7 +1311,7 @@ const App = () => {
                 transition={{ delay: 0.5 }}
               >
                 <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A]/70 mb-3 sm:mb-4 font-medium">
-                  Проверили на 155 студиях
+                  Уже применяют {purchaseCount} владельцев автобизнеса
                 </p>
                 <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-[#e3ee6b] text-[#0A0A0A] rounded-xl font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl">
                   +40-100% к чеку
@@ -929,8 +1335,72 @@ const App = () => {
         </motion.div>
       </section>
 
+      {/* --- LOSS CALCULATOR SECTION --- */}
+      <section id="calculator" className="relative py-12 sm:py-16 md:py-20 px-4 bg-[#0A0A0A] overflow-hidden">
+        {/* Animated background */}
+        <motion.div 
+          className="absolute inset-0 opacity-5"
+          animate={{ 
+            backgroundPosition: ['0% 0%', '100% 100%'],
+          }}
+          transition={{ duration: 60, repeat: Infinity, repeatType: 'reverse', ease: 'linear' }}
+          style={{
+            backgroundImage: 'linear-gradient(45deg, #e3ee6b 25%, transparent 25%, transparent 75%, #e3ee6b 75%, #e3ee6b), linear-gradient(45deg, #e3ee6b 25%, transparent 25%, transparent 75%, #e3ee6b 75%, #e3ee6b)',
+            backgroundSize: '20px 20px',
+            backgroundPosition: '0 0, 10px 10px'
+          }}
+        />
+
+        <div className="max-w-5xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10 sm:mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 sm:mb-6 leading-tight">
+              Подсчитайте свои <span className="text-[#e3ee6b] font-bold">реальные потери</span>
+            </h2>
+            
+            <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto text-[20px]">
+              Введите данные и узнаете, сколько денег теряете каждый месяц
+            </p>
+          </motion.div>
+
+          <LossCalculator />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="text-center"
+          >
+            <div className="mb-6 sm:mb-8 space-y-3 sm:space-y-4">
+              <p className="text-lg sm:text-xl md:text-2xl text-white/80 text-[rgb(255,255,255)] font-bold">
+                А с нами <span className="text-[rgb(230,230,230)] font-bold">вместо потерь, это станет прибылью!</span>
+              </p>
+            </div>
+            
+            <motion.a 
+              href="https://t.me/clubmanagers_bot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#e3ee6b] text-[#0A0A0A] px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-[#d4df5a] transition-all inline-flex items-center gap-3 group text-base sm:text-lg md:text-xl font-bold touch-manipulation"
+              whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(227,238,107,0.4)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Обучиться за 2490 ₽
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </motion.a>
+          </motion.div>
+        </div>
+      </section>
+
+
+
       {/* --- PROGRAM SECTION --- */}
-      <section id="program" className="relative py-16 sm:py-20 lg:py-24 px-4 bg-white">
+      <section id="modules" className="relative py-16 sm:py-20 lg:py-24 px-4 bg-white">
         <div className="max-w-[1400px] mx-auto">
           
           <motion.div 
@@ -1049,7 +1519,7 @@ const App = () => {
       </section>
 
       {/* --- TESTIMONIALS SECTION --- */}
-      <section id="testimonials" className="relative py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-b from-white to-white overflow-hidden">
+      <section id="reviews" className="relative py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-b from-white to-white overflow-hidden">
         {/* Background elements */}
         <div className="absolute inset-0">
           <motion.div 
@@ -1143,6 +1613,7 @@ const App = () => {
         </div>
       </section>
 
+      {/* --- COMPETITOR WARNING SECTION --- */}
       {/* --- PRICING SECTION --- */}
       <section id="price" className="relative py-16 sm:py-20 lg:py-24 px-4 bg-gradient-to-b from-white to-[#FAFAFA] overflow-hidden">
         
@@ -1284,8 +1755,7 @@ const App = () => {
                         Мы специально поставили <span className="text-[#0A0A0A] font-bold">цену, над которой не надо думать</span>.
                       </p>
                       <div className="space-y-2 text-black/60 text-base sm:text-lg md:text-xl">
-                        <p>Это меньше, чем <span className="text-[#0A0A0A] font-semibold">одна качественная мойка</span>.</p>
-                        <p>Или <span className="text-[#0A0A0A] font-semibold">один поход в магазин</span>.</p>
+                        <p className="text-[rgb(0,0,0)]">Это <span className="text-[#0A0A0A] font-semibold font-bold font-normal">стоимость одной мойки или одного похода в магазин</span>.</p>
                       </div>
                     </div>
                   </motion.div>
@@ -1474,7 +1944,7 @@ const App = () => {
                 <Sparkles className="w-8 h-8 text-[#0A0A0A]" />
               </motion.div>
 
-              <h3 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-[#0A0A0A] text-center font-bold">Старт 12 января</h3>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-[#0A0A0A] text-center font-bold">Старт 12 января</h2>
               <p className="text-base sm:text-lg text-[#666] mb-6 sm:mb-8 leading-relaxed text-center">
                 Просто возьмите это, проверьте и сообщите сотрудникам. Порядок в кассе гарантирую.
               </p>
