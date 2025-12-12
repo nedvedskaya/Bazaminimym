@@ -1,0 +1,21 @@
+{
+  "name": "Базовый Минимум - Курс по продажам для автосервисов",
+  "short_name": "Базовый Минимум",
+  "description": "Онлайн-курс по продажам для автосервисов. 5 модулей практических знаний за 2490₽",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#e3ee6b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "education"],
+  "lang": "ru",
+  "dir": "ltr"
+}

@@ -1,0 +1,27 @@
+# robots.txt для Базовый Минимум
+# Разрешаем индексацию всем поисковым роботам
+
+User-agent: *
+Allow: /
+
+# Запрещаем служебные директории (если появятся)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+
+# Специальные правила для основных поисковиков
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Ссылка на sitemap
+Sitemap: https://bazovyminimum.ru/sitemap.xml
+
+# Скорость обхода для Яндекса (запросов в секунду)
+Host: bazovyminimum.ru
+Crawl-delay: 1

@@ -1,0 +1,18 @@
+# humanstxt.org
+
+/* TEAM */
+Project: Базовый Минимум
+Site: https://bazovyminimum.ru
+Description: Онлайн-курс по продажам для автосервисов
+
+/* SITE */
+Last update: 2024-12-12
+Language: Russian / Русский
+Standards: HTML5, CSS3, JavaScript ES6+
+Components: React, TypeScript, Tailwind CSS, Motion
+IDE: VS Code
+
+/* THANKS */
+Fonts: System fonts
+Images: Unsplash
+Icons: Lucide React
