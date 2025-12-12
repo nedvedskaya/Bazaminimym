@@ -274,7 +274,7 @@ const App = () => {
     {
       id: 4,
       title: "Техники допродаж",
-      subtitle: "Или повышение чека",
+      subtitle: "И повышение чека",
       desc: "Как экологично увеличить средний чек, предлагая именно то, что нужно клиенту.",
       icon: <BarChart3 className="w-5 h-5" />,
       style: "light",
@@ -485,7 +485,7 @@ const App = () => {
 
               <motion.h1 
                 variants={fadeInUp} 
-                className="relative text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] 2xl:text-[9rem] mb-6 sm:mb-8 leading-[0.95] pt-3 pb-8 overflow-visible"
+                className="relative text-6xl xs:text-7xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] 2xl:text-[9rem] mb-6 sm:mb-8 leading-[0.95] pt-3 pb-8 overflow-visible"
               >
                 <motion.span 
                   className="block font-black bg-gradient-to-br from-white via-[#e3ee6b] to-[#e3ee6b]/60 bg-clip-text text-transparent"
@@ -516,14 +516,16 @@ const App = () => {
 
               <motion.p 
                 variants={fadeInUp} 
-                className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-xl"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-xl mt-4 sm:mt-6"
               >
                 База, которая должна быть в голове у каждого, кто отвечает на звонки и продает услуги детейлинга.
               </motion.p>
               
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <motion.button 
-                  onClick={() => setIsModalOpen(true)}
+                <motion.a 
+                  href="https://t.me/clubmanagers_bot"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group relative bg-[#e3ee6b] text-[#0A0A0A] px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-[#e8f285] transition-all inline-flex items-center justify-center gap-2 sm:gap-3 touch-manipulation overflow-hidden w-full sm:w-auto"
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(227, 238, 107, 0.4)" }}
                   whileTap={{ scale: 0.95 }}
@@ -538,7 +540,7 @@ const App = () => {
                     Получить доступ
                   </span>
                   <ArrowRight className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
+                </motion.a>
 
                 <motion.button 
                   className="group bg-white/5 border border-white/10 text-white px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-white/10 transition-all inline-flex items-center justify-center gap-2 sm:gap-3 touch-manipulation backdrop-blur-sm w-full sm:w-auto"
@@ -893,16 +895,18 @@ const App = () => {
             </motion.p>
           </motion.div>
 
-          <motion.button 
+          <motion.a 
             variants={fadeInUp}
-            onClick={() => setIsModalOpen(true)}
+            href="https://t.me/clubmanagers_bot"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-[#0A0A0A] text-white px-10 py-5 sm:py-6 rounded-full hover:bg-[#1A1A1A] transition-all inline-flex items-center gap-3 group text-lg sm:text-xl md:text-2xl font-semibold touch-manipulation"
             whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}
             whileTap={{ scale: 0.95 }}
           >
             <span className="font-bold">Записаться на курс</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </motion.button>
+          </motion.a>
         </motion.div>
       </section>
 
@@ -1268,8 +1272,10 @@ const App = () => {
                   </motion.div>
 
                   {/* CTA Button */}
-                  <motion.button 
-                    onClick={() => setIsModalOpen(true)}
+                  <motion.a
+                    href="https://t.me/clubmanagers_bot"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group relative bg-[#0A0A0A] text-white px-10 sm:px-14 py-5 sm:py-7 rounded-full transition-all inline-flex items-center justify-center gap-3 sm:gap-4 text-xl sm:text-2xl md:text-3xl touch-manipulation overflow-hidden shadow-2xl border-2 border-[#e3ee6b]"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -1294,10 +1300,10 @@ const App = () => {
                     />
 
                     <span className="relative z-10 flex items-center gap-3 sm:gap-4 font-black group-hover:text-[#0A0A0A] transition-colors">
-                      Получить курс
+                      Оплатить курс
                       <ArrowRight className="w-7 h-7 sm:w-8 sm:h-8 group-hover:translate-x-2 transition-transform" />
                     </span>
-                  </motion.button>
+                  </motion.a>
 
                   {/* Security badge */}
                   <motion.div
