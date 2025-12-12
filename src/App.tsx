@@ -1131,7 +1131,7 @@ const App = () => {
             <div className="bg-[#0A0A0A] rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 inline-block">
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-tight font-medium">
                 Вкладываем{" "}
-                <span className="text-[#e3ee6b] text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                <span className="text-[#e3ee6b] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
                   сотни тысяч
                 </span>
                 {" "}в оборудование, помещение, материалы
