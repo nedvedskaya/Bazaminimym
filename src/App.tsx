@@ -122,8 +122,8 @@ const LiveCounter = ({ target }: { target: number }) => {
 // Live Purchase Counter Component - shows incrementing number
 const LivePurchaseCounter = ({ count, setCount }: { count: number; setCount: (value: number | ((prev: number) => number)) => void }) => {
   useEffect(() => {
-    // Random interval between 1-2 minutes (60000-120000 ms)
-    const getRandomInterval = () => Math.floor(Math.random() * 60000) + 60000;
+    // Random interval between 1-2 hours (3600000-7200000 ms)
+    const getRandomInterval = () => Math.floor(Math.random() * 3600000) + 3600000;
     
     const scheduleNextIncrement = () => {
       const interval = getRandomInterval();
