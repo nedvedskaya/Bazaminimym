@@ -111,8 +111,6 @@ const LiveCounter = ({ target }: { target: number }) => {
   return (
     <motion.span 
       className="text-4xl sm:text-5xl md:text-6xl font-black text-[#e3ee6b]"
-      animate={{ scale: [1, 1.05, 1] }}
-      transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
     >
       {count}
     </motion.span>
@@ -159,10 +157,9 @@ const LiveIndicator = () => {
       <motion.div 
         className="w-1.5 h-1.5 bg-[#e3ee6b] rounded-full"
         animate={{ 
-          scale: [1, 1.3, 1],
-          opacity: [1, 0.5, 1]
+          opacity: [1, 0.4, 1]
         }}
-        transition={{ duration: 2, repeat: Infinity }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
       />
       <span className="text-[10px] sm:text-xs text-[#666] uppercase tracking-wide">Счетчик обновляется в реальном времени</span>
     </div>
@@ -867,41 +864,37 @@ const App = () => {
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             animate={{ 
-              rotate: [0, 360],
-              scale: [1, 1.2, 1],
-              x: [0, 100, 0],
-              y: [0, -50, 0]
+              x: [0, 30, 0],
+              y: [0, -20, 0]
             }}
             transition={{ 
-              duration: 20, 
+              duration: 30, 
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut"
             }}
             className="absolute -top-20 sm:-top-40 -right-20 sm:-right-40 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-[#e3ee6b]/20 to-transparent rounded-full blur-3xl"
           />
           
           <motion.div
             animate={{ 
-              rotate: [360, 0],
-              scale: [1, 1.3, 1],
-              x: [0, -80, 0],
-              y: [0, 80, 0]
+              x: [0, -25, 0],
+              y: [0, 25, 0]
             }}
             transition={{ 
-              duration: 25, 
+              duration: 35, 
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut"
             }}
             className="absolute -bottom-20 sm:-bottom-40 -left-20 sm:-left-40 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-tr from-white/10 to-transparent rounded-full blur-3xl"
           />
 
           <motion.div
             animate={{ 
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.6, 0.3]
+              scale: [1, 1.08, 1],
+              opacity: [0.3, 0.45, 0.3]
             }}
             transition={{ 
-              duration: 8, 
+              duration: 12, 
               repeat: Infinity,
               ease: "easeInOut"
             }}
@@ -924,13 +917,13 @@ const App = () => {
                   <motion.div 
                     className="absolute inset-0 bg-gradient-to-r from-[#e3ee6b]/20 to-transparent"
                     animate={{ x: ['-100%', '100%'] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   />
                   <div className="relative z-10 flex items-center gap-2 sm:gap-3">
                     <motion.div
                       className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#e3ee6b]"
-                      animate={{ opacity: [1, 0.3, 1] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      animate={{ opacity: [1, 0.5, 1] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                     />
                     <span className="text-sm sm:text-base text-white/90 font-medium">
                       Онлайн-курс • Старт 12 января
@@ -963,10 +956,9 @@ const App = () => {
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-[#e3ee6b]/30 to-transparent blur-3xl -z-10"
                   animate={{ 
-                    opacity: [0.3, 0.6, 0.3],
-                    scale: [1, 1.2, 1]
+                    opacity: [0.3, 0.5, 0.3]
                   }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 />
               </motion.h1>
 
@@ -987,11 +979,11 @@ const App = () => {
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(227, 238, 107, 0.4)" }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {/* Pulse effect */}
+                  {/* Subtle glow effect */}
                   <motion.div
                     className="absolute inset-0 bg-[#e3ee6b] rounded-full"
-                    animate={{ scale: [1, 1.2, 1], opacity: [1, 0, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                    animate={{ opacity: [0.8, 0.4, 0.8] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   />
                   <span className="relative z-10 text-base sm:text-lg md:text-xl font-semibold font-bold">
                     Получить доступ
@@ -1046,11 +1038,9 @@ const App = () => {
                     {/* Бейдж со скидкой */}
                     <motion.div
                       className="absolute -top-3 -right-3 bg-[#e3ee6b] text-[#0A0A0A] px-4 py-1.5 rounded-full text-sm sm:text-base font-bold shadow-lg z-10"
-                      animate={{ 
-                        scale: [1, 1.1, 1],
-                        rotate: [0, -5, 5, 0]
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                      initial={{ scale: 0.9 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
                     >
                       -75%
                     </motion.div>
@@ -1140,8 +1130,8 @@ const App = () => {
         {/* Metallic decorations */}
         <motion.div 
           className="absolute left-0 top-1/2 -translate-y-1/2 w-48 h-48 opacity-20"
-          animate={{ rotate: 360, scale: [1, 1.2, 1] }}
-          transition={{ duration: 20, repeat: Infinity }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
         >
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1759259738810-0783f5db82bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHJvbWUlMjBtZXRhbCUyMGFic3RyYWN0JTIwd2F2ZXN8ZW58MXx8fHwxNzY1NDQ4NjA2fDA&ixlib=rb-4.1.0&q=80&w=1080"
@@ -1152,8 +1142,8 @@ const App = () => {
 
         <motion.div 
           className="absolute right-0 top-1/2 -translate-y-1/2 w-48 h-48 opacity-20"
-          animate={{ rotate: -360, scale: [1, 1.3, 1] }}
-          transition={{ duration: 25, repeat: Infinity }}
+          animate={{ rotate: -360 }}
+          transition={{ duration: 140, repeat: Infinity, ease: "linear" }}
         >
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1732698476659-2e5336bae219?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZXRhbGxpYyUyMHNpbHZlciUyMDNkJTIwZmx1aWR8ZW58MXx8fHwxNzY1NDQ4NjA2fDA&ixlib=rb-4.1.0&q=80&w=1080"
@@ -1273,13 +1263,13 @@ const App = () => {
                       key={i}
                       className="w-2 h-2 bg-[#e3ee6b] rounded-full"
                       animate={{ 
-                        scale: [1, 1.5, 1],
-                        opacity: [0.5, 1, 0.5]
+                        opacity: [0.4, 0.9, 0.4]
                       }}
                       transition={{ 
-                        duration: 2,
+                        duration: 3,
                         repeat: Infinity,
-                        delay: i * 0.2
+                        delay: i * 0.4,
+                        ease: "easeInOut"
                       }}
                     />
                   ))}
@@ -1578,8 +1568,8 @@ const App = () => {
         <div className="absolute inset-0">
           <motion.div 
             className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-[#e3ee6b]/10 to-transparent rounded-full blur-3xl"
-            animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
-            transition={{ duration: 8, repeat: Infinity }}
+            animate={{ opacity: [0.2, 0.35, 0.2] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
 
@@ -1656,8 +1646,8 @@ const App = () => {
               transition={{ delay: 0.5 }}
             >
               <motion.div
-                animate={{ x: [-10, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+                animate={{ x: [-5, 0, -5] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
                 ←
               </motion.div>
@@ -1674,18 +1664,16 @@ const App = () => {
         {/* Subtle background elements */}
         <motion.div
           animate={{ 
-            rotate: [0, 360],
-            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
           }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-[#e3ee6b]/5 to-transparent rounded-full blur-3xl"
         />
         <motion.div
           animate={{ 
-            rotate: [360, 0],
-            scale: [1, 1.15, 1],
+            opacity: [0.3, 0.5, 0.3],
           }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-gradient-to-tr from-black/3 to-transparent rounded-full blur-3xl"
         />
 
@@ -1730,10 +1718,9 @@ const App = () => {
               <motion.div 
                 className="absolute -inset-1 bg-gradient-to-br from-[#e3ee6b]/30 via-[#e3ee6b]/20 to-[#e3ee6b]/10 rounded-[3rem] blur-xl"
                 animate={{ 
-                  scale: [1, 1.02, 1],
-                  opacity: [0.6, 0.8, 0.6]
+                  opacity: [0.5, 0.7, 0.5]
                 }}
-                transition={{ duration: 3, repeat: Infinity }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               />
 
               {/* Main card */}
@@ -1750,10 +1737,9 @@ const App = () => {
                   <motion.div
                     className="relative bg-gradient-to-br from-[#e3ee6b] to-[#c5d060] text-[#0A0A0A] px-5 py-3 sm:px-7 sm:py-4 rounded-2xl shadow-2xl"
                     animate={{ 
-                      y: [0, -8, 0],
-                      rotate: [12, 8, 12]
+                      y: [0, -4, 0]
                     }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   >
                     <div className="absolute inset-0 bg-[#e3ee6b] rounded-2xl blur-md opacity-50" />
                     <div className="relative text-center">
@@ -1835,11 +1821,11 @@ const App = () => {
                       transition={{ duration: 0.6 }}
                     />
                     
-                    {/* Pulse effect */}
+                    {/* Subtle glow */}
                     <motion.div
                       className="absolute inset-0 bg-[#e3ee6b] rounded-full"
-                      animate={{ scale: [1, 1.1, 1], opacity: [0, 0.3, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                      animate={{ opacity: [0.15, 0.35, 0.15] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     />
 
                     <span className="relative z-10 flex items-center gap-3 sm:gap-4 font-black group-hover:text-[#0A0A0A] transition-colors">
@@ -1867,13 +1853,13 @@ const App = () => {
               {/* Decorative elements */}
               <motion.div 
                 className="absolute -bottom-6 -left-6 w-32 h-32 bg-[#e3ee6b]/20 rounded-full blur-3xl"
-                animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
+                animate={{ opacity: [0.3, 0.5, 0.3] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               />
               <motion.div 
                 className="absolute -top-6 -right-6 w-32 h-32 bg-white/10 rounded-full blur-3xl"
-                animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 4, repeat: Infinity }}
+                animate={{ opacity: [0.3, 0.5, 0.3] }}
+                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
               />
             </motion.div>
 
@@ -1951,9 +1937,9 @@ const App = () => {
         transition={{ delay: 1 }}
       >
         <motion.div
-          animate={{ scale: [1, 1.3, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute inset-0 bg-[#e3ee6b] rounded-full opacity-50"
+          animate={{ opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-[#e3ee6b] rounded-full"
         />
         <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A] relative z-10" />
       </motion.button>
