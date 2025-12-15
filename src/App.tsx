@@ -122,26 +122,21 @@ const LiveCounter = ({ target }: { target: number }) => {
 // Live Purchase Counter Component - shows incrementing number
 const LivePurchaseCounter = ({ count, setCount }: { count: number; setCount: (value: number | ((prev: number) => number)) => void }) => {
   useEffect(() => {
-    // Random interval between 1-2 hours (3600000-7200000 ms)
-    const getRandomInterval = () => Math.floor(Math.random() * 3600000) + 3600000;
+    // Check once per day (24 hours = 86400000 ms)
+    const dailyInterval = 86400000;
     
-    const scheduleNextIncrement = () => {
-      const interval = getRandomInterval();
-      const timeout = setTimeout(() => {
-        setCount(prev => {
-          const newValue = prev + 1;
-          // Save to localStorage with timestamp (safely)
-          safeStorage.setNumber('purchaseCount', newValue);
-          safeStorage.setNumber('purchaseCountTimestamp', Date.now());
-          return newValue;
-        });
-        scheduleNextIncrement();
-      }, interval);
-      
-      return timeout;
+    const addDailyIncrement = () => {
+      // Random increment between 5-15 per day
+      const randomIncrement = Math.floor(Math.random() * 11) + 5;
+      setCount(prev => {
+        const newValue = prev + randomIncrement;
+        safeStorage.setNumber('purchaseCount', newValue);
+        safeStorage.setNumber('purchaseCountTimestamp', Date.now());
+        return newValue;
+      });
     };
     
-    const timeout = scheduleNextIncrement();
+    const timeout = setTimeout(addDailyIncrement, dailyInterval);
     return () => clearTimeout(timeout);
   }, [setCount]);
 
@@ -505,26 +500,31 @@ const App = () => {
   const [showPurchase, setShowPurchase] = useState(false);
   const [currentPurchase, setCurrentPurchase] = useState({ name: '', city: '' });
   const [purchaseCount, setPurchaseCount] = useState(() => {
-    // Load from localStorage or calculate based on time passed (safely)
+    // Load from localStorage or calculate based on days passed (safely)
     const savedCount = safeStorage.getNumber('purchaseCount', 0);
     const savedTimestamp = safeStorage.getNumber('purchaseCountTimestamp', 0);
     
     if (savedCount > 0 && savedTimestamp > 0) {
       const timePassed = Date.now() - savedTimestamp;
-      // Average 1.5 minutes per increment (90000 ms)
-      const estimatedIncrements = Math.floor(timePassed / 90000);
-      const calculatedCount = savedCount + estimatedIncrements;
+      const daysPassed = Math.floor(timePassed / 86400000); // 24 hours in ms
       
-      // Save updated values
-      if (estimatedIncrements > 0) {
+      if (daysPassed > 0) {
+        // Add random 5-15 per day for each day passed
+        let totalIncrement = 0;
+        for (let i = 0; i < daysPassed; i++) {
+          totalIncrement += Math.floor(Math.random() * 11) + 5;
+        }
+        const calculatedCount = savedCount + totalIncrement;
+        
         safeStorage.setNumber('purchaseCount', calculatedCount);
         safeStorage.setNumber('purchaseCountTimestamp', Date.now());
+        return calculatedCount;
       }
       
-      return calculatedCount;
+      return savedCount;
     }
     
-    // First visit - initialize
+    // First visit - initialize at 155
     safeStorage.setNumber('purchaseCount', 155);
     safeStorage.setNumber('purchaseCountTimestamp', Date.now());
     return 155;
