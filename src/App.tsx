@@ -496,6 +496,54 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
   );
 };
 
+// Cookie Consent Component
+const CookieConsent = () => {
+  const [showConsent, setShowConsent] = useState(() => {
+    return !safeStorage.getBoolean('cookieConsent', false);
+  });
+
+  const acceptCookies = () => {
+    safeStorage.setBoolean('cookieConsent', true);
+    setShowConsent(false);
+  };
+
+  if (!showConsent) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 100, opacity: 0 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6"
+      >
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="flex-1">
+              <p className="text-[#0A0A0A] text-sm sm:text-base">
+                Мы используем файлы cookie для улучшения работы сайта и анализа трафика. 
+                Продолжая использовать сайт, вы соглашаетесь с{' '}
+                <a href="#" className="text-[#0A0A0A] underline hover:text-[#666]">
+                  политикой конфиденциальности
+                </a>.
+              </p>
+            </div>
+            <motion.button
+              onClick={acceptCookies}
+              className="bg-[#e3ee6b] text-[#0A0A0A] px-6 py-2.5 rounded-full font-semibold text-sm sm:text-base whitespace-nowrap hover:bg-[#d4df5a] transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Принять
+            </motion.button>
+          </div>
+        </div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -1985,6 +2033,9 @@ const App = () => {
       </AnimatePresence>
       
       <div className="h-20" />
+      
+      {/* Cookie Consent */}
+      <CookieConsent />
     </div>
   );
 };

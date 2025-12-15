@@ -83,6 +83,22 @@ export const safeStorage = {
   },
 
   /**
+   * Get boolean from localStorage with validation
+   */
+  getBoolean: (key: string, defaultValue: boolean = false): boolean => {
+    const value = safeStorage.getItem(key);
+    if (value === null) return defaultValue;
+    return value === 'true';
+  },
+
+  /**
+   * Set boolean to localStorage
+   */
+  setBoolean: (key: string, value: boolean): boolean => {
+    return safeStorage.setItem(key, value.toString());
+  },
+
+  /**
    * Clear all items from localStorage (use with caution)
    */
   clear: (): boolean => {
