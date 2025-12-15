@@ -524,7 +524,7 @@ const CookieConsent = () => {
               <p className="text-[#0A0A0A] text-sm sm:text-base">
                 Мы используем файлы cookie для улучшения работы сайта и анализа трафика. 
                 Продолжая использовать сайт, вы соглашаетесь с{' '}
-                <a href="#" className="text-[#0A0A0A] underline hover:text-[#666]">
+                <a href="https://project2788838.tilda.ws/politica" target="_blank" rel="noopener noreferrer" className="text-[#0A0A0A] underline hover:text-[#666]">
                   политикой конфиденциальности
                 </a>.
               </p>
