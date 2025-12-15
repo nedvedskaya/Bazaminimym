@@ -171,9 +171,9 @@ const LiveIndicator = () => {
 
 // Loss Calculator Component
 const LossCalculator = () => {
-  const [callsPerDay, setCallsPerDay] = useState<string>('10');
-  const [lostClientsPerDay, setLostClientsPerDay] = useState<string>('2');
-  const [avgCheck, setAvgCheck] = useState<string>('50000');
+  const [callsPerDay, setCallsPerDay] = useState<string>('');
+  const [lostClientsPerDay, setLostClientsPerDay] = useState<string>('');
+  const [avgCheck, setAvgCheck] = useState<string>('');
 
   const callsNum = parseInt(callsPerDay) || 0;
   const lostNum = parseInt(lostClientsPerDay) || 0;
