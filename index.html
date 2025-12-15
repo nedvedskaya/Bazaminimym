@@ -1,15 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Базовый минимум - Курс для владельцев автобизнеса</title>
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105851105', 'ym');
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Website Prototype Creation</title>
-    </head>
+        ym(105851105, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <!-- /Yandex.Metrika counter -->
 
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
-  
+    <!-- Scroll Depth & Click Tracking -->
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        // Scroll Depth Tracking
+        var scrollDepths = {25: false, 50: false, 75: false, 100: false};
+        
+        function getScrollPercent() {
+          var h = document.documentElement;
+          var b = document.body;
+          var st = 'scrollTop';
+          var sh = 'scrollHeight';
+          return Math.round((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100);
+        }
+        
+        function trackScrollDepth() {
+          var percent = getScrollPercent();
+          
+          if (percent >= 25 && !scrollDepths[25]) {
+            scrollDepths[25] = true;
+            console.log('Scroll depth: 25%');
+            if (typeof ym !== 'undefined') ym(105851105, 'reachGoal', 'scroll_25');
+          }
+          if (percent >= 50 && !scrollDepths[50]) {
+            scrollDepths[50] = true;
+            console.log('Scroll depth: 50%');
+            if (typeof ym !== 'undefined') ym(105851105, 'reachGoal', 'scroll_50');
+          }
+          if (percent >= 75 && !scrollDepths[75]) {
+            scrollDepths[75] = true;
+            console.log('Scroll depth: 75%');
+            if (typeof ym !== 'undefined') ym(105851105, 'reachGoal', 'scroll_75');
+          }
+          if (percent >= 99 && !scrollDepths[100]) {
+            scrollDepths[100] = true;
+            console.log('Scroll depth: 100%');
+            if (typeof ym !== 'undefined') ym(105851105, 'reachGoal', 'scroll_100');
+          }
+        }
+        
+        window.addEventListener('scroll', trackScrollDepth, {passive: true});
+        
+        // Button Click Tracking
+        document.addEventListener('click', function(e) {
+          var target = e.target.closest('button, a[href], [role="button"]');
+          if (!target) return;
+          
+          var buttonText = target.textContent.trim().substring(0, 50);
+          var buttonClass = target.className || '';
+          var href = target.href || '';
+          
+          // Track CTA buttons
+          if (buttonText.includes('Получить') || buttonText.includes('Купить') || buttonText.includes('Записаться')) {
+            console.log('CTA button clicked:', buttonText);
+            if (typeof ym !== 'undefined') ym(105851105, 'reachGoal', 'cta_click', {button: buttonText});
+          }
+          
+          // Track navigation clicks
+          if (href.includes('#')) {
+            console.log('Navigation clicked:', href);
+            if (typeof ym !== 'undefined') ym(105851105, 'reachGoal', 'nav_click', {section: href});
+          }
+          
+          // Track all button clicks
+          console.log('Button clicked:', buttonText);
+          if (typeof ym !== 'undefined') ym(105851105, 'reachGoal', 'button_click', {button: buttonText, class: buttonClass});
+        });
+        
+        // Form Submit Tracking
+        document.addEventListener('submit', function(e) {
+          var form = e.target;
+          var formId = form.id || form.className || 'unknown_form';
+          console.log('Form submitted:', formId);
+          if (typeof ym !== 'undefined') ym(105851105, 'reachGoal', 'form_submit', {form: formId});
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <!-- Yandex.Metrika noscript fallback -->
+    <noscript><div><img src="https://mc.yandex.ru/watch/105851105" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
