@@ -400,14 +400,16 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
             >
               FAQ
             </a>
-            <motion.button
-              onClick={() => setIsModalOpen(true)}
+            <motion.a
+              href="https://t.me/clubmanagers_bot"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#e3ee6b] text-[#0A0A0A] px-6 py-2.5 rounded-full hover:bg-[#d4df5a] transition-colors text-sm lg:text-base font-semibold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Купить курс
-            </motion.button>
+            </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -475,11 +477,11 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               >
                 FAQ
               </motion.a>
-              <motion.button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  setIsModalOpen(true);
-                }}
+              <motion.a
+                href="https://t.me/clubmanagers_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="bg-[#e3ee6b] text-[#0A0A0A] px-10 py-4 rounded-full text-xl font-semibold mt-4"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -487,7 +489,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
                 whileTap={{ scale: 0.95 }}
               >
                 Купить курс
-              </motion.button>
+              </motion.a>
             </div>
           </motion.div>
         )}
