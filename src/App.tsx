@@ -223,7 +223,6 @@ const LossCalculator = () => {
             className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
             min="1"
             max="1000"
-            placeholder="10"
           />
         </motion.div>
 
@@ -245,7 +244,6 @@ const LossCalculator = () => {
             className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
             min="1"
             max="100"
-            placeholder="2"
           />
         </motion.div>
 
@@ -268,7 +266,6 @@ const LossCalculator = () => {
             min="1000"
             max="10000000"
             step="1000"
-            placeholder="50000"
           />
         </motion.div>
       </div>
