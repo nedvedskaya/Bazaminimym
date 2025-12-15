@@ -670,13 +670,13 @@ const App = () => {
     };
   }, []);
 
-  // --- ANIMATION VARIANTS (optimized for smooth performance) ---
+  // --- ANIMATION VARIANTS (optimized for smooth mobile performance) ---
   const fadeInUp = {
-    hidden: { opacity: 0, y: 15 },
+    hidden: { opacity: 0, y: 10 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.4, ease: "easeOut" }
+      transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
     }
   };
 
@@ -684,7 +684,7 @@ const App = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.05 }
+      transition: { staggerChildren: 0.1, delayChildren: 0.05 }
     }
   };
 
@@ -693,7 +693,7 @@ const App = () => {
     visible: { 
       scale: 1, 
       opacity: 1,
-      transition: { duration: 0.35, ease: "easeOut" }
+      transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
     }
   };
 
@@ -1092,12 +1092,12 @@ const App = () => {
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.3, ease: "easeOut" }}
-                className="relative p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#F5F5F5] to-white border border-black/5 hover:border-[#e3ee6b]/30 transition-all group"
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(0,0,0,0.1)" }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: index * 0.05, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                className="relative p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#F5F5F5] to-white border border-black/5 hover:border-[#e3ee6b]/30 transition-all group will-change-transform"
+                whileHover={{ scale: 1.02, boxShadow: "0 20px 60px rgba(0,0,0,0.1)" }}
               >
                 <motion.div 
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-3 sm:mb-2 font-black bg-gradient-to-br from-[#0A0A0A] to-[#333] bg-clip-text text-transparent"
@@ -1286,12 +1286,11 @@ const App = () => {
             
             <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-3xl mx-auto">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: 0.1, duration: 0.4 }}
+                className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm will-change-transform"
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
                   <Mic className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]" />
@@ -1302,12 +1301,11 @@ const App = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: 0.15, duration: 0.4 }}
+                className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm will-change-transform"
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
                   <ShieldAlert className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]" />
@@ -1318,12 +1316,11 @@ const App = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-white rounded-xl p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+                className="bg-white rounded-xl p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm will-change-transform"
               >
                 <div className="w-12 h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mx-auto mb-3">
                   <Users className="w-6 h-6 text-[#0A0A0A]" />
@@ -1335,10 +1332,10 @@ const App = () => {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.2, duration: 0.4 }}
               className="text-center mt-10 sm:mt-14 max-w-5xl mx-auto"
             >
               {/* Основной заголовок */}
@@ -1348,11 +1345,11 @@ const App = () => {
               
               {/* Карточка с результатами */}
               <motion.div 
-                className="inline-block bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-[#0A0A0A]/10 shadow-sm mx-4"
-                initial={{ scale: 0.95, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
+                className="inline-block bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-[#0A0A0A]/10 shadow-sm mx-4 will-change-transform"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: 0.3, duration: 0.4 }}
               >
                 <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A]/70 mb-3 sm:mb-4 font-medium">
                   Уже применяют {purchaseCount} владельцев автобизнеса
@@ -1397,9 +1394,10 @@ const App = () => {
 
         <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
             className="text-center mb-10 sm:mb-12"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 sm:mb-6 leading-tight">
@@ -1474,23 +1472,21 @@ const App = () => {
             {programItems.map((item, index) => (
               <motion.div 
                 key={item.id}
-                initial={{ opacity: 0, y: 30, rotateX: -10 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.08,
-                  type: "spring",
-                  bounce: 0.3
+                  duration: 0.5, 
+                  delay: index * 0.06,
+                  ease: [0.25, 0.1, 0.25, 1]
                 }}
                 whileHover={{ 
-                  scale: 1.03, 
-                  y: -8,
+                  scale: 1.02, 
                   transition: { duration: 0.3 }
                 }}
                 className={`
                   group relative rounded-[32px] overflow-hidden
-                  transition-all touch-manipulation cursor-pointer
+                  transition-all touch-manipulation cursor-pointer will-change-transform
                   ${item.style === 'dark' ? 'bg-[#0A0A0A] text-white' : 'bg-[#e3ee6b] text-[#0A0A0A]'}
                   ${index === 0 ? 'sm:col-span-2' : ''}
                   ${index === 4 ? 'sm:col-span-2' : ''}
@@ -1601,23 +1597,18 @@ const App = () => {
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="relative p-6 sm:p-8 rounded-2xl bg-white border border-black/10 hover:border-[#e3ee6b]/50 transition-all group shadow-sm hover:shadow-md w-[calc(100vw-2rem)] sm:w-[calc(100vw-3rem)] md:w-[calc(50vw-2rem)] lg:w-[calc(33.333vw-2rem)] snap-center flex-shrink-0"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: Math.min(index * 0.05, 0.2), duration: 0.4 }}
+                  className="relative p-6 sm:p-8 rounded-2xl bg-white border border-black/10 hover:border-[#e3ee6b]/50 transition-all group shadow-sm hover:shadow-md w-[calc(100vw-2rem)] sm:w-[calc(100vw-3rem)] md:w-[calc(50vw-2rem)] lg:w-[calc(33.333vw-2rem)] snap-center flex-shrink-0 will-change-transform"
                 >
                   {/* Stars */}
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ scale: 0, rotate: -180 }}
-                        whileInView={{ scale: 1, rotate: 0 }}
-                        transition={{ delay: index * 0.1 + i * 0.05 }}
-                      >
+                      <div key={i}>
                         <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-[#e3ee6b] text-[#e3ee6b]" />
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
 
@@ -1682,9 +1673,10 @@ const App = () => {
             
             {/* Section Header */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-center mb-12 sm:mb-16"
             >
               <motion.span 
@@ -1708,11 +1700,11 @@ const App = () => {
 
             {/* Pricing Card */}
             <motion.div
-              initial={{ opacity: 0, y: 50, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
-              className="relative"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              className="relative will-change-transform"
             >
               {/* Glowing outline */}
               <motion.div 
@@ -1729,17 +1721,17 @@ const App = () => {
                 {/* Discount badge */}
                 <motion.div
                   className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 z-20"
-                  initial={{ rotate: 0, scale: 0 }}
-                  whileInView={{ rotate: 12, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ type: "spring", bounce: 0.6, delay: 0.3 }}
+                  initial={{ opacity: 0, rotate: 12 }}
+                  whileInView={{ opacity: 1, rotate: 12 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
                 >
                   <motion.div
                     className="relative bg-gradient-to-br from-[#e3ee6b] to-[#c5d060] text-[#0A0A0A] px-5 py-3 sm:px-7 sm:py-4 rounded-2xl shadow-2xl"
                     animate={{ 
-                      y: [0, -4, 0]
+                      y: [0, -3, 0]
                     }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   >
                     <div className="absolute inset-0 bg-[#e3ee6b] rounded-2xl blur-md opacity-50" />
                     <div className="relative text-center">
