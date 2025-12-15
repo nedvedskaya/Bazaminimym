@@ -171,15 +171,28 @@ const LiveIndicator = () => {
 
 // Loss Calculator Component
 const LossCalculator = () => {
-  const [callsPerDay, setCallsPerDay] = useState(10);
-  const [lostClientsPerDay, setLostClientsPerDay] = useState(2);
-  const [avgCheck, setAvgCheck] = useState(50000);
+  const [callsPerDay, setCallsPerDay] = useState<string>('10');
+  const [lostClientsPerDay, setLostClientsPerDay] = useState<string>('2');
+  const [avgCheck, setAvgCheck] = useState<string>('50000');
+
+  const callsNum = parseInt(callsPerDay) || 0;
+  const lostNum = parseInt(lostClientsPerDay) || 0;
+  const avgCheckNum = parseInt(avgCheck) || 0;
 
   // Calculate monthly loss (daily lost clients × 30 days × average check)
-  const monthlyLoss = lostClientsPerDay * 30 * avgCheck;
+  const monthlyLoss = lostNum * 30 * avgCheckNum;
 
   const formatNumber = (num: number) => {
     return new Intl.NumberFormat('ru-RU').format(num);
+  };
+
+  const handleBlur = (value: string, setValue: (v: string) => void, min: number, max: number, defaultVal: string) => {
+    const num = parseInt(value);
+    if (isNaN(num) || num < min) {
+      setValue(defaultVal);
+    } else if (num > max) {
+      setValue(max.toString());
+    }
   };
 
   return (
@@ -205,10 +218,8 @@ const LossCalculator = () => {
           <input
             type="number"
             value={callsPerDay}
-            onChange={(e) => {
-              const val = parseInt(e.target.value) || 1;
-              setCallsPerDay(Math.max(1, Math.min(val, 1000)));
-            }}
+            onChange={(e) => setCallsPerDay(e.target.value)}
+            onBlur={() => handleBlur(callsPerDay, setCallsPerDay, 1, 1000, '10')}
             className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
             min="1"
             max="1000"
@@ -229,10 +240,8 @@ const LossCalculator = () => {
           <input
             type="number"
             value={lostClientsPerDay}
-            onChange={(e) => {
-              const val = parseInt(e.target.value) || 1;
-              setLostClientsPerDay(Math.max(1, Math.min(val, 100)));
-            }}
+            onChange={(e) => setLostClientsPerDay(e.target.value)}
+            onBlur={() => handleBlur(lostClientsPerDay, setLostClientsPerDay, 1, 100, '2')}
             className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
             min="1"
             max="100"
@@ -253,10 +262,8 @@ const LossCalculator = () => {
           <input
             type="number"
             value={avgCheck}
-            onChange={(e) => {
-              const val = parseInt(e.target.value) || 1000;
-              setAvgCheck(Math.max(1000, Math.min(val, 10000000)));
-            }}
+            onChange={(e) => setAvgCheck(e.target.value)}
+            onBlur={() => handleBlur(avgCheck, setAvgCheck, 1000, 10000000, '50000')}
             className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
             min="1000"
             max="10000000"
