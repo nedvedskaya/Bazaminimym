@@ -198,19 +198,19 @@ const LossCalculator = () => {
   return (
     <motion.div 
       className="bg-white border-2 border-[#e3ee6b]/40 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 mb-8 shadow-2xl"
-      initial={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.98 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ delay: 0.2 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
       {/* Input Fields */}
       <div className="space-y-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 md:gap-6 mb-8">
         {/* Calls per day */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
             Обращений в день <span className="text-[#0A0A0A]/40 text-[10px]">(звонки, соцсети)</span>
@@ -228,10 +228,10 @@ const LossCalculator = () => {
 
         {/* Lost clients per day */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          transition={{ duration: 0.25, delay: 0.05, ease: "easeOut" }}
         >
           <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
             Сколько из них не записалось в день <span className="text-[#0A0A0A]/40 text-[10px]">(не договорились)</span>
@@ -249,10 +249,10 @@ const LossCalculator = () => {
 
         {/* Average check */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
+          transition={{ duration: 0.25, delay: 0.1, ease: "easeOut" }}
         >
           <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
             Средний чек (₽) <span className="text-[#0A0A0A]/40 text-[10px]">(сумма заказа)</span>
@@ -273,9 +273,9 @@ const LossCalculator = () => {
       {/* Results */}
       <motion.div 
         className="relative"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         <div className="h-px bg-gradient-to-r from-transparent via-[#e3ee6b] to-transparent mb-8" />
         
@@ -671,13 +671,13 @@ const App = () => {
     };
   }, []);
 
-  // --- ANIMATION VARIANTS ---
+  // --- ANIMATION VARIANTS (optimized for smooth performance) ---
   const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
+      transition: { duration: 0.4, ease: "easeOut" }
     }
   };
 
@@ -685,16 +685,16 @@ const App = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
+      transition: { staggerChildren: 0.08, delayChildren: 0.05 }
     }
   };
 
   const scaleIn = {
-    hidden: { scale: 0.95, opacity: 0 },
+    hidden: { scale: 0.98, opacity: 0 },
     visible: { 
       scale: 1, 
       opacity: 1,
-      transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
+      transition: { duration: 0.35, ease: "easeOut" }
     }
   };
 
@@ -943,17 +943,17 @@ const App = () => {
               >
                 <motion.span 
                   className="block font-black bg-gradient-to-br from-white via-[#e3ee6b] to-[#e3ee6b]/60 bg-clip-text text-transparent"
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 >
                   Базовый
                 </motion.span>
                 <motion.span 
                   className="block font-black bg-gradient-to-br from-[#e3ee6b] via-white to-white bg-clip-text text-transparent"
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
+                  transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                 >
                   минимум
                 </motion.span>
@@ -1012,9 +1012,9 @@ const App = () => {
 
             {/* Right - Metallic Image with hover effect */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              transition={{ duration: 1, delay: 0.3, type: "spring" }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
               className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-[24px] sm:rounded-[40px] overflow-hidden group"
               whileHover={{ scale: 1.02 }}
             >
@@ -1034,9 +1034,9 @@ const App = () => {
               {/* Floating badge with animation */}
               <motion.div 
                 className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl px-6 py-4"
-                initial={{ y: 20, opacity: 0 }}
+                initial={{ y: 15, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1, type: "spring" }}
+                transition={{ delay: 0.3, duration: 0.4, ease: "easeOut" }}
                 whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.3)" }}
               >
                 <div className="flex items-center justify-between gap-4">
@@ -1103,16 +1103,16 @@ const App = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.05, duration: 0.3, ease: "easeOut" }}
                 className="relative p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#F5F5F5] to-white border border-black/5 hover:border-[#e3ee6b]/30 transition-all group"
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(0,0,0,0.1)" }}
               >
                 <motion.div 
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-3 sm:mb-2 font-black bg-gradient-to-br from-[#0A0A0A] to-[#333] bg-clip-text text-transparent"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ type: "spring", delay: index * 0.1 + 0.3 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                   {index === 0 ? <LivePurchaseCounter count={purchaseCount} setCount={setPurchaseCount} /> : `${stat.value}${stat.suffix}`}
                 </motion.div>
