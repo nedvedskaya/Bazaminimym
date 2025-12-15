@@ -193,22 +193,13 @@ const LossCalculator = () => {
   };
 
   return (
-    <motion.div 
+    <div 
       className="bg-white border-2 border-[#e3ee6b]/40 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 mb-8 shadow-2xl"
-      initial={{ opacity: 0, scale: 0.98 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
     >
       {/* Input Fields */}
       <div className="space-y-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 md:gap-6 mb-8">
         {/* Calls per day */}
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-        >
+        <div>
           <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
             Обращений в день <span className="text-[#0A0A0A]/40 text-[10px]">(звонки, соцсети)</span>
           </label>
@@ -221,15 +212,10 @@ const LossCalculator = () => {
             min="1"
             max="1000"
           />
-        </motion.div>
+        </div>
 
         {/* Lost clients per day */}
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.25, delay: 0.05, ease: "easeOut" }}
-        >
+        <div>
           <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
             Сколько из них не записалось в день <span className="text-[#0A0A0A]/40 text-[10px]">(не договорились)</span>
           </label>
@@ -242,15 +228,10 @@ const LossCalculator = () => {
             min="1"
             max="100"
           />
-        </motion.div>
+        </div>
 
         {/* Average check */}
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.25, delay: 0.1, ease: "easeOut" }}
-        >
+        <div>
           <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
             Средний чек (₽) <span className="text-[#0A0A0A]/40 text-[10px]">(сумма заказа)</span>
           </label>
@@ -264,47 +245,35 @@ const LossCalculator = () => {
             max="10000000"
             step="1000"
           />
-        </motion.div>
+        </div>
       </div>
 
       {/* Results */}
-      <motion.div 
+      <div 
         className="relative"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         <div className="h-px bg-gradient-to-r from-transparent via-[#e3ee6b] to-transparent mb-8" />
         
         {/* Monthly loss */}
         <div className="text-center">
           <div className="text-[#0A0A0A]/70 text-base sm:text-lg md:text-xl mb-4 font-medium text-[16px]">Ваши потери за месяц</div>
-          <motion.div 
-            key={monthlyLoss}
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ 
-              scale: 1, 
-              opacity: 1
-            }}
+          <div 
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-4"
           >
             <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
               -{formatNumber(monthlyLoss)} ₽
             </span>
-          </motion.div>
+          </div>
           
           <div className="flex flex-col items-center gap-3 mb-6">
             <div className="flex items-center gap-2 text-[#0A0A0A] text-sm sm:text-base md:text-lg">
               <span className="font-semibold">За год это уже</span>
             </div>
-            <motion.div 
-              key={monthlyLoss * 12}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
+            <div 
               className="text-2xl sm:text-3xl md:text-4xl font-black text-red-400/80"
             >
               -{formatNumber(monthlyLoss * 12)} ₽
-            </motion.div>
+            </div>
             
             {monthlyLoss >= 1000000 && (
               <motion.div
@@ -319,8 +288,8 @@ const LossCalculator = () => {
             )}
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 
@@ -429,7 +398,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
         {isMobileMenuOpen && (
           <motion.div
             className="fixed inset-0 bg-[#0A0A0A] z-40 md:hidden"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
@@ -672,28 +641,28 @@ const App = () => {
 
   // --- ANIMATION VARIANTS (optimized for smooth mobile performance) ---
   const fadeInUp = {
-    hidden: { opacity: 0, y: 10 },
+    hidden: { opacity: 1, y: 0 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+      transition: { duration: 0 }
     }
   };
 
   const staggerContainer = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.05 }
+      transition: { staggerChildren: 0, delayChildren: 0 }
     }
   };
 
   const scaleIn = {
-    hidden: { scale: 0.98, opacity: 0 },
+    hidden: { scale: 1, opacity: 1 },
     visible: { 
       scale: 1, 
       opacity: 1,
-      transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+      transition: { duration: 0 }
     }
   };
 
@@ -938,7 +907,7 @@ const App = () => {
               >
                 <motion.span 
                   className="block font-black bg-gradient-to-br from-white via-[#e3ee6b] to-[#e3ee6b]/60 bg-clip-text text-transparent"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1, y: 0 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                 >
@@ -946,7 +915,7 @@ const App = () => {
                 </motion.span>
                 <motion.span 
                   className="block font-black bg-gradient-to-br from-[#e3ee6b] via-white to-white bg-clip-text text-transparent"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1, y: 0 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                 >
@@ -1092,7 +1061,7 @@ const App = () => {
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ delay: index * 0.05, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
@@ -1286,7 +1255,7 @@ const App = () => {
             
             <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-3xl mx-auto">
               <motion.div
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: 0.1, duration: 0.4 }}
@@ -1301,7 +1270,7 @@ const App = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: 0.15, duration: 0.4 }}
@@ -1316,7 +1285,7 @@ const App = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: 0.2, duration: 0.4 }}
@@ -1332,7 +1301,7 @@ const App = () => {
             </div>
 
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: 0.2, duration: 0.4 }}
@@ -1346,7 +1315,7 @@ const App = () => {
               {/* Карточка с результатами */}
               <motion.div 
                 className="inline-block bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-[#0A0A0A]/10 shadow-sm mx-4 will-change-transform"
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: 0.3, duration: 0.4 }}
@@ -1394,7 +1363,7 @@ const App = () => {
 
         <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
@@ -1412,7 +1381,7 @@ const App = () => {
           <LossCalculator />
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
@@ -1472,7 +1441,7 @@ const App = () => {
             {programItems.map((item, index) => (
               <motion.div 
                 key={item.id}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ 
@@ -1528,7 +1497,7 @@ const App = () => {
 
                     <motion.h3 
                       className="text-xl sm:text-2xl md:text-3xl mb-3 font-bold"
-                      initial={{ opacity: 0 }}
+                      initial={{ opacity: 1 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ delay: index * 0.1 + 0.3 }}
                     >
@@ -1597,7 +1566,7 @@ const App = () => {
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0 }}
+                  initial={{ opacity: 1 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: Math.min(index * 0.05, 0.2), duration: 0.4 }}
@@ -1632,7 +1601,7 @@ const App = () => {
             {/* Scroll indicator */}
             <motion.div 
               className="text-center mt-4 text-sm text-black/40 flex items-center justify-center gap-2"
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
@@ -1673,7 +1642,7 @@ const App = () => {
             
             {/* Section Header */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
@@ -1681,7 +1650,7 @@ const App = () => {
             >
               <motion.span 
                 className="inline-block text-black/60 text-sm sm:text-base uppercase tracking-widest mb-4 font-bold"
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
               >
@@ -1689,7 +1658,7 @@ const App = () => {
               </motion.span>
               <motion.h2 
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black mb-4 leading-tight"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
@@ -1700,7 +1669,7 @@ const App = () => {
 
             {/* Pricing Card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
@@ -1777,7 +1746,7 @@ const App = () => {
                   {/* Value proposition */}
                   <motion.div 
                     className="max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12"
-                    initial={{ opacity: 0 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 }}
@@ -1798,7 +1767,7 @@ const App = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative bg-[#0A0A0A] text-white px-10 sm:px-14 py-5 sm:py-7 rounded-full transition-all inline-flex items-center justify-center gap-3 sm:gap-4 text-xl sm:text-2xl md:text-3xl touch-manipulation overflow-hidden shadow-2xl border-2 border-[#e3ee6b]"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 1, y: 0 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.6 }}
@@ -1829,7 +1798,7 @@ const App = () => {
                   {/* Security badge */}
                   <motion.div
                     className="mt-6 sm:mt-8 flex items-center justify-center gap-4 sm:gap-6 text-[#666]"
-                    initial={{ opacity: 0 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.7 }}
@@ -1892,7 +1861,7 @@ const App = () => {
           {/* CTA для WhatsApp после FAQ */}
           <motion.div 
             className="mt-12 sm:mt-16 text-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
@@ -1940,7 +1909,7 @@ const App = () => {
       <AnimatePresence>
         {isModalOpen && (
           <motion.div 
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/80 backdrop-blur-xl z-[60] flex items-center justify-center p-4"
@@ -2026,7 +1995,7 @@ const FAQItem = ({ question, answer, index }: { question: string; answer: string
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 1, y: 0 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
