@@ -398,51 +398,30 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
         {isMobileMenuOpen && (
           <motion.div
             className="fixed inset-0 bg-[#0A0A0A] z-40 md:hidden"
-            initial={{ opacity: 0.3 }}
-            whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
             <div className="flex flex-col items-center justify-center h-full gap-8 px-6">
-              <motion.a
-                href="#modules"
-                className="text-white text-2xl font-medium hover:text-[#e3ee6b] transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1 }}
-              >
-                Программа
-              </motion.a>
-              <motion.a
-                href="#reviews"
-                className="text-white text-2xl font-medium hover:text-[#e3ee6b] transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                Отзывы
-              </motion.a>
-              <motion.a
-                href="#price"
-                className="text-white text-2xl font-medium hover:text-[#e3ee6b] transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                Цена
-              </motion.a>
-              <motion.a
-                href="#faq"
-                className="text-white text-2xl font-medium hover:text-[#e3ee6b] transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                FAQ
-              </motion.a>
+              {[
+                { href: "#modules", text: "Программа" },
+                { href: "#reviews", text: "Отзывы" },
+                { href: "#price", text: "Цена" },
+                { href: "#faq", text: "FAQ" }
+              ].map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  className="text-white text-2xl font-medium hover:text-[#e3ee6b] transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.1 * (i + 1) }}
+                >
+                  {link.text}
+                </motion.a>
+              ))}
               <motion.a
                 href="https://t.me/clubmanagers_bot"
                 target="_blank"
@@ -451,7 +430,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
                 className="bg-[#e3ee6b] text-[#0A0A0A] px-10 py-4 rounded-full text-xl font-semibold mt-4"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.5 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Купить курс
@@ -1254,57 +1233,32 @@ const App = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#0A0A0A] mb-6 sm:mb-8 font-bold">Но почему тогда:</h2>
             
             <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-3xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0.3 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1, duration: 0.4, ease: "easeOut" }}
-                className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm will-change-transform"
-              >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                  <Mic className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]" />
-                </div>
-                <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A] leading-relaxed">
-                  Когда звонит клиент, менеджер мямлит в трубку и не может объяснить разницу в услугах?
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0.3 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15, duration: 0.4, ease: "easeOut" }}
-                className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm will-change-transform"
-              >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                  <ShieldAlert className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]" />
-                </div>
-                <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A] leading-relaxed">
-                  Боимся назвать реальную цену за свой труд и сразу даем скидку, когда ее даже не просили?
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0.3 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.4, ease: "easeOut" }}
-                className="bg-white rounded-xl p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm will-change-transform"
-              >
-                <div className="w-12 h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Users className="w-6 h-6 text-[#0A0A0A]" />
-                </div>
-                <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A] leading-relaxed">
-                  Клиент отправляется «подумать» и больше не отвечает?
-                </p>
-              </motion.div>
+              {[
+                { icon: Mic, text: "Когда звонит клиент, менеджер мямлит в трубку и не может объяснить разницу в услугах?" },
+                { icon: ShieldAlert, text: "Боимся назвать реальную цену за свой труд и сразу даем скидку, когда ее даже не просили?" },
+                { icon: Users, text: "Клиент отправляется «подумать» и больше не отвечает?" }
+              ].map((card, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0.3 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 + i * 0.05, duration: 0.4, ease: "easeOut" }}
+                  className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm will-change-transform"
+                >
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                    <card.icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]" />
+                  </div>
+                  <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A] leading-relaxed">{card.text}</p>
+                </motion.div>
+              ))}
             </div>
 
             <motion.div
               initial={{ opacity: 0.3 }}
-              whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: 0.2, duration: 0.4 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.4, ease: "easeOut" }}
               className="text-center mt-10 sm:mt-14 max-w-5xl mx-auto"
             >
               {/* Основной заголовок */}
@@ -1316,9 +1270,9 @@ const App = () => {
               <motion.div 
                 className="inline-block bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-[#0A0A0A]/10 shadow-sm mx-4 will-change-transform"
                 initial={{ opacity: 0.3 }}
-                whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: 0.3, duration: 0.4 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.4, ease: "easeOut" }}
               >
                 <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A]/70 mb-3 sm:mb-4 font-medium">
                   Уже применяют {purchaseCount} владельцев автобизнеса
@@ -1498,8 +1452,9 @@ const App = () => {
                     <motion.h3 
                       className="text-xl sm:text-2xl md:text-3xl mb-3 font-bold"
                       initial={{ opacity: 0.3 }}
-                      whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
-                      transition={{ delay: index * 0.1 + 0.3 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 + 0.3, duration: 0.4, ease: "easeOut" }}
                     >
                       {item.title}
                     </motion.h3>
@@ -1567,9 +1522,9 @@ const App = () => {
                 <motion.div
                   key={index}
                   initial={{ opacity: 0.3 }}
-                  whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: Math.min(index * 0.05, 0.2), duration: 0.4 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: Math.min(index * 0.05, 0.2), duration: 0.4, ease: "easeOut" }}
                   className="relative p-6 sm:p-8 rounded-2xl bg-white border border-black/10 hover:border-[#e3ee6b]/50 transition-all group shadow-sm hover:shadow-md w-[calc(100vw-2rem)] sm:w-[calc(100vw-3rem)] md:w-[calc(50vw-2rem)] lg:w-[calc(33.333vw-2rem)] snap-center flex-shrink-0 will-change-transform"
                 >
                   {/* Stars */}
@@ -1602,8 +1557,9 @@ const App = () => {
             <motion.div 
               className="text-center mt-4 text-sm text-black/40 flex items-center justify-center gap-2"
               initial={{ opacity: 0.3 }}
-              whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
-              transition={{ delay: 0.5 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.4, ease: "easeOut" }}
             >
               <motion.div
                 animate={{ x: [-5, 0, -5] }}
@@ -1651,8 +1607,9 @@ const App = () => {
               <motion.span 
                 className="inline-block text-black/60 text-sm sm:text-base uppercase tracking-widest mb-4 font-bold"
                 initial={{ opacity: 0.3 }}
-                whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 Инвестиция в ваш бизнес
               </motion.span>
@@ -1747,9 +1704,9 @@ const App = () => {
                   <motion.div 
                     className="max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12"
                     initial={{ opacity: 0.3 }}
-                    whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
+                    whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
+                    transition={{ delay: 0.4, duration: 0.4, ease: "easeOut" }}
                   >
                     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-black/5 shadow-sm">
                       <p className="text-black/90 text-lg sm:text-xl md:text-2xl leading-relaxed mb-4">
@@ -1799,9 +1756,9 @@ const App = () => {
                   <motion.div
                     className="mt-6 sm:mt-8 flex items-center justify-center gap-4 sm:gap-6 text-[#666]"
                     initial={{ opacity: 0.3 }}
-                    whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
+                    whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.7 }}
+                    transition={{ delay: 0.7, duration: 0.4, ease: "easeOut" }}
                   >
                     <div className="flex items-center gap-2">
                       <Shield className="w-4 h-4 text-[#666]" />
@@ -1990,7 +1947,7 @@ const App = () => {
 };
 
 // FAQ Item Component
-const FAQItem = ({ question, answer, index }: { question: string; answer: string; index: number }) => {
+const FAQItem = ({ question, answer, index }: { question: string; answer: string; index: number; key?: number }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
