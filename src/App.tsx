@@ -1229,7 +1229,9 @@ const App = () => {
             variants={fadeInUp}
             className="mb-4 sm:mb-6"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#0A0A0A] mb-6 sm:mb-8 font-bold">Но почему тогда:</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0A0A0A] leading-tight mb-6 sm:mb-8">
+            Но почему тогда:
+          </h2>
             
             <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-3xl mx-auto">
               {[
@@ -1261,7 +1263,7 @@ const App = () => {
               className="text-center mt-10 sm:mt-14 max-w-5xl mx-auto"
             >
               {/* Основной заголовок */}
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#0A0A0A] font-bold leading-tight mb-6 sm:mb-8 px-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0A0A0A] leading-tight mb-6 sm:mb-8 px-4">
                 Мы создали первое в России обучение по продажам, полностью заточенное под специфику и тонкости детейлинга.
               </h2>
               
@@ -1322,7 +1324,7 @@ const App = () => {
             transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
             className="text-center mb-10 sm:mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 sm:mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 sm:mb-6 leading-tight">
               Подсчитайте свои <span className="text-[#e3ee6b] font-bold">реальные потери</span>
             </h2>
             
@@ -1882,7 +1884,7 @@ const App = () => {
                 <Sparkles className="w-8 h-8 text-[#0A0A0A]" />
               </motion.div>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-[#0A0A0A] text-center font-bold">Старт 12 января</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4 text-[#0A0A0A] text-center">Старт 12 января</h2>
               <p className="text-base sm:text-lg text-[#666] mb-6 sm:mb-8 leading-relaxed text-center">
                 Просто возьмите это, проверьте и сообщите сотрудникам. Порядок в кассе гарантирую.
               </p>
