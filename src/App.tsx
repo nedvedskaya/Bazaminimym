@@ -74,7 +74,7 @@ const LivePurchase = ({ name, city, show }: { name: string; city: string; show: 
             <div className="flex-1 min-w-0">
               <p className="text-sm font-bold text-[#0A0A0A] mb-1">Новая покупка!</p>
               <p className="text-xs text-[#666]">
-                <span className="font-semibold">{name}</span> из {city} купил курс
+                <span className="font-semibold">{name}</span> из {city} купил интенсив
               </p>
               <p className="text-xs text-[#999] mt-1">3 минуты назад</p>
             </div>
@@ -282,7 +282,7 @@ const LossCalculator = () => {
                 className="mt-4 px-4 sm:px-6 py-3 bg-red-500/20 border border-red-500/30 rounded-xl"
               >
                 <p className="text-red-300 text-xs sm:text-sm md:text-base font-semibold text-center">
-                  ⚠️ На эти деньги можно купить еще один автосервис!
+                  ⚠️ На эти деньги можно купить еще один детейлинг!
                 </p>
               </motion.div>
             )}
@@ -374,7 +374,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Купить курс
+              Купить интенсив
             </motion.a>
           </div>
 
@@ -433,7 +433,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
                 transition={{ delay: 0.5 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Купить курс
+                Купить интенсив
               </motion.a>
             </div>
           </motion.div>
@@ -692,7 +692,7 @@ const App = () => {
   ];
 
   const stats = [
-    { value: 155, label: "Владельцев автобизнеса купили курс", suffix: "" },
+    { value: 155, label: "Владельцев автобизнеса купили интенсив", suffix: "" },
     { value: 89, label: "Средний рост конверсии", suffix: "%" },
     { value: 15, label: "Минут в день на обучение", suffix: "" }
   ];
@@ -701,7 +701,7 @@ const App = () => {
     {
       name: "Алексей",
       studio: "Москва",
-      text: "После курса конверсия выросла на 70%. Менеджеры стали увереннее продавать допы.",
+      text: "После инвенсива конверсия выросла на 70%. Менеджеры стали увереннее продавать допы.",
       rating: 5
     },
     {
@@ -719,7 +719,7 @@ const App = () => {
     {
       name: "Михаил",
       studio: "Екатеринбург",
-      text: "Интересный формат курса, тем более за такую стоимость. Он должен стоить в десятки раз дороже.",
+      text: "Интересный формат интенсива, тем более за такую стоимость. Он должен стоить в десятки раз дороже.",
       rating: 5
     },
     {
@@ -762,12 +762,12 @@ const App = () => {
 
   const faqItems = [
     {
-      q: "Сколько длится курс?",
+      q: "Сколько длится интенсив?",
       a: "Все материалы можно пройти за 2-3 часа, но рекомендуем изучать по модулям."
     },
     {
       q: "Подойдет ли новичку?",
-      a: "Да! Курс создан для владельцев студий и менеджеров любого уровня."
+      a: "Да! Интенсив создан для владельцев студий и менеджеров любого уровня."
     },
     {
       q: "Есть ли обратная связь?",
@@ -914,7 +914,7 @@ const App = () => {
                 variants={fadeInUp} 
                 className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-xl"
               >
-                База, которая должна быть в голове у каждого, кто отвечает на звонки и продает услуги детейлинга.
+                Внедрите базу, которая поднимет средний чек и поможет менеджеру закрывать сделки с конверсией от 70 %.
               </motion.p>
               
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -922,7 +922,7 @@ const App = () => {
                   href="https://t.me/clubmanagers_bot"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Получить доступ к онлайн-курсу Базовый Минимум"
+                  aria-label="Получить доступ к онлайн-интенсиву Базовый Минимум"
                   className="group relative bg-[#e3ee6b] text-[#0A0A0A] px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-[#e8f285] transition-all inline-flex items-center justify-center gap-2 sm:gap-3 touch-manipulation overflow-hidden w-full sm:w-auto"
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(227, 238, 107, 0.4)" }}
                   whileTap={{ scale: 0.95 }}
@@ -1003,11 +1003,10 @@ const App = () => {
                         <span className="text-white/40 text-base sm:text-lg line-through whitespace-nowrap">10 000 ₽</span>
                         <span className="text-[#e3ee6b] text-3xl sm:text-4xl md:text-5xl whitespace-nowrap font-black">2 490 ₽</span>
                       </div>
-                      <div className="text-white/70 text-sm sm:text-base font-medium">Новогодняя цена</div>
+                      <div className="text-white/70 text-sm sm:text-base font-medium">Специальное предложение</div>
                     </div>
                   </div>
                   <div className="hidden sm:block text-xs text-white/50 max-w-[100px] text-right">
-                    Специальное предложение
                   </div>
                 </div>
               </motion.div>
@@ -1385,7 +1384,7 @@ const App = () => {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
               variants={fadeInUp}
             >
-              Что внутри курса
+              Что внутри интенсива
             </motion.h2>
           </motion.div>
 
@@ -1620,7 +1619,7 @@ const App = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
               >
-                Стоимость <span className="bg-gradient-to-r from-[#e3ee6b] to-[#c5d060] bg-clip-text text-transparent font-black">курса</span>
+                Стоимость <span className="bg-gradient-to-r from-[#e3ee6b] to-[#c5d060] bg-clip-text text-transparent font-black">интенсива</span>
               </motion.h2>
             </motion.div>
 
@@ -1713,7 +1712,7 @@ const App = () => {
                         Мы специально поставили <span className="text-[#0A0A0A] font-bold">цену, над которой не надо думать</span>.
                       </p>
                       <div className="space-y-2 text-black/60 text-base sm:text-lg md:text-xl">
-                        <p className="text-[rgb(0,0,0)]">Это <span className="text-[#0A0A0A] font-semibold font-bold font-normal">стоимость одной мойки или одного похода в магазин</span>.</p>
+                        <p className="text-[rgb(0,0,0)]">Это <span className="text-[#0A0A0A] font-semibold font-bold font-normal"></span>.</p>
                       </div>
                     </div>
                   </motion.div>
@@ -1747,7 +1746,7 @@ const App = () => {
                     />
 
                     <span className="relative z-10 flex items-center gap-3 sm:gap-4 font-black group-hover:text-[#0A0A0A] transition-colors">
-                      Оплатить курс
+                      Оплатить интенсив
                       <ArrowRight className="w-7 h-7 sm:w-8 sm:h-8 group-hover:translate-x-2 transition-transform" />
                     </span>
                   </motion.a>
