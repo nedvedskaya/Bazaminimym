@@ -38,7 +38,7 @@ const SectionHeader = ({ badge, title }: { badge: string; title: string }) => (
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className="inline-block px-4 py-2 bg-[#e3ee6b]/10 text-[#e3ee6b] rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider mb-6"
+      className="inline-block px-4 py-2 bg-[#e3ee6b]/10 text-[#e3ee6b] rounded-full text-xs sm:text-sm font-black uppercase tracking-wider mb-6"
     >
       {badge}
     </motion.span>
