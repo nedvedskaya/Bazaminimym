@@ -33,7 +33,7 @@ import { safeStorage } from './utils/storage';
 // --- COMPONENTS ---
 
 const SectionHeader = ({ badge, title }: { badge: string; title: string }) => (
-  <div className="text-center mb-24 sm:mb-32 md:mb-40">
+  <div className="text-center mb-6 sm:mb-8 md:mb-10">
     <motion.span 
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
