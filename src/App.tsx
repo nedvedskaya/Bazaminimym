@@ -34,22 +34,20 @@ const AnimatedNumber = ({ value, suffix = '' }: { value: number; suffix?: string
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    let startTime: number | null = null;
     const duration = 2000;
-    const steps = 60;
-    const increment = value / steps;
-    let current = 0;
 
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      setCount(Math.floor(progress * value));
+      if (progress < 1) {
+        requestAnimationFrame(animate);
       }
-    }, duration / steps);
+    };
 
-    return () => clearInterval(timer);
+    const animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
   }, [value]);
 
   return <>{count}{suffix}</>;
@@ -90,22 +88,20 @@ const LiveCounter = ({ target }: { target: number }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    let startTime: number | null = null;
     const duration = 2000;
-    const steps = 60;
-    const increment = target / steps;
-    let current = 0;
 
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      setCount(Math.floor(progress * target));
+      if (progress < 1) {
+        requestAnimationFrame(animate);
       }
-    }, duration / steps);
+    };
 
-    return () => clearInterval(timer);
+    const animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
   }, [target]);
 
   return (
@@ -258,7 +254,7 @@ const LossCalculator = () => {
         <div className="text-center">
           <div className="text-[#0A0A0A]/70 text-base sm:text-lg md:text-xl mb-4 font-medium text-[16px]">Ваши потери за месяц</div>
           <div 
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-4"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4"
           >
             <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
               -{formatNumber(monthlyLoss)} ₽
@@ -277,9 +273,8 @@ const LossCalculator = () => {
             
             {monthlyLoss >= 1000000 && (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
-                className="mt-4 px-4 sm:px-6 py-3 bg-red-500/20 border border-red-500/30 rounded-xl"
+                variants={fadeInUp}
+                className="mt-4 px-4 sm:px-6 py-3 bg-red-500/10 border border-red-500/20 rounded-xl"
               >
                 <p className="text-red-300 text-xs sm:text-sm md:text-base font-semibold text-center">
                   ⚠️ На эти деньги можно купить еще один автосервис!
@@ -325,43 +320,43 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
           </motion.div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             <a 
               href="#modules" 
-              className={`text-sm lg:text-base transition-colors font-medium ${
+              className={`text-sm lg:text-base transition-colors font-medium hover:text-[#e3ee6b] ${
                 scrollProgress > 5 
-                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
-                  : 'text-white/90 hover:text-[#e3ee6b]'
+                  ? 'text-[#0A0A0A]' 
+                  : 'text-white/90'
               }`}
             >
               Программа
             </a>
             <a 
               href="#reviews" 
-              className={`text-sm lg:text-base transition-colors font-medium ${
+              className={`text-sm lg:text-base transition-colors font-medium hover:text-[#e3ee6b] ${
                 scrollProgress > 5 
-                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
-                  : 'text-white/90 hover:text-[#e3ee6b]'
+                  ? 'text-[#0A0A0A]' 
+                  : 'text-white/90'
               }`}
             >
               Отзывы
             </a>
             <a 
               href="#price" 
-              className={`text-sm lg:text-base transition-colors font-medium ${
+              className={`text-sm lg:text-base transition-colors font-medium hover:text-[#e3ee6b] ${
                 scrollProgress > 5 
-                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
-                  : 'text-white/90 hover:text-[#e3ee6b]'
+                  ? 'text-[#0A0A0A]' 
+                  : 'text-white/90'
               }`}
             >
               Цена
             </a>
             <a 
               href="#faq" 
-              className={`text-sm lg:text-base transition-colors font-medium ${
+              className={`text-sm lg:text-base transition-colors font-medium hover:text-[#e3ee6b] ${
                 scrollProgress > 5 
-                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
-                  : 'text-white/90 hover:text-[#e3ee6b]'
+                  ? 'text-[#0A0A0A]' 
+                  : 'text-white/90'
               }`}
             >
               FAQ
@@ -370,7 +365,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               href="https://t.me/clubmanagers_bot"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#e3ee6b] text-[#0A0A0A] px-6 py-2.5 rounded-full hover:bg-[#d4df5a] transition-colors text-sm lg:text-base font-semibold"
+              className="bg-[#e3ee6b] text-[#0A0A0A] px-6 lg:px-8 py-2.5 lg:py-3 rounded-full hover:bg-[#d4df5a] transition-colors text-sm lg:text-base font-bold shadow-lg shadow-[#e3ee6b]/20"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -618,20 +613,22 @@ const App = () => {
     };
   }, []);
 
-  // --- ANIMATION VARIANTS (optimized for smooth mobile performance) ---
   const fadeInUp = {
-    hidden: { opacity: 0.3 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
-      transition: { duration: 0.4, ease: "easeOut" }
+      y: 0, 
+      transition: { duration: 0.5, ease: "easeOut" }
     }
   };
 
   const staggerContainer = {
-    hidden: { opacity: 0.3 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.05, duration: 0.3 }
+      transition: {
+        staggerChildren: 0.1
+      }
     }
   };
 
@@ -880,23 +877,17 @@ const App = () => {
 
               <motion.h1 
                 variants={fadeInUp} 
-                className="relative text-6xl xs:text-7xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] 2xl:text-[9rem] mb-1 leading-[0.95] pt-3 pb-8 overflow-visible"
+                className="relative text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] 2xl:text-[9rem] mb-1 leading-[0.95] pt-3 pb-8 overflow-visible"
               >
                 <motion.span 
                   className="block font-black bg-gradient-to-br from-white via-[#e3ee6b] to-[#e3ee6b]/60 bg-clip-text text-transparent"
-                  initial={{ opacity: 0.3 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  variants={fadeInUp}
                 >
                   Базовый
                 </motion.span>
                 <motion.span 
                   className="block font-black bg-gradient-to-br from-[#e3ee6b] via-white to-white bg-clip-text text-transparent"
-                  initial={{ opacity: 0.3 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+                  variants={fadeInUp}
                 >
                   минимум
                 </motion.span>
@@ -1606,19 +1597,13 @@ const App = () => {
             >
               <motion.span 
                 className="inline-block text-black/60 text-sm sm:text-base uppercase tracking-widest mb-4 font-bold"
-                initial={{ opacity: 0.3 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                variants={fadeInUp}
               >
                 Инвестиция в ваш бизнес
               </motion.span>
               <motion.h2 
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black mb-4 leading-tight"
-                initial={{ opacity: 0.3 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
+                variants={fadeInUp}
               >
                 Стоимость <span className="bg-gradient-to-r from-[#e3ee6b] to-[#c5d060] bg-clip-text text-transparent font-black">курса</span>
               </motion.h2>
@@ -1626,10 +1611,7 @@ const App = () => {
 
             {/* Pricing Card */}
             <motion.div
-              initial={{ opacity: 0.3 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              variants={fadeInUp}
               className="relative will-change-transform"
             >
               {/* Glowing outline */}
@@ -1646,11 +1628,8 @@ const App = () => {
                 
                 {/* Discount badge */}
                 <motion.div
-                  className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 z-20"
-                  initial={{ opacity: 0, rotate: 12 }}
-                  whileInView={{ opacity: 1, rotate: 12 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
+                  className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 z-20 rotate-12"
+                  variants={fadeInUp}
                 >
                   <motion.div
                     className="relative bg-gradient-to-br from-[#e3ee6b] to-[#c5d060] text-[#0A0A0A] px-5 py-3 sm:px-7 sm:py-4 rounded-2xl shadow-2xl"
@@ -1673,10 +1652,7 @@ const App = () => {
                   {/* Price display */}
                   <motion.div 
                     className="mb-8 sm:mb-10"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
+                    variants={fadeInUp}
                   >
                     {/* Old price */}
                     <div className="mb-4 sm:mb-6">
