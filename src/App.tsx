@@ -1367,7 +1367,6 @@ const App = () => {
 
       {/* --- PROGRAM SECTION --- */}
       <section id="modules" className="relative py-16 sm:py-20 lg:py-24 px-4 bg-white">
-        <BackgroundOrbs />
         <div className="max-w-7xl mx-auto relative z-10">
           <SectionHeader badge="Программа" title="Что внутри интенсива" />
 
