@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { AnimatedCounter } from './components/shared/AnimatedCounter';
+import { safeStorage } from './utils/storage';
 
 // --- COMPONENTS ---
 
