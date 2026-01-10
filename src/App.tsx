@@ -1490,7 +1490,7 @@ const App = () => {
               Отзывы
             </motion.span>
             <motion.h2 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-black font-bold"
+              className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight text-black"
               variants={fadeInUp}
             >
               Работает на практике
