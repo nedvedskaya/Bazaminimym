@@ -30,7 +30,7 @@ import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { safeStorage } from './utils/storage';
 
 // --- ANIMATION VARIANTS (optimized for smooth mobile performance) ---
-export const fadeInUp = {
+const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -39,7 +39,7 @@ export const fadeInUp = {
   }
 };
 
-export const staggerContainer = {
+const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -49,7 +49,7 @@ export const staggerContainer = {
   }
 };
 
-export const scaleIn = {
+const scaleIn = {
   hidden: { opacity: 0.3 },
   visible: { 
     opacity: 1,
