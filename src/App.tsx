@@ -1953,35 +1953,33 @@ const FAQItem = ({ question, answer, index }: { question: string; answer: string
   return (
     <motion.div
       initial={{ opacity: 0.3 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="border border-black/10 rounded-2xl overflow-hidden bg-white hover:border-[#e3ee6b]/30 transition-all"
+      className="bg-white rounded-xl sm:rounded-2xl border-2 border-[#0A0A0A]/5 overflow-hidden hover:border-[#e3ee6b]/50 transition-all shadow-sm"
     >
-      <motion.button
-        className="w-full p-5 sm:p-6 flex items-center justify-between text-left touch-manipulation"
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ backgroundColor: "rgba(227, 238, 107, 0.05)" }}
+        className="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4"
       >
-        <span className="text-lg sm:text-xl md:text-2xl text-[#0A0A0A] flex-1 font-medium">{question}</span>
+        <span className="text-base sm:text-lg md:text-xl font-bold text-[#0A0A0A]">{question}</span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
+          className="flex-shrink-0 w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center"
         >
-          <ChevronDown className="w-6 h-6 sm:w-7 sm:h-7 text-[#e3ee6b] flex-shrink-0" />
+          <ChevronDown className="w-5 h-5 text-[#0A0A0A]" />
         </motion.div>
-      </motion.button>
-      
+      </button>
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
+            animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-base sm:text-lg md:text-xl text-[#666] leading-relaxed">
+            <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-sm sm:text-base md:text-lg text-[#0A0A0A]/70 leading-relaxed border-t border-gray-50 pt-4">
               {answer}
             </div>
           </motion.div>
