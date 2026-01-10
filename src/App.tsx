@@ -27,33 +27,32 @@ import {
   Eye
 } from 'lucide-react';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
-import { safeStorage } from './utils/storage';
+import { AnimatedCounter } from './components/shared/AnimatedCounter';
 
-// Animated Number Component
-const AnimatedNumber = ({ value, suffix = '' }: { value: number; suffix?: string }) => {
-  const [count, setCount] = useState(0);
+// --- COMPONENTS ---
 
-  useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
-    const increment = value / steps;
-    let current = 0;
+const SectionHeader = ({ badge, title }: { badge: string; title: string }) => (
+  <div className="text-center mb-16">
+    <motion.span 
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      className="inline-block px-4 py-2 bg-[#e3ee6b]/10 text-[#e3ee6b] rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider mb-6"
+    >
+      {badge}
+    </motion.span>
+    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0A0A0A] leading-tight">
+      {title}
+    </h2>
+  </div>
+);
 
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, [value]);
-
-  return <>{count}{suffix}</>;
-};
+const BackgroundOrbs = () => (
+  <>
+    <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-[#e3ee6b]/10 rounded-full blur-[80px] sm:blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+    <div className="absolute bottom-0 left-0 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-[#e3ee6b]/5 rounded-full blur-[80px] sm:blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+  </>
+);
 
 // Live Purchase Notification Component
 const LivePurchase = ({ name, city, show }: { name: string; city: string; show: boolean }) => {
@@ -1365,28 +1364,9 @@ const App = () => {
 
       {/* --- PROGRAM SECTION --- */}
       <section id="modules" className="relative py-16 sm:py-20 lg:py-24 px-4 bg-white">
-        <div className="max-w-[1400px] mx-auto">
-          
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="mb-12 sm:mb-16"
-          >
-            <motion.span 
-              className="text-sm sm:text-base text-[#666] uppercase tracking-wider mb-3 sm:mb-4 block font-semibold"
-              variants={fadeInUp}
-            >
-              Программа обучения
-            </motion.span>
-            <motion.h2 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
-              variants={fadeInUp}
-            >
-              Что внутри интенсива
-            </motion.h2>
-          </motion.div>
+        <BackgroundOrbs />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <SectionHeader badge="Программа" title="Что внутри интенсива" />
 
           {/* Bento Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
