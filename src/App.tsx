@@ -872,7 +872,7 @@ const App = () => {
                       transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                     />
                     <span className="text-sm sm:text-base text-white/90 font-medium">
-                      Онлайн-курс • Старт 12 января
+                      Интенсив • Старт 12 января
                     </span>
                   </div>
                 </div>
