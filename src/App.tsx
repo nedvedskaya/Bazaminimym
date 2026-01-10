@@ -29,6 +29,34 @@ import {
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { safeStorage } from './utils/storage';
 
+// --- ANIMATION VARIANTS (optimized for smooth mobile performance) ---
+export const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
+
+export const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+export const scaleIn = {
+  hidden: { opacity: 0.3 },
+  visible: { 
+    opacity: 1,
+    transition: { duration: 0.35, ease: "easeOut" }
+  }
+};
+
 // Animated Number Component
 const AnimatedNumber = ({ value, suffix = '' }: { value: number; suffix?: string }) => {
   const [count, setCount] = useState(0);
@@ -613,32 +641,16 @@ const App = () => {
     };
   }, []);
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const scaleIn = {
-    hidden: { opacity: 0.3 },
-    visible: { 
-      opacity: 1,
-      transition: { duration: 0.35, ease: "easeOut" }
-    }
-  };
+  const purchases = [
+    { name: 'Сергей', city: 'Казани' },
+    { name: 'Дмитрий', city: 'Москвы' },
+    { name: 'Андрей', city: 'Санкт-Петербурга' },
+    { name: 'Алексей', city: 'Краснодара' },
+    { name: 'Максим', city: 'Екатеринбурга' },
+    { name: 'Игорь', city: 'Новосибирска' },
+    { name: 'Владимир', city: 'Казани' },
+    { name: 'Роман', city: 'Самары' }
+  ];
 
   const programItems = [
     {
