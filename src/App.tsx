@@ -29,53 +29,27 @@ import {
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { safeStorage } from './utils/storage';
 
-// --- ANIMATION VARIANTS (optimized for smooth mobile performance) ---
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const scaleIn = {
-  hidden: { opacity: 0.3 },
-  visible: { 
-    opacity: 1,
-    transition: { duration: 0.35, ease: "easeOut" }
-  }
-};
-
 // Animated Number Component
 const AnimatedNumber = ({ value, suffix = '' }: { value: number; suffix?: string }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let startTime: number | null = null;
     const duration = 2000;
+    const steps = 60;
+    const increment = value / steps;
+    let current = 0;
 
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      setCount(Math.floor(progress * value));
-      if (progress < 1) {
-        requestAnimationFrame(animate);
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= value) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
       }
-    };
+    }, duration / steps);
 
-    const animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
+    return () => clearInterval(timer);
   }, [value]);
 
   return <>{count}{suffix}</>;
@@ -116,20 +90,22 @@ const LiveCounter = ({ target }: { target: number }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let startTime: number | null = null;
     const duration = 2000;
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
 
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      setCount(Math.floor(progress * target));
-      if (progress < 1) {
-        requestAnimationFrame(animate);
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
       }
-    };
+    }, duration / steps);
 
-    const animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
+    return () => clearInterval(timer);
   }, [target]);
 
   return (
@@ -192,9 +168,9 @@ const LiveIndicator = () => {
 
 // Loss Calculator Component
 const LossCalculator = () => {
-  const [callsPerDay, setCallsPerDay] = useState<string>('10');
-  const [lostClientsPerDay, setLostClientsPerDay] = useState<string>('2');
-  const [avgCheck, setAvgCheck] = useState<string>('50000');
+  const [callsPerDay, setCallsPerDay] = useState<string>('');
+  const [lostClientsPerDay, setLostClientsPerDay] = useState<string>('');
+  const [avgCheck, setAvgCheck] = useState<string>('');
 
   const callsNum = parseInt(callsPerDay) || 0;
   const lostNum = parseInt(lostClientsPerDay) || 0;
@@ -282,7 +258,7 @@ const LossCalculator = () => {
         <div className="text-center">
           <div className="text-[#0A0A0A]/70 text-base sm:text-lg md:text-xl mb-4 font-medium text-[16px]">Ваши потери за месяц</div>
           <div 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-4"
           >
             <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
               -{formatNumber(monthlyLoss)} ₽
@@ -301,8 +277,9 @@ const LossCalculator = () => {
             
             {monthlyLoss >= 1000000 && (
               <motion.div
-                variants={fadeInUp}
-                className="mt-4 px-4 sm:px-6 py-3 bg-red-500/10 border border-red-500/20 rounded-xl"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.4, ease: "easeOut" }}
+                className="mt-4 px-4 sm:px-6 py-3 bg-red-500/20 border border-red-500/30 rounded-xl"
               >
                 <p className="text-red-300 text-xs sm:text-sm md:text-base font-semibold text-center">
                   ⚠️ На эти деньги можно купить еще один автосервис!
@@ -348,43 +325,43 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
           </motion.div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          <div className="hidden md:flex items-center gap-6">
             <a 
               href="#modules" 
-              className={`text-sm lg:text-base transition-colors font-medium hover:text-[#e3ee6b] ${
+              className={`text-sm lg:text-base transition-colors font-medium ${
                 scrollProgress > 5 
-                  ? 'text-[#0A0A0A]' 
-                  : 'text-white/90'
+                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
+                  : 'text-white/90 hover:text-[#e3ee6b]'
               }`}
             >
               Программа
             </a>
             <a 
               href="#reviews" 
-              className={`text-sm lg:text-base transition-colors font-medium hover:text-[#e3ee6b] ${
+              className={`text-sm lg:text-base transition-colors font-medium ${
                 scrollProgress > 5 
-                  ? 'text-[#0A0A0A]' 
-                  : 'text-white/90'
+                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
+                  : 'text-white/90 hover:text-[#e3ee6b]'
               }`}
             >
               Отзывы
             </a>
             <a 
               href="#price" 
-              className={`text-sm lg:text-base transition-colors font-medium hover:text-[#e3ee6b] ${
+              className={`text-sm lg:text-base transition-colors font-medium ${
                 scrollProgress > 5 
-                  ? 'text-[#0A0A0A]' 
-                  : 'text-white/90'
+                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
+                  : 'text-white/90 hover:text-[#e3ee6b]'
               }`}
             >
               Цена
             </a>
             <a 
               href="#faq" 
-              className={`text-sm lg:text-base transition-colors font-medium hover:text-[#e3ee6b] ${
+              className={`text-sm lg:text-base transition-colors font-medium ${
                 scrollProgress > 5 
-                  ? 'text-[#0A0A0A]' 
-                  : 'text-white/90'
+                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
+                  : 'text-white/90 hover:text-[#e3ee6b]'
               }`}
             >
               FAQ
@@ -393,7 +370,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               href="https://t.me/clubmanagers_bot"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#e3ee6b] text-[#0A0A0A] px-6 lg:px-8 py-2.5 lg:py-3 rounded-full hover:bg-[#d4df5a] transition-colors text-sm lg:text-base font-bold shadow-lg shadow-[#e3ee6b]/20"
+              className="bg-[#e3ee6b] text-[#0A0A0A] px-6 py-2.5 rounded-full hover:bg-[#d4df5a] transition-colors text-sm lg:text-base font-semibold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -641,16 +618,30 @@ const App = () => {
     };
   }, []);
 
-  const purchases = [
-    { name: 'Сергей', city: 'Казани' },
-    { name: 'Дмитрий', city: 'Москвы' },
-    { name: 'Андрей', city: 'Санкт-Петербурга' },
-    { name: 'Алексей', city: 'Краснодара' },
-    { name: 'Максим', city: 'Екатеринбурга' },
-    { name: 'Игорь', city: 'Новосибирска' },
-    { name: 'Владимир', city: 'Казани' },
-    { name: 'Роман', city: 'Самары' }
-  ];
+  // --- ANIMATION VARIANTS (optimized for smooth mobile performance) ---
+  const fadeInUp = {
+    hidden: { opacity: 0.3 },
+    visible: { 
+      opacity: 1, 
+      transition: { duration: 0.4, ease: "easeOut" }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0.3 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08, delayChildren: 0.05, duration: 0.3 }
+    }
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0.3 },
+    visible: { 
+      opacity: 1,
+      transition: { duration: 0.35, ease: "easeOut" }
+    }
+  };
 
   const programItems = [
     {
@@ -889,17 +880,23 @@ const App = () => {
 
               <motion.h1 
                 variants={fadeInUp} 
-                className="relative text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] 2xl:text-[9rem] mb-1 leading-[0.95] pt-3 pb-8 overflow-visible"
+                className="relative text-6xl xs:text-7xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] 2xl:text-[9rem] mb-1 leading-[0.95] pt-3 pb-8 overflow-visible"
               >
                 <motion.span 
                   className="block font-black bg-gradient-to-br from-white via-[#e3ee6b] to-[#e3ee6b]/60 bg-clip-text text-transparent"
-                  variants={fadeInUp}
+                  initial={{ opacity: 0.3 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 >
                   Базовый
                 </motion.span>
                 <motion.span 
                   className="block font-black bg-gradient-to-br from-[#e3ee6b] via-white to-white bg-clip-text text-transparent"
-                  variants={fadeInUp}
+                  initial={{ opacity: 0.3 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                 >
                   минимум
                 </motion.span>
@@ -1115,18 +1112,18 @@ const App = () => {
             className="mb-6 sm:mb-8"
           >
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#0A0A0A] leading-relaxed mb-6 sm:mb-8">
-            <span className="px-3 py-1.5 bg-[#e3ee6b] text-[#0A0A0A] rounded font-bold text-base sm:text-lg md:text-xl">
+            <span className="px-3 py-1.5 bg-[#e3ee6b] text-[#0A0A0A] rounded font-semibold text-base sm:text-lg md:text-xl">
               Мы научились делать
             </span>
             {" "}крутую полировку, клеить пленку{" "}
-            <span className="font-bold underline decoration-[#e3ee6b] decoration-4 underline-offset-4">без пузырей</span>
+без пузырей
             , химчистку так, что салон выглядит как новый.
             </p>
 
-            <div className="bg-[#0A0A0A] rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 inline-block shadow-xl">
+            <div className="bg-[#0A0A0A] rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 inline-block">
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-tight font-medium">
                 Вкладываем{" "}
-                <span className="text-[#e3ee6b] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight">
+                <span className="text-[#e3ee6b] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
                   сотни тысяч
                 </span>
                 {" "}в оборудование, помещение, материалы
@@ -1247,12 +1244,12 @@ const App = () => {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 + i * 0.05, duration: 0.4, ease: "easeOut" }}
-                  className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm flex flex-col items-center text-center h-auto"
+                  className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm will-change-transform"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mb-2 sm:mb-3 flex-shrink-0">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
                     <card.icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]" />
                   </div>
-                  <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A] leading-relaxed font-medium">{card.text}</p>
+                  <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A] leading-relaxed">{card.text}</p>
                 </motion.div>
               ))}
             </div>
@@ -1609,13 +1606,19 @@ const App = () => {
             >
               <motion.span 
                 className="inline-block text-black/60 text-sm sm:text-base uppercase tracking-widest mb-4 font-bold"
-                variants={fadeInUp}
+                initial={{ opacity: 0.3 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 Инвестиция в ваш бизнес
               </motion.span>
               <motion.h2 
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black mb-4 leading-tight"
-                variants={fadeInUp}
+                initial={{ opacity: 0.3 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
               >
                 Стоимость <span className="bg-gradient-to-r from-[#e3ee6b] to-[#c5d060] bg-clip-text text-transparent font-black">курса</span>
               </motion.h2>
@@ -1623,7 +1626,10 @@ const App = () => {
 
             {/* Pricing Card */}
             <motion.div
-              variants={fadeInUp}
+              initial={{ opacity: 0.3 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               className="relative will-change-transform"
             >
               {/* Glowing outline */}
@@ -1640,8 +1646,11 @@ const App = () => {
                 
                 {/* Discount badge */}
                 <motion.div
-                  className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 z-20 rotate-12"
-                  variants={fadeInUp}
+                  className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 z-20"
+                  initial={{ opacity: 0, rotate: 12 }}
+                  whileInView={{ opacity: 1, rotate: 12 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
                 >
                   <motion.div
                     className="relative bg-gradient-to-br from-[#e3ee6b] to-[#c5d060] text-[#0A0A0A] px-5 py-3 sm:px-7 sm:py-4 rounded-2xl shadow-2xl"
@@ -1664,7 +1673,10 @@ const App = () => {
                   {/* Price display */}
                   <motion.div 
                     className="mb-8 sm:mb-10"
-                    variants={fadeInUp}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
                   >
                     {/* Old price */}
                     <div className="mb-4 sm:mb-6">
@@ -1941,33 +1953,35 @@ const FAQItem = ({ question, answer, index }: { question: string; answer: string
   return (
     <motion.div
       initial={{ opacity: 0.3 }}
-      whileInView={{ opacity: 1 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="bg-white rounded-xl sm:rounded-2xl border-2 border-[#0A0A0A]/5 overflow-hidden hover:border-[#e3ee6b]/50 transition-all shadow-sm"
+      className="border border-black/10 rounded-2xl overflow-hidden bg-white hover:border-[#e3ee6b]/30 transition-all"
     >
-      <button
+      <motion.button
+        className="w-full p-5 sm:p-6 flex items-center justify-between text-left touch-manipulation"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4"
+        whileHover={{ backgroundColor: "rgba(227, 238, 107, 0.05)" }}
       >
-        <span className="text-base sm:text-lg md:text-xl font-bold text-[#0A0A0A]">{question}</span>
+        <span className="text-lg sm:text-xl md:text-2xl text-[#0A0A0A] flex-1 font-medium">{question}</span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
-          className="flex-shrink-0 w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center"
         >
-          <ChevronDown className="w-5 h-5 text-[#0A0A0A]" />
+          <ChevronDown className="w-6 h-6 sm:w-7 sm:h-7 text-[#e3ee6b] flex-shrink-0" />
         </motion.div>
-      </button>
+      </motion.button>
+      
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
+            animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
           >
-            <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-sm sm:text-base md:text-lg text-[#0A0A0A]/70 leading-relaxed border-t border-gray-50 pt-4">
+            <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-base sm:text-lg md:text-xl text-[#666] leading-relaxed">
               {answer}
             </div>
           </motion.div>
