@@ -1120,7 +1120,7 @@ const App = () => {
             , химчистку так, что салон выглядит как новый.
             </p>
 
-            <div className="bg-[#0A0A0A] rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 inline-block shadow-xl transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+            <div className="bg-[#0A0A0A] rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 inline-block shadow-xl">
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-tight font-medium">
                 Вкладываем{" "}
                 <span className="text-[#e3ee6b] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight">
@@ -1244,9 +1244,9 @@ const App = () => {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 + i * 0.05, duration: 0.4, ease: "easeOut" }}
-                  className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm flex flex-col items-center text-center group h-auto"
+                  className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm flex flex-col items-center text-center h-auto"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mb-2 sm:mb-3 group-hover:scale-110 transition-transform flex-shrink-0">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mb-2 sm:mb-3 flex-shrink-0">
                     <card.icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]" />
                   </div>
                   <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A] leading-relaxed font-medium">{card.text}</p>
