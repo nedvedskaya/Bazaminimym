@@ -42,7 +42,7 @@ const SectionHeader = ({ badge, title }: { badge: string; title: string }) => (
     >
       {badge}
     </motion.span>
-    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0A0A0A] leading-tight">
+    <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-[#0A0A0A] font-bold">
       {title}
     </h2>
   </div>
@@ -1490,7 +1490,7 @@ const App = () => {
               Отзывы
             </motion.span>
             <motion.h2 
-              className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight text-black"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-black font-bold"
               variants={fadeInUp}
             >
               Работает на практике
