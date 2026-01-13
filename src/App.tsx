@@ -967,7 +967,7 @@ const App = () => {
               >
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1754149603303-7dd288629dd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaWx2ZXIlMjBtZXRhbGxpYyUyMGxpcXVpZCUyMHNjdWxwdHVyZXxlbnwxfHx8fDE3NjU0NDg2MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                  alt="Профессиональное обучение продажам для автосервисов"
+                  alt="Профессиональное обучение продажам для детейлингов"
                   className="w-full h-full object-cover"
                 />
               </motion.div>
@@ -1690,12 +1690,9 @@ const App = () => {
                     transition={{ delay: 0.4, duration: 0.4, ease: "easeOut" }}
                   >
                     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-black/5 shadow-sm">
-                      <p className="text-black/90 text-lg sm:text-xl md:text-2xl leading-relaxed mb-4">
+                      <p className="text-black/90 text-lg sm:text-xl md:text-2xl leading-relaxed">
                         Мы специально поставили <span className="text-[#0A0A0A] font-bold">цену, над которой не надо думать</span>.
                       </p>
-                      <div className="space-y-2 text-black/60 text-base sm:text-lg md:text-xl">
-                        <p className="text-[rgb(0,0,0)]">Это <span className="text-[#0A0A0A] font-semibold font-bold font-normal"></span>.</p>
-                      </div>
                     </div>
                   </motion.div>
 
