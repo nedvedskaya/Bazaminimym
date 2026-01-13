@@ -914,7 +914,7 @@ const App = () => {
                 variants={fadeInUp} 
                 className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-xl"
               >
-                Твой личный апгрейд в продажах. Инструменты, которые поднимают средний чек и выводят конверсию в плюс 70%. Весь опыт Топ-студий в твоем смартфоне.»
+                Внедрите базу, которая поднимет средний чек и поможет менеджеру закрывать сделки с конверсией от 70 %.
               </motion.p>
               
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
