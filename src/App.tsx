@@ -872,7 +872,7 @@ const App = () => {
                       transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                     />
                     <span className="text-sm sm:text-base text-white/90 font-medium">
-                      Интенсив • Старт 12 января
+                     Онлайн-интенсив
                     </span>
                   </div>
                 </div>
@@ -1112,11 +1112,11 @@ const App = () => {
           >
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#0A0A0A] leading-relaxed mb-6 sm:mb-8">
             <span className="px-3 py-1.5 bg-[#e3ee6b] text-[#0A0A0A] rounded font-semibold text-base sm:text-lg md:text-xl">
-              Мы научились делать
+              Вы обучили мастеров
             </span>
-            {" "}крутую полировку, клеить пленку{" "}
+            {" "}круто полировать, клеить пленку{" "}
 без пузырей
-            , химчистку так, что салон выглядит как новый.
+            , делать химчистку так, что салон авто выглядит как новый.
             </p>
 
             <div className="bg-[#0A0A0A] rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 inline-block">
