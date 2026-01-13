@@ -303,22 +303,23 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
   return (
     <>
       <motion.nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
           scrollProgress > 5 ? 'bg-white/95 backdrop-blur-xl shadow-lg' : 'bg-transparent'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between">
           <motion.div 
             className="flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full ${
+            <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-500 ease-out ${
               scrollProgress > 5 ? 'bg-[#e3ee6b]' : 'bg-white/20 backdrop-blur-xl'
             } flex items-center justify-center`}>
-              <span className={`text-lg sm:text-xl ${
+              <span className={`text-lg sm:text-xl transition-colors duration-500 ease-out ${
                 scrollProgress > 5 ? 'text-[#0A0A0A]' : 'text-white'
               } font-black`}>БМ</span>
             </div>
@@ -328,7 +329,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
           <div className="hidden md:flex items-center gap-6">
             <a 
               href="#modules" 
-              className={`text-sm lg:text-base transition-colors font-medium ${
+              className={`text-sm lg:text-base transition-colors duration-500 ease-out font-medium ${
                 scrollProgress > 5 
                   ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
                   : 'text-white/90 hover:text-[#e3ee6b]'
@@ -338,7 +339,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
             </a>
             <a 
               href="#reviews" 
-              className={`text-sm lg:text-base transition-colors font-medium ${
+              className={`text-sm lg:text-base transition-colors duration-500 ease-out font-medium ${
                 scrollProgress > 5 
                   ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
                   : 'text-white/90 hover:text-[#e3ee6b]'
@@ -348,7 +349,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
             </a>
             <a 
               href="#price" 
-              className={`text-sm lg:text-base transition-colors font-medium ${
+              className={`text-sm lg:text-base transition-colors duration-500 ease-out font-medium ${
                 scrollProgress > 5 
                   ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
                   : 'text-white/90 hover:text-[#e3ee6b]'
@@ -358,7 +359,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
             </a>
             <a 
               href="#faq" 
-              className={`text-sm lg:text-base transition-colors font-medium ${
+              className={`text-sm lg:text-base transition-colors duration-500 ease-out font-medium ${
                 scrollProgress > 5 
                   ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
                   : 'text-white/90 hover:text-[#e3ee6b]'
@@ -383,11 +384,12 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
             className="md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
           >
             {isMobileMenuOpen ? (
-              <X className={`w-7 h-7 ${scrollProgress > 5 ? 'text-[#0A0A0A]' : 'text-white'}`} />
+              <X className={`w-7 h-7 transition-colors duration-500 ease-out ${scrollProgress > 5 ? 'text-[#0A0A0A]' : 'text-white'}`} />
             ) : (
-              <Menu className={`w-7 h-7 ${scrollProgress > 5 ? 'text-[#0A0A0A]' : 'text-white'}`} />
+              <Menu className={`w-7 h-7 transition-colors duration-500 ease-out ${scrollProgress > 5 ? 'text-[#0A0A0A]' : 'text-white'}`} />
             )}
           </motion.button>
         </div>
@@ -571,15 +573,26 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Scroll Progress
+  // Scroll Progress with smooth throttling
   useEffect(() => {
+    let ticking = false;
+    let lastScrollY = 0;
+    
     const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
+      lastScrollY = window.scrollY;
+      
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = (lastScrollY / totalHeight) * 100;
+          setScrollProgress(progress);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
