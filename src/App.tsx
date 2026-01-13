@@ -1824,7 +1824,7 @@ const App = () => {
                 href="https://t.me/club_manageer"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 sm:gap-3 bg-[#0088cc] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#0077b5] transition-all shadow-lg hover:shadow-xl group border-2 border-white/10 w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-2 sm:gap-3 bg-[#0A0A0A] text-[#e3ee6b] px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#1a1a1a] transition-all shadow-lg hover:shadow-xl group border-2 border-[#e3ee6b]/20 w-full sm:w-auto justify-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
