@@ -40,11 +40,11 @@ const SectionHeader = ({ badge, title }: { badge: string; title: string }) => (
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className="inline-block px-4 py-2 bg-brand/10 text-brand rounded-full text-xs sm:text-sm font-black uppercase tracking-wider mb-6"
+      className="inline-block px-4 py-2 bg-[#e3ee6b]/10 text-[#e3ee6b] rounded-full text-xs sm:text-sm font-black uppercase tracking-wider mb-6"
     >
       {badge}
     </motion.span>
-    <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-dark font-bold">
+    <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-[#0A0A0A] font-bold">
       {title}
     </h2>
   </div>
@@ -52,8 +52,8 @@ const SectionHeader = ({ badge, title }: { badge: string; title: string }) => (
 
 const BackgroundOrbs = () => (
   <>
-    <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-brand/10 rounded-full blur-[80px] sm:blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-    <div className="absolute bottom-0 left-0 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-brand/5 rounded-full blur-[80px] sm:blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+    <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-[#e3ee6b]/10 rounded-full blur-[80px] sm:blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+    <div className="absolute bottom-0 left-0 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-[#e3ee6b]/5 rounded-full blur-[80px] sm:blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
   </>
 );
 
@@ -67,18 +67,18 @@ const LivePurchase = ({ name, city, show }: { name: string; city: string; show: 
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -400, opacity: 0 }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
-          className="fixed left-4 bottom-20 sm:bottom-24 z-40 bg-white rounded-xl shadow-2xl p-4 border-2 border-brand max-w-[320px] sm:max-w-sm"
+          className="fixed left-4 bottom-20 sm:bottom-24 z-40 bg-white rounded-xl shadow-2xl p-4 border-2 border-[#e3ee6b] max-w-[320px] sm:max-w-sm"
         >
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 bg-brand rounded-full flex items-center justify-center flex-shrink-0">
-              <ShoppingCart className="w-5 h-5 text-dark" />
+            <div className="w-10 h-10 bg-[#e3ee6b] rounded-full flex items-center justify-center flex-shrink-0">
+              <ShoppingCart className="w-5 h-5 text-[#0A0A0A]" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-bold text-dark mb-1">Новая покупка!</p>
-              <p className="text-xs text-gray">
+              <p className="text-sm font-bold text-[#0A0A0A] mb-1">Новая покупка!</p>
+              <p className="text-xs text-[#666]">
                 <span className="font-semibold">{name}</span> из {city} купил интенсив
               </p>
-              <p className="text-xs text-gray-light mt-1">3 минуты назад</p>
+              <p className="text-xs text-[#999] mt-1">3 минуты назад</p>
             </div>
           </div>
         </motion.div>
@@ -112,7 +112,7 @@ const LiveCounter = ({ target }: { target: number }) => {
 
   return (
     <motion.span 
-      className="text-4xl sm:text-5xl md:text-6xl font-black text-brand"
+      className="text-4xl sm:text-5xl md:text-6xl font-black text-[#e3ee6b]"
     >
       {count}
     </motion.span>
@@ -157,13 +157,13 @@ const LiveIndicator = () => {
   return (
     <div className="inline-flex items-center gap-1.5 mt-2">
       <motion.div 
-        className="w-1.5 h-1.5 bg-brand rounded-full"
+        className="w-1.5 h-1.5 bg-[#e3ee6b] rounded-full"
         animate={{ 
           opacity: [1, 0.4, 1]
         }}
         transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
       />
-      <span className="text-[10px] sm:text-xs text-gray uppercase tracking-wide">Счетчик обновляется в реальном времени</span>
+      <span className="text-[10px] sm:text-xs text-[#666] uppercase tracking-wide">Счетчик обновляется в реальном времени</span>
     </div>
   );
 };
@@ -196,21 +196,21 @@ const LossCalculator = () => {
 
   return (
     <div 
-      className="bg-white border-2 border-brand/40 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 mb-8 shadow-2xl"
+      className="bg-white border-2 border-[#e3ee6b]/40 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 mb-8 shadow-2xl"
     >
       {/* Input Fields */}
       <div className="space-y-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 md:gap-6 mb-8">
         {/* Calls per day */}
         <div>
-          <label className="block text-dark/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
-            Обращений в день <span className="text-dark/40 text-[10px]">(звонки, соцсети)</span>
+          <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
+            Обращений в день <span className="text-[#0A0A0A]/40 text-[10px]">(звонки, соцсети)</span>
           </label>
           <input
             type="number"
             value={callsPerDay}
             onChange={(e) => setCallsPerDay(e.target.value)}
             onBlur={() => handleBlur(callsPerDay, setCallsPerDay, 1, 1000, '10')}
-            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-dark text-lg sm:text-xl font-bold focus:outline-none focus:border-brand focus:bg-white transition-all hover:border-brand/60"
+            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
             min="1"
             max="1000"
           />
@@ -218,15 +218,15 @@ const LossCalculator = () => {
 
         {/* Lost clients per day */}
         <div>
-          <label className="block text-dark/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
-            Сколько из них не записалось в день <span className="text-dark/40 text-[10px]">(не договорились)</span>
+          <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
+            Сколько из них не записалось в день <span className="text-[#0A0A0A]/40 text-[10px]">(не договорились)</span>
           </label>
           <input
             type="number"
             value={lostClientsPerDay}
             onChange={(e) => setLostClientsPerDay(e.target.value)}
             onBlur={() => handleBlur(lostClientsPerDay, setLostClientsPerDay, 1, 100, '2')}
-            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-dark text-lg sm:text-xl font-bold focus:outline-none focus:border-brand focus:bg-white transition-all hover:border-brand/60"
+            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
             min="1"
             max="100"
           />
@@ -234,15 +234,15 @@ const LossCalculator = () => {
 
         {/* Average check */}
         <div>
-          <label className="block text-dark/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
-            Средний чек (₽) <span className="text-dark/40 text-[10px]">(сумма заказа)</span>
+          <label className="block text-[#0A0A0A]/70 text-xs sm:text-sm mb-2 font-medium text-[13px]">
+            Средний чек (₽) <span className="text-[#0A0A0A]/40 text-[10px]">(сумма заказа)</span>
           </label>
           <input
             type="number"
             value={avgCheck}
             onChange={(e) => setAvgCheck(e.target.value)}
             onBlur={() => handleBlur(avgCheck, setAvgCheck, 1000, 10000000, '50000')}
-            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-dark text-lg sm:text-xl font-bold focus:outline-none focus:border-brand focus:bg-white transition-all hover:border-brand/60"
+            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-[#0A0A0A] text-lg sm:text-xl font-bold focus:outline-none focus:border-[#e3ee6b] focus:bg-white transition-all hover:border-[#e3ee6b]/60"
             min="1000"
             max="10000000"
             step="1000"
@@ -258,7 +258,7 @@ const LossCalculator = () => {
         
         {/* Monthly loss */}
         <div className="text-center">
-          <div className="text-dark/70 text-base sm:text-lg md:text-xl mb-4 font-medium text-[16px]">Ваши потери за месяц</div>
+          <div className="text-[#0A0A0A]/70 text-base sm:text-lg md:text-xl mb-4 font-medium text-[16px]">Ваши потери за месяц</div>
           <div 
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-4"
           >
@@ -268,7 +268,7 @@ const LossCalculator = () => {
           </div>
           
           <div className="flex flex-col items-center gap-3 mb-6">
-            <div className="flex items-center gap-2 text-dark text-sm sm:text-base md:text-lg">
+            <div className="flex items-center gap-2 text-[#0A0A0A] text-sm sm:text-base md:text-lg">
               <span className="font-semibold">За год это уже</span>
             </div>
             <div 
@@ -319,10 +319,10 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-500 ease-out ${
-              scrollProgress > 5 ? 'bg-brand' : 'bg-white/20 backdrop-blur-xl'
+              scrollProgress > 5 ? 'bg-[#e3ee6b]' : 'bg-white/20 backdrop-blur-xl'
             } flex items-center justify-center`}>
               <span className={`text-lg sm:text-xl transition-colors duration-500 ease-out ${
-                scrollProgress > 5 ? 'text-dark' : 'text-white'
+                scrollProgress > 5 ? 'text-[#0A0A0A]' : 'text-white'
               } font-black`}>БМ</span>
             </div>
           </motion.div>
@@ -333,8 +333,8 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               href="#modules" 
               className={`text-sm lg:text-base transition-colors duration-500 ease-out font-medium ${
                 scrollProgress > 5 
-                  ? 'text-dark hover:text-brand' 
-                  : 'text-white/90 hover:text-brand'
+                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
+                  : 'text-white/90 hover:text-[#e3ee6b]'
               }`}
             >
               Программа
@@ -343,8 +343,8 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               href="#reviews" 
               className={`text-sm lg:text-base transition-colors duration-500 ease-out font-medium ${
                 scrollProgress > 5 
-                  ? 'text-dark hover:text-brand' 
-                  : 'text-white/90 hover:text-brand'
+                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
+                  : 'text-white/90 hover:text-[#e3ee6b]'
               }`}
             >
               Отзывы
@@ -353,8 +353,8 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               href="#price" 
               className={`text-sm lg:text-base transition-colors duration-500 ease-out font-medium ${
                 scrollProgress > 5 
-                  ? 'text-dark hover:text-brand' 
-                  : 'text-white/90 hover:text-brand'
+                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
+                  : 'text-white/90 hover:text-[#e3ee6b]'
               }`}
             >
               Цена
@@ -363,8 +363,8 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               href="#faq" 
               className={`text-sm lg:text-base transition-colors duration-500 ease-out font-medium ${
                 scrollProgress > 5 
-                  ? 'text-dark hover:text-brand' 
-                  : 'text-white/90 hover:text-brand'
+                  ? 'text-[#0A0A0A] hover:text-[#e3ee6b]' 
+                  : 'text-white/90 hover:text-[#e3ee6b]'
               }`}
             >
               FAQ
@@ -373,7 +373,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               href={PAYMENT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-brand text-dark px-6 py-2.5 rounded-full hover:bg-brand-hover transition-colors text-sm lg:text-base font-semibold"
+              className="bg-[#e3ee6b] text-[#0A0A0A] px-6 py-2.5 rounded-full hover:bg-[#e3ee6b]-hover transition-colors text-sm lg:text-base font-semibold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -389,9 +389,9 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
             transition={{ duration: 0.2, ease: "easeOut" }}
           >
             {isMobileMenuOpen ? (
-              <X className={`w-7 h-7 transition-colors duration-500 ease-out ${scrollProgress > 5 ? 'text-dark' : 'text-white'}`} />
+              <X className={`w-7 h-7 transition-colors duration-500 ease-out ${scrollProgress > 5 ? 'text-[#0A0A0A]' : 'text-white'}`} />
             ) : (
-              <Menu className={`w-7 h-7 transition-colors duration-500 ease-out ${scrollProgress > 5 ? 'text-dark' : 'text-white'}`} />
+              <Menu className={`w-7 h-7 transition-colors duration-500 ease-out ${scrollProgress > 5 ? 'text-[#0A0A0A]' : 'text-white'}`} />
             )}
           </motion.button>
         </div>
@@ -401,7 +401,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-dark z-40 md:hidden"
+            className="fixed inset-0 bg-[#0A0A0A] z-40 md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -417,7 +417,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  className="text-white text-2xl font-medium hover:text-brand transition-colors"
+                  className="text-white text-2xl font-medium hover:text-[#e3ee6b] transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -431,7 +431,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="bg-brand text-dark px-10 py-4 rounded-full text-xl font-semibold mt-4"
+                className="bg-[#e3ee6b] text-[#0A0A0A] px-10 py-4 rounded-full text-xl font-semibold mt-4"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
@@ -472,17 +472,17 @@ const CookieConsent = () => {
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="flex-1">
-              <p className="text-dark text-sm sm:text-base">
+              <p className="text-[#0A0A0A] text-sm sm:text-base">
                 Мы используем файлы cookie для улучшения работы сайта и анализа трафика. 
                 Продолжая использовать сайт, вы соглашаетесь с{' '}
-                <a href="https://project2788838.tilda.ws/politica" target="_blank" rel="noopener noreferrer" className="text-dark underline hover:text-gray">
+                <a href="https://project2788838.tilda.ws/politica" target="_blank" rel="noopener noreferrer" className="text-[#0A0A0A] underline hover:text-[#666]">
                   политикой конфиденциальности
                 </a>.
               </p>
             </div>
             <motion.button
               onClick={acceptCookies}
-              className="bg-brand text-dark px-6 py-2.5 rounded-full font-semibold text-sm sm:text-base whitespace-nowrap hover:bg-brand-hover transition-colors"
+              className="bg-[#e3ee6b] text-[#0A0A0A] px-6 py-2.5 rounded-full font-semibold text-sm sm:text-base whitespace-nowrap hover:bg-[#e3ee6b]-hover transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -778,11 +778,11 @@ const App = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-dark antialiased overflow-x-hidden">
+    <div className="min-h-screen bg-white text-[#0A0A0A] antialiased overflow-x-hidden">
       
       {/* --- SCROLL PROGRESS BAR --- */}
       <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-brand z-[100] origin-left"
+        className="fixed top-0 left-0 right-0 h-1 bg-[#e3ee6b] z-[100] origin-left"
         style={{ scaleX: scrollYProgress }}
       />
 
@@ -795,7 +795,7 @@ const App = () => {
       />
 
       {/* --- HERO SECTION --- */}
-      <section id="hero" className="relative min-h-[100vh] flex items-center px-4 sm:px-6 py-20 sm:py-24 md:py-32 bg-dark overflow-hidden">
+      <section id="hero" className="relative min-h-[100vh] flex items-center px-4 sm:px-6 py-20 sm:py-24 md:py-32 bg-[#0A0A0A] overflow-hidden">
         {/* Animated Background Blobs */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -834,7 +834,7 @@ const App = () => {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-brand/5 rounded-full blur-3xl"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-[#e3ee6b]/5 rounded-full blur-3xl"
           />
         </div>
 
@@ -857,7 +857,7 @@ const App = () => {
                   />
                   <div className="relative z-10 flex items-center gap-2 sm:gap-3">
                     <motion.div
-                      className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-brand"
+                      className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#e3ee6b]"
                       animate={{ opacity: [1, 0.5, 1] }}
                       transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                     />
@@ -913,13 +913,13 @@ const App = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Получить доступ к онлайн-интенсиву Базовый Минимум"
-                  className="group relative bg-brand text-dark px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-brand-light transition-all inline-flex items-center justify-center gap-2 sm:gap-3 touch-manipulation overflow-hidden w-full sm:w-auto"
+                  className="group relative bg-[#e3ee6b] text-[#0A0A0A] px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-[#e3ee6b]-light transition-all inline-flex items-center justify-center gap-2 sm:gap-3 touch-manipulation overflow-hidden w-full sm:w-auto"
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(227, 238, 107, 0.4)" }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {/* Subtle glow effect */}
                   <motion.div
-                    className="absolute inset-0 bg-brand rounded-full"
+                    className="absolute inset-0 bg-[#e3ee6b] rounded-full"
                     animate={{ opacity: [0.8, 0.4, 0.8] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   />
@@ -975,7 +975,7 @@ const App = () => {
                   <div className="relative flex items-center gap-4 bg-gradient-to-r from-white/0 to-white/5 rounded-2xl p-4 border border-white/20">
                     {/* Бейдж со скидкой */}
                     <motion.div
-                      className="absolute -top-3 -right-3 bg-brand text-dark px-4 py-1.5 rounded-full text-sm sm:text-base font-bold shadow-lg z-10"
+                      className="absolute -top-3 -right-3 bg-[#e3ee6b] text-[#0A0A0A] px-4 py-1.5 rounded-full text-sm sm:text-base font-bold shadow-lg z-10"
                       initial={{ scale: 0.9 }}
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
@@ -984,14 +984,14 @@ const App = () => {
                     </motion.div>
 
                     <motion.div 
-                      className="w-14 h-14 sm:w-16 sm:h-16 bg-brand rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
+                      className="w-14 h-14 sm:w-16 sm:h-16 bg-[#e3ee6b] rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                     >
-                      <span className="text-3xl sm:text-4xl text-dark font-bold">₽</span>
+                      <span className="text-3xl sm:text-4xl text-[#0A0A0A] font-bold">₽</span>
                     </motion.div>
                     <div className="flex-1">
                       <div className="flex items-baseline gap-3 mb-1 flex-wrap">
                         <span className="text-white/40 text-base sm:text-lg line-through whitespace-nowrap">10 000 ₽</span>
-                        <span className="text-brand text-3xl sm:text-4xl md:text-5xl whitespace-nowrap font-black">2 490 ₽</span>
+                        <span className="text-[#e3ee6b] text-3xl sm:text-4xl md:text-5xl whitespace-nowrap font-black">2 490 ₽</span>
                       </div>
                       <div className="text-white/70 text-sm sm:text-base font-medium">Специальное предложение</div>
                     </div>
@@ -1007,7 +1007,7 @@ const App = () => {
       </section>
 
       {/* --- MARQUEE WITH BENEFITS --- */}
-      <div className="relative bg-brand py-4 overflow-hidden">
+      <div className="relative bg-[#e3ee6b] py-4 overflow-hidden">
         <motion.div
           className="flex gap-8 whitespace-nowrap"
           animate={{ x: [0, -1920] }}
@@ -1015,8 +1015,8 @@ const App = () => {
         >
           {[...benefits, ...benefits].map((benefit, i) => (
             <div key={i} className="flex items-center gap-3">
-              <span className="text-dark text-base sm:text-sm uppercase tracking-wider font-semibold">{benefit}</span>
-              <span className="text-dark/30">•</span>
+              <span className="text-[#0A0A0A] text-base sm:text-sm uppercase tracking-wider font-semibold">{benefit}</span>
+              <span className="text-[#0A0A0A]/30">•</span>
             </div>
           ))}
         </motion.div>
@@ -1033,7 +1033,7 @@ const App = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ delay: index * 0.05, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-                className="relative p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#F5F5F5] to-white border border-black/5 hover:border-brand/30 transition-all group will-change-transform"
+                className="relative p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#F5F5F5] to-white border border-black/5 hover:border-[#e3ee6b]/30 transition-all group will-change-transform"
                 whileHover={{ scale: 1.02, boxShadow: "0 20px 60px rgba(0,0,0,0.1)" }}
               >
                 <motion.div 
@@ -1045,16 +1045,16 @@ const App = () => {
                 >
                   {index === 0 ? <LivePurchaseCounter count={purchaseCount} setCount={setPurchaseCount} /> : `${stat.value}${stat.suffix}`}
                 </motion.div>
-                <div className="text-base sm:text-sm md:text-base text-gray leading-relaxed font-medium">
+                <div className="text-base sm:text-sm md:text-base text-[#666] leading-relaxed font-medium">
                   {stat.label}
                   {index === 0 && <LiveIndicator />}
                 </div>
                 <motion.div 
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#e3ee6b]/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <TrendingUp className="w-5 h-5 text-brand" />
+                  <TrendingUp className="w-5 h-5 text-[#e3ee6b]" />
                 </motion.div>
               </motion.div>
             ))}
@@ -1100,8 +1100,8 @@ const App = () => {
             variants={fadeInUp}
             className="mb-6 sm:mb-8"
           >
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-dark leading-relaxed mb-6 sm:mb-8">
-            <span className="px-3 py-1.5 bg-brand text-dark rounded font-semibold text-base sm:text-lg md:text-xl">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#0A0A0A] leading-relaxed mb-6 sm:mb-8">
+            <span className="px-3 py-1.5 bg-[#e3ee6b] text-[#0A0A0A] rounded font-semibold text-base sm:text-lg md:text-xl">
               Вы обучили мастеров
             </span>
             {" "}круто полировать, клеить пленку{" "}
@@ -1109,10 +1109,10 @@ const App = () => {
             , делать химчистку так, что салон авто выглядит как новый.
             </p>
 
-            <div className="bg-dark rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 inline-block">
+            <div className="bg-[#0A0A0A] rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 inline-block">
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-tight font-medium">
                 Вкладываете{" "}
-                <span className="text-brand text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
+                <span className="text-[#e3ee6b] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
                   сотни тысяч
                 </span>
                 {" "}в оборудование, помещение, материалы
@@ -1133,14 +1133,14 @@ const App = () => {
                   крутую полировку
                 </span>
                 <motion.div 
-                  className="absolute -bottom-2 left-0 right-0 h-1 bg-brand/30 rounded-full"
+                  className="absolute -bottom-2 left-0 right-0 h-1 bg-[#e3ee6b]/30 rounded-full"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
                 />
               </motion.span>
               , клеить пленку{" "}
-              <span className="relative inline-block px-3 py-1 bg-brand/10 rounded-lg">
+              <span className="relative inline-block px-3 py-1 bg-[#e3ee6b]/10 rounded-lg">
                 без пузырей и песка
               </span>
               , делать химчистку так, что салон выглядит{" "}
@@ -1167,7 +1167,7 @@ const App = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.4, type: "spring", bounce: 0.4 }}
             >
-              <div className="relative bg-gradient-to-r from-[#0A0A0A] to-[#1a1a1a] rounded-3xl p-8 border-2 border-brand/20">
+              <div className="relative bg-gradient-to-r from-[#0A0A0A] to-[#1a1a1a] rounded-3xl p-8 border-2 border-[#e3ee6b]/20">
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-[#e3ee6b]/5 via-transparent to-[#e3ee6b]/5 rounded-3xl"
                   animate={{ 
@@ -1187,7 +1187,7 @@ const App = () => {
                     transition={{ duration: 3, repeat: Infinity }}
                     style={{ backgroundSize: '200% 200%' }}
                   >
-                    <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-brand inline" />
+                    <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-[#e3ee6b] inline" />
                     миллионы
                   </motion.span>
                   {" "}в&nbsp;оборудование, помещение, команду, материалы.
@@ -1198,7 +1198,7 @@ const App = () => {
                   {[0, 1, 2].map((i) => (
                     <motion.div
                       key={i}
-                      className="w-2 h-2 bg-brand rounded-full"
+                      className="w-2 h-2 bg-[#e3ee6b] rounded-full"
                       animate={{ 
                         opacity: [0.4, 0.9, 0.4]
                       }}
@@ -1219,7 +1219,7 @@ const App = () => {
             variants={fadeInUp}
             className="mb-4 sm:mb-6"
           >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-dark leading-tight mb-6 sm:mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0A0A0A] leading-tight mb-6 sm:mb-8">
             Но почему тогда:
           </h2>
             
@@ -1235,12 +1235,12 @@ const App = () => {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 + i * 0.05, duration: 0.4, ease: "easeOut" }}
-                  className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-dark/20 hover:border-brand transition-all shadow-sm will-change-transform"
+                  className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-2 border-[#0A0A0A]/20 hover:border-[#e3ee6b] transition-all shadow-sm will-change-transform"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-brand rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                    <card.icon className="w-5 h-5 sm:w-6 sm:h-6 text-dark" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#e3ee6b] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                    <card.icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]" />
                   </div>
-                  <p className="text-base sm:text-lg md:text-xl text-dark leading-relaxed">{card.text}</p>
+                  <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A] leading-relaxed">{card.text}</p>
                 </motion.div>
               ))}
             </div>
@@ -1253,22 +1253,22 @@ const App = () => {
               className="text-center mt-10 sm:mt-14 max-w-5xl mx-auto"
             >
               {/* Основной заголовок */}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-dark leading-tight mb-6 sm:mb-8 px-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0A0A0A] leading-tight mb-6 sm:mb-8 px-4">
                 Мы создали первое в России обучение по продажам, полностью заточенное под специфику и тонкости детейлинга.
               </h2>
               
               {/* Карточка с результатами */}
               <motion.div 
-                className="inline-block bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-dark/10 shadow-sm mx-4 will-change-transform"
+                className="inline-block bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-[#0A0A0A]/10 shadow-sm mx-4 will-change-transform"
                 initial={{ opacity: 0.3 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.4, ease: "easeOut" }}
               >
-                <p className="text-base sm:text-lg md:text-xl text-dark/70 mb-3 sm:mb-4 font-medium">
+                <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A]/70 mb-3 sm:mb-4 font-medium">
                   Уже применяют {purchaseCount} владельцев автобизнеса
                 </p>
-                <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-brand text-dark rounded-xl font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+                <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-[#e3ee6b] text-[#0A0A0A] rounded-xl font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl">
                   +40-100% к чеку
                 </div>
               </motion.div>
@@ -1280,7 +1280,7 @@ const App = () => {
             href="https://t.me/clubmanagers_bot"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-dark text-white px-10 py-5 sm:py-6 rounded-full hover:bg-[#1A1A1A] transition-all inline-flex items-center gap-3 group text-lg sm:text-xl md:text-2xl font-semibold touch-manipulation mt-8 sm:mt-10 md:mt-12"
+            className="bg-[#0A0A0A] text-white px-10 py-5 sm:py-6 rounded-full hover:bg-[#1A1A1A] transition-all inline-flex items-center gap-3 group text-lg sm:text-xl md:text-2xl font-semibold touch-manipulation mt-8 sm:mt-10 md:mt-12"
             whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}
             whileTap={{ scale: 0.95 }}
           >
@@ -1291,7 +1291,7 @@ const App = () => {
       </section>
 
       {/* --- LOSS CALCULATOR SECTION --- */}
-      <section id="calculator" className="relative py-12 sm:py-16 md:py-20 px-4 bg-dark overflow-hidden">
+      <section id="calculator" className="relative py-12 sm:py-16 md:py-20 px-4 bg-[#0A0A0A] overflow-hidden">
         {/* Animated background */}
         <motion.div 
           className="absolute inset-0 opacity-5"
@@ -1315,7 +1315,7 @@ const App = () => {
             className="text-center mb-10 sm:mb-12"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 sm:mb-6 leading-tight">
-              Подсчитайте свои <span className="text-brand font-bold">реальные потери</span>
+              Подсчитайте свои <span className="text-[#e3ee6b] font-bold">реальные потери</span>
             </h2>
             
             <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto text-[20px]">
@@ -1342,7 +1342,7 @@ const App = () => {
               href="https://t.me/clubmanagers_bot"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-brand text-dark px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-brand-hover transition-all inline-flex items-center gap-3 group text-base sm:text-lg md:text-xl font-bold touch-manipulation"
+              className="bg-[#e3ee6b] text-[#0A0A0A] px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-[#e3ee6b]-hover transition-all inline-flex items-center gap-3 group text-base sm:text-lg md:text-xl font-bold touch-manipulation"
               whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(227,238,107,0.4)" }}
               whileTap={{ scale: 0.95 }}
             >
@@ -1381,7 +1381,7 @@ const App = () => {
                 className={`
                   group relative rounded-[32px] overflow-hidden
                   transition-all touch-manipulation cursor-pointer will-change-transform
-                  ${item.style === 'dark' ? 'bg-dark text-white' : 'bg-brand text-dark'}
+                  ${item.style === 'dark' ? 'bg-[#0A0A0A] text-white' : 'bg-[#e3ee6b] text-[#0A0A0A]'}
                   ${index === 0 ? 'sm:col-span-2' : ''}
                   ${index === 4 ? 'sm:col-span-2' : ''}
                 `}
@@ -1412,7 +1412,7 @@ const App = () => {
                     <motion.div 
                       className={`
                         w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mb-3 sm:mb-4 md:mb-6
-                        ${item.style === 'dark' ? 'bg-brand text-dark' : 'bg-dark text-brand'}
+                        ${item.style === 'dark' ? 'bg-[#e3ee6b] text-[#0A0A0A]' : 'bg-[#0A0A0A] text-[#e3ee6b]'}
                       `}
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.6 }}
@@ -1429,17 +1429,17 @@ const App = () => {
                     >
                       {item.title}
                     </motion.h3>
-                    <div className={`text-sm sm:text-base uppercase tracking-wider mb-3 sm:mb-4 font-semibold ${item.style === 'dark' ? 'text-white/60' : 'text-dark/60'}`}>
+                    <div className={`text-sm sm:text-base uppercase tracking-wider mb-3 sm:mb-4 font-semibold ${item.style === 'dark' ? 'text-white/60' : 'text-[#0A0A0A]/60'}`}>
                       {item.subtitle}
                     </div>
-                    <p className={`text-sm sm:text-base md:text-lg leading-relaxed ${item.style === 'dark' ? 'text-white/80' : 'text-dark/80'}`}>
+                    <p className={`text-sm sm:text-base md:text-lg leading-relaxed ${item.style === 'dark' ? 'text-white/80' : 'text-[#0A0A0A]/80'}`}>
                       {item.desc}
                     </p>
                   </div>
 
                   {/* Hover indicator */}
                   <motion.div 
-                    className={`mt-4 opacity-0 group-hover:opacity-100 transition-opacity ${item.style === 'dark' ? 'text-brand' : 'text-dark'}`}
+                    className={`mt-4 opacity-0 group-hover:opacity-100 transition-opacity ${item.style === 'dark' ? 'text-[#e3ee6b]' : 'text-[#0A0A0A]'}`}
                     initial={{ x: -10 }}
                     whileHover={{ x: 0 }}
                   >
@@ -1496,13 +1496,13 @@ const App = () => {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: Math.min(index * 0.05, 0.2), duration: 0.4, ease: "easeOut" }}
-                  className="relative p-6 sm:p-8 rounded-2xl bg-white border border-black/10 hover:border-brand/50 transition-all group shadow-sm hover:shadow-md w-[calc(100vw-2rem)] sm:w-[calc(100vw-3rem)] md:w-[calc(50vw-2rem)] lg:w-[calc(33.333vw-2rem)] snap-center flex-shrink-0 will-change-transform"
+                  className="relative p-6 sm:p-8 rounded-2xl bg-white border border-black/10 hover:border-[#e3ee6b]/50 transition-all group shadow-sm hover:shadow-md w-[calc(100vw-2rem)] sm:w-[calc(100vw-3rem)] md:w-[calc(50vw-2rem)] lg:w-[calc(33.333vw-2rem)] snap-center flex-shrink-0 will-change-transform"
                 >
                   {/* Stars */}
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <div key={i}>
-                        <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-brand text-brand" />
+                        <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-[#e3ee6b] text-[#e3ee6b]" />
                       </div>
                     ))}
                   </div>
@@ -1512,8 +1512,8 @@ const App = () => {
                   </p>
 
                   <div className="flex items-center gap-3 sm:gap-4">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand flex items-center justify-center flex-shrink-0">
-                      <Users className="w-6 h-6 sm:w-7 sm:h-7 text-dark" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#e3ee6b] flex items-center justify-center flex-shrink-0">
+                      <Users className="w-6 h-6 sm:w-7 sm:h-7 text-[#0A0A0A]" />
                     </div>
                     <div>
                       <div className="text-black text-base sm:text-lg font-medium">{testimonial.name}</div>
@@ -1613,7 +1613,7 @@ const App = () => {
               />
 
               {/* Main card */}
-              <div className="relative bg-gradient-to-br from-[#FAFAFA] to-white rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-12 md:p-16 shadow-xl border-[3px] border-brand shadow-[0_0_40px_rgba(227,238,107,0.3)]">
+              <div className="relative bg-gradient-to-br from-[#FAFAFA] to-white rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-12 md:p-16 shadow-xl border-[3px] border-[#e3ee6b] shadow-[0_0_40px_rgba(227,238,107,0.3)]">
                 
                 {/* Discount badge */}
                 <motion.div
@@ -1624,13 +1624,13 @@ const App = () => {
                   transition={{ duration: 0.4, delay: 0.2 }}
                 >
                   <motion.div
-                    className="relative bg-gradient-to-br from-[#e3ee6b] to-[#c5d060] text-dark px-5 py-3 sm:px-7 sm:py-4 rounded-2xl shadow-2xl"
+                    className="relative bg-gradient-to-br from-[#e3ee6b] to-[#c5d060] text-[#0A0A0A] px-5 py-3 sm:px-7 sm:py-4 rounded-2xl shadow-2xl"
                     animate={{ 
                       y: [0, -3, 0]
                     }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <div className="absolute inset-0 bg-brand rounded-2xl blur-md opacity-50" />
+                    <div className="absolute inset-0 bg-[#e3ee6b] rounded-2xl blur-md opacity-50" />
                     <div className="relative text-center">
                       <div className="text-xs sm:text-sm uppercase tracking-wider font-bold mb-0.5">Скидка</div>
                       <div className="text-2xl sm:text-3xl md:text-4xl font-black">-75%</div>
@@ -1651,7 +1651,7 @@ const App = () => {
                   >
                     {/* Old price */}
                     <div className="mb-4 sm:mb-6">
-                      <span className="text-gray-light text-2xl sm:text-3xl md:text-4xl line-through">10 000 ₽</span>
+                      <span className="text-[#999] text-2xl sm:text-3xl md:text-4xl line-through">10 000 ₽</span>
                     </div>
                     
                     {/* New price - MEGA */}
@@ -1663,10 +1663,10 @@ const App = () => {
                       transition={{ type: "spring", bounce: 0.5, delay: 0.3 }}
                     >
                       <div className="relative text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] leading-none font-black">
-                        <span className="text-dark">
+                        <span className="text-[#0A0A0A]">
                           2 490
                         </span>
-                        <span className="text-5xl sm:text-6xl md:text-7xl text-gray ml-2 sm:ml-4">₽</span>
+                        <span className="text-5xl sm:text-6xl md:text-7xl text-[#666] ml-2 sm:ml-4">₽</span>
                       </div>
                     </motion.div>
                   </motion.div>
@@ -1681,7 +1681,7 @@ const App = () => {
                   >
                     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-black/5 shadow-sm">
                       <p className="text-black/90 text-lg sm:text-xl md:text-2xl leading-relaxed">
-                        Мы специально поставили <span className="text-dark font-bold">цену, над которой не надо думать</span>.
+                        Мы специально поставили <span className="text-[#0A0A0A] font-bold">цену, над которой не надо думать</span>.
                       </p>
                     </div>
                   </motion.div>
@@ -1691,7 +1691,7 @@ const App = () => {
                     href={PAYMENT_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative bg-dark text-white px-10 sm:px-14 py-5 sm:py-7 rounded-full transition-all inline-flex items-center justify-center gap-3 sm:gap-4 text-xl sm:text-2xl md:text-3xl touch-manipulation overflow-hidden shadow-2xl border-2 border-brand"
+                    className="group relative bg-[#0A0A0A] text-white px-10 sm:px-14 py-5 sm:py-7 rounded-full transition-all inline-flex items-center justify-center gap-3 sm:gap-4 text-xl sm:text-2xl md:text-3xl touch-manipulation overflow-hidden shadow-2xl border-2 border-[#e3ee6b]"
                     initial={{ opacity: 0.3 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -1709,12 +1709,12 @@ const App = () => {
                     
                     {/* Subtle glow */}
                     <motion.div
-                      className="absolute inset-0 bg-brand rounded-full"
+                      className="absolute inset-0 bg-[#e3ee6b] rounded-full"
                       animate={{ opacity: [0.15, 0.35, 0.15] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     />
 
-                    <span className="relative z-10 flex items-center gap-3 sm:gap-4 font-black group-hover:text-dark transition-colors">
+                    <span className="relative z-10 flex items-center gap-3 sm:gap-4 font-black group-hover:text-[#0A0A0A] transition-colors">
                       Оплатить интенсив
                       <ArrowRight className="w-7 h-7 sm:w-8 sm:h-8 group-hover:translate-x-2 transition-transform" />
                     </span>
@@ -1722,14 +1722,14 @@ const App = () => {
 
                   {/* Security badge */}
                   <motion.div
-                    className="mt-6 sm:mt-8 flex items-center justify-center gap-4 sm:gap-6 text-gray"
+                    className="mt-6 sm:mt-8 flex items-center justify-center gap-4 sm:gap-6 text-[#666]"
                     initial={{ opacity: 0.3 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.7, duration: 0.4, ease: "easeOut" }}
                   >
                     <div className="flex items-center gap-2">
-                      <Shield className="w-4 h-4 text-gray" />
+                      <Shield className="w-4 h-4 text-[#666]" />
                       <span className="text-sm sm:text-base font-medium">Безопасная оплата</span>
                     </div>
                   </motion.div>
@@ -1738,7 +1738,7 @@ const App = () => {
 
               {/* Decorative elements */}
               <motion.div 
-                className="absolute -bottom-6 -left-6 w-32 h-32 bg-brand/20 rounded-full blur-3xl"
+                className="absolute -bottom-6 -left-6 w-32 h-32 bg-[#e3ee6b]/20 rounded-full blur-3xl"
                 animate={{ opacity: [0.3, 0.5, 0.3] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               />
@@ -1764,7 +1764,7 @@ const App = () => {
             className="mb-8 sm:mb-12 md:mb-16 text-center"
           >
             <motion.span 
-              className="text-sm sm:text-base text-gray uppercase tracking-wider mb-3 sm:mb-4 block font-semibold"
+              className="text-sm sm:text-base text-[#666] uppercase tracking-wider mb-3 sm:mb-4 block font-semibold"
               variants={fadeInUp}
             >
               Остались вопросы?
@@ -1791,7 +1791,7 @@ const App = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <p className="text-xl sm:text-2xl md:text-3xl text-dark mb-6 sm:mb-8 font-medium">
+            <p className="text-xl sm:text-2xl md:text-3xl text-[#0A0A0A] mb-6 sm:mb-8 font-medium">
               Не нашли ответ, напишите в отдел заботы
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -1799,7 +1799,7 @@ const App = () => {
                 href="https://api.whatsapp.com/send/?phone=79951140299"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 sm:gap-3 bg-dark text-brand px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#1a1a1a] transition-all shadow-lg hover:shadow-xl group border-2 border-brand/20 w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-2 sm:gap-3 bg-[#0A0A0A] text-[#e3ee6b] px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#1a1a1a] transition-all shadow-lg hover:shadow-xl group border-2 border-[#e3ee6b]/20 w-full sm:w-auto justify-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -1814,7 +1814,7 @@ const App = () => {
                 href="https://t.me/club_manageer"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 sm:gap-3 bg-dark text-brand px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#1a1a1a] transition-all shadow-lg hover:shadow-xl group border-2 border-brand/20 w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-2 sm:gap-3 bg-[#0A0A0A] text-[#e3ee6b] px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#1a1a1a] transition-all shadow-lg hover:shadow-xl group border-2 border-[#e3ee6b]/20 w-full sm:w-auto justify-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -1831,7 +1831,7 @@ const App = () => {
 
       {/* --- FLOATING CTA BUTTON --- */}
       <motion.button
-        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-40 w-12 h-12 sm:w-14 sm:h-14 bg-brand rounded-full shadow-2xl flex items-center justify-center group"
+        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-40 w-12 h-12 sm:w-14 sm:h-14 bg-[#e3ee6b] rounded-full shadow-2xl flex items-center justify-center group"
         whileHover={{ scale: 1.1, rotate: 90 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsModalOpen(true)}
@@ -1842,9 +1842,9 @@ const App = () => {
         <motion.div
           animate={{ opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 bg-brand rounded-full"
+          className="absolute inset-0 bg-[#e3ee6b] rounded-full"
         />
-        <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-dark relative z-10" />
+        <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A] relative z-10" />
       </motion.button>
 
       {/* --- MODAL --- */}
@@ -1882,13 +1882,13 @@ const App = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2, type: "spring" }}
-                className="w-16 h-16 bg-brand rounded-full flex items-center justify-center mx-auto mb-6"
+                className="w-16 h-16 bg-[#e3ee6b] rounded-full flex items-center justify-center mx-auto mb-6"
               >
-                <Sparkles className="w-8 h-8 text-dark" />
+                <Sparkles className="w-8 h-8 text-[#0A0A0A]" />
               </motion.div>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4 text-dark text-center">Старт 12 января</h2>
-              <p className="text-base sm:text-lg text-gray mb-6 sm:mb-8 leading-relaxed text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4 text-[#0A0A0A] text-center">Старт 12 января</h2>
+              <p className="text-base sm:text-lg text-[#666] mb-6 sm:mb-8 leading-relaxed text-center">
                 Просто возьмите это, проверьте и сообщите сотрудникам. Порядок в кассе гарантирую.
               </p>
               
@@ -1896,12 +1896,12 @@ const App = () => {
                 href={PAYMENT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-dark text-brand py-5 sm:py-6 rounded-full hover:bg-[#1A1A1A] transition-colors text-lg sm:text-xl md:text-2xl mb-4 sm:mb-5 flex items-center justify-center gap-3 group touch-manipulation active:scale-95 relative overflow-hidden font-semibold"
+                className="w-full bg-[#0A0A0A] text-[#e3ee6b] py-5 sm:py-6 rounded-full hover:bg-[#1A1A1A] transition-colors text-lg sm:text-xl md:text-2xl mb-4 sm:mb-5 flex items-center justify-center gap-3 group touch-manipulation active:scale-95 relative overflow-hidden font-semibold"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <motion.div
-                  className="absolute inset-0 bg-brand"
+                  className="absolute inset-0 bg-[#e3ee6b]"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
@@ -1914,7 +1914,7 @@ const App = () => {
               </motion.a>
 
               <motion.button 
-                className="w-full text-gray py-4 text-lg sm:text-xl hover:text-dark transition-colors touch-manipulation font-medium"
+                className="w-full text-[#666] py-4 text-lg sm:text-xl hover:text-[#0A0A0A] transition-colors touch-manipulation font-medium"
                 onClick={() => setIsModalOpen(false)}
                 whileHover={{ scale: 1.05 }}
               >
@@ -1943,19 +1943,19 @@ const FAQItem = ({ question, answer, index }: { question: string; answer: string
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="border border-black/10 rounded-2xl overflow-hidden bg-white hover:border-brand/30 transition-all"
+      className="border border-black/10 rounded-2xl overflow-hidden bg-white hover:border-[#e3ee6b]/30 transition-all"
     >
       <motion.button
         className="w-full p-5 sm:p-6 flex items-center justify-between text-left touch-manipulation"
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ backgroundColor: "rgba(227, 238, 107, 0.05)" }}
       >
-        <span className="text-lg sm:text-xl md:text-2xl text-dark flex-1 font-medium">{question}</span>
+        <span className="text-lg sm:text-xl md:text-2xl text-[#0A0A0A] flex-1 font-medium">{question}</span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ChevronDown className="w-6 h-6 sm:w-7 sm:h-7 text-brand flex-shrink-0" />
+          <ChevronDown className="w-6 h-6 sm:w-7 sm:h-7 text-[#e3ee6b] flex-shrink-0" />
         </motion.div>
       </motion.button>
       
@@ -1968,7 +1968,7 @@ const FAQItem = ({ question, answer, index }: { question: string; answer: string
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-base sm:text-lg md:text-xl text-gray leading-relaxed">
+            <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-base sm:text-lg md:text-xl text-[#666] leading-relaxed">
               {answer}
             </div>
           </motion.div>

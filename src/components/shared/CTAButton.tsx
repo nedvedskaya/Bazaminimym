@@ -6,7 +6,6 @@ import { PAYMENT_URL } from '../../constants';
 /**
  * Переиспользуемая CTA кнопка
  * Единое место для изменения стилей всех CTA кнопок
- * Использует Tailwind brand colors: bg-brand, text-dark, hover:bg-brand-hover
  */
 
 interface CTAButtonProps {
@@ -25,9 +24,9 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
   onClick,
 }) => {
   const variantStyles = {
-    primary: 'bg-brand text-dark px-6 py-2.5 rounded-full hover:bg-brand-hover transition-colors text-sm lg:text-base font-semibold',
-    large: 'bg-brand text-dark px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-brand-hover transition-all text-base sm:text-lg md:text-xl font-bold touch-manipulation',
-    compact: 'bg-brand text-dark px-10 py-4 rounded-full text-xl font-semibold',
+    primary: 'bg-[#e3ee6b] text-[#0A0A0A] px-6 py-2.5 rounded-full hover:bg-[#d4df5a] transition-colors text-sm lg:text-base font-semibold',
+    large: 'bg-[#e3ee6b] text-[#0A0A0A] px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-[#d4df5a] transition-all text-base sm:text-lg md:text-xl font-bold touch-manipulation',
+    compact: 'bg-[#e3ee6b] text-[#0A0A0A] px-10 py-4 rounded-full text-xl font-semibold',
   };
 
   const handleClick = () => {
@@ -62,9 +61,9 @@ export const CTALink: React.FC<CTAButtonProps & { href?: string }> = ({
   href = PAYMENT_URL,
 }) => {
   const variantStyles = {
-    primary: 'bg-brand text-dark px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-brand-light transition-all font-semibold touch-manipulation',
-    large: 'bg-brand text-dark px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-brand-hover transition-all text-base sm:text-lg md:text-xl font-bold touch-manipulation',
-    compact: 'bg-brand text-dark px-10 py-4 rounded-full text-xl font-semibold',
+    primary: 'bg-[#e3ee6b] text-[#0A0A0A] px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-[#e8f285] transition-all font-semibold touch-manipulation',
+    large: 'bg-[#e3ee6b] text-[#0A0A0A] px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-[#d4df5a] transition-all text-base sm:text-lg md:text-xl font-bold touch-manipulation',
+    compact: 'bg-[#e3ee6b] text-[#0A0A0A] px-10 py-4 rounded-full text-xl font-semibold',
   };
 
   return (
