@@ -1,11 +1,12 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
-import { TELEGRAM_BOT_URL, COLORS } from '../../constants';
+import { PAYMENT_URL } from '../../constants';
 
 /**
- * Переиспользуемая CTA кнопка "Купить курс"
+ * Переиспользуемая CTA кнопка
  * Единое место для изменения стилей всех CTA кнопок
+ * Использует Tailwind brand colors: bg-brand, text-dark, hover:bg-brand-hover
  */
 
 interface CTAButtonProps {
@@ -24,17 +25,16 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
   onClick,
 }) => {
   const variantStyles = {
-    primary: 'bg-[#e3ee6b] text-[#0A0A0A] px-6 py-2.5 rounded-full hover:bg-[#d4df5a] transition-colors text-sm lg:text-base font-semibold',
-    large: 'bg-[#e3ee6b] text-[#0A0A0A] px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-[#d4df5a] transition-all text-base sm:text-lg md:text-xl font-bold touch-manipulation',
-    compact: 'bg-[#e3ee6b] text-[#0A0A0A] px-10 py-4 rounded-full text-xl font-semibold',
+    primary: 'bg-brand text-dark px-6 py-2.5 rounded-full hover:bg-brand-hover transition-colors text-sm lg:text-base font-semibold',
+    large: 'bg-brand text-dark px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-brand-hover transition-all text-base sm:text-lg md:text-xl font-bold touch-manipulation',
+    compact: 'bg-brand text-dark px-10 py-4 rounded-full text-xl font-semibold',
   };
 
   const handleClick = () => {
     if (onClick) {
       onClick();
     } else {
-      // По умолчанию открываем Telegram bot
-      window.open(TELEGRAM_BOT_URL, '_blank', 'noopener,noreferrer');
+      window.open(PAYMENT_URL, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -59,12 +59,12 @@ export const CTALink: React.FC<CTAButtonProps & { href?: string }> = ({
   variant = 'primary',
   showArrow = false,
   className = '',
-  href = TELEGRAM_BOT_URL,
+  href = PAYMENT_URL,
 }) => {
   const variantStyles = {
-    primary: 'bg-[#e3ee6b] text-[#0A0A0A] px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-[#e8f285] transition-all font-semibold touch-manipulation',
-    large: 'bg-[#e3ee6b] text-[#0A0A0A] px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-[#d4df5a] transition-all text-base sm:text-lg md:text-xl font-bold touch-manipulation',
-    compact: 'bg-[#e3ee6b] text-[#0A0A0A] px-10 py-4 rounded-full text-xl font-semibold',
+    primary: 'bg-brand text-dark px-6 sm:px-8 py-4 sm:py-5 rounded-full hover:bg-brand-light transition-all font-semibold touch-manipulation',
+    large: 'bg-brand text-dark px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-brand-hover transition-all text-base sm:text-lg md:text-xl font-bold touch-manipulation',
+    compact: 'bg-brand text-dark px-10 py-4 rounded-full text-xl font-semibold',
   };
 
   return (
