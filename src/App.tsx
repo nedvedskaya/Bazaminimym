@@ -282,7 +282,7 @@ const LossCalculator = () => {
                 className="mt-4 px-4 sm:px-6 py-3 bg-red-500/20 border border-red-500/30 rounded-xl"
               >
                 <p className="text-red-300 text-xs sm:text-sm md:text-base font-semibold text-center">
-                  ⚠️ На эти деньги можно купить еще один детейлинг!
+                  На эти деньги можно купить еще один детейлинг!
                 </p>
               </motion.div>
             )}
@@ -605,7 +605,7 @@ const App = () => {
       { name: 'Алексей', city: 'Краснодара' },
       { name: 'Максим', city: 'Екатеринбурга' },
       { name: 'Игорь', city: 'Новосибирска' },
-      { name: 'Владимир', city: 'Казани' },
+      { name: 'Владимир', city: 'Ростова' },
       { name: 'Роман', city: 'Самары' }
     ];
 
@@ -688,7 +688,7 @@ const App = () => {
       id: 4,
       title: "Техники допродаж",
       subtitle: "И повышение чека",
-      desc: "Как экологично увеличить средний чек, предлагая именно то, что нужно клиенту.",
+      desc: "Как экологично увеличить средний чек, повышая у клиента лояльность к студии.",
       icon: <BarChart3 className="w-5 h-5" />,
       style: "light",
       image: null
@@ -793,8 +793,8 @@ const App = () => {
   ];
 
   const benefits = [
-    "Готовые скрипты разговоров",
-    "Схемы работы с возражениями",
+    "Готовые схемы разговоров",
+    "Примеры работы с возражениями",
     "Техники повышения среднего чека",
     "Система повторных продаж",
     "Чек-листы для менеджеров"
@@ -927,7 +927,7 @@ const App = () => {
                 variants={fadeInUp} 
                 className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-xl"
               >
-                Внедрите базу, которая поднимет средний чек и поможет менеджеру закрывать сделки с конверсией от 70 %.
+                Внедрите систему, которая поднимет средний чек и поможет менеджеру закрывать сделки с конверсией от 70 %.
               </motion.p>
               
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
