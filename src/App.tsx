@@ -29,6 +29,8 @@ import {
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { AnimatedCounter } from './components/shared/AnimatedCounter';
 import { safeStorage } from './utils/storage';
+import { fadeInUp, staggerContainer, scaleIn } from './utils/animation-variants';
+import { PAYMENT_URL } from './constants';
 
 // --- COMPONENTS ---
 
@@ -368,7 +370,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               FAQ
             </a>
             <motion.a
-              href="https://da-school.online/bm"
+              href={PAYMENT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#e3ee6b] text-[#0A0A0A] px-6 py-2.5 rounded-full hover:bg-[#d4df5a] transition-colors text-sm lg:text-base font-semibold"
@@ -425,7 +427,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
                 </motion.a>
               ))}
               <motion.a
-                href="https://da-school.online/bm"
+                href={PAYMENT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -630,31 +632,6 @@ const App = () => {
       clearInterval(interval);
     };
   }, []);
-
-  // --- ANIMATION VARIANTS (optimized for smooth mobile performance) ---
-  const fadeInUp = {
-    hidden: { opacity: 0.3 },
-    visible: { 
-      opacity: 1, 
-      transition: { duration: 0.4, ease: "easeOut" }
-    }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0.3 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.05, duration: 0.3 }
-    }
-  };
-
-  const scaleIn = {
-    hidden: { opacity: 0.3 },
-    visible: { 
-      opacity: 1,
-      transition: { duration: 0.35, ease: "easeOut" }
-    }
-  };
 
   const programItems = [
     {
@@ -932,7 +909,7 @@ const App = () => {
               
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <motion.a 
-                  href="https://da-school.online/bm"
+                  href={PAYMENT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Получить доступ к онлайн-интенсиву Базовый Минимум"
@@ -1711,7 +1688,7 @@ const App = () => {
 
                   {/* CTA Button */}
                   <motion.a
-                    href="https://da-school.online/bm"
+                    href={PAYMENT_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative bg-[#0A0A0A] text-white px-10 sm:px-14 py-5 sm:py-7 rounded-full transition-all inline-flex items-center justify-center gap-3 sm:gap-4 text-xl sm:text-2xl md:text-3xl touch-manipulation overflow-hidden shadow-2xl border-2 border-[#e3ee6b]"
@@ -1916,7 +1893,7 @@ const App = () => {
               </p>
               
               <motion.a 
-                href="https://da-school.online/bm"
+                href={PAYMENT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#0A0A0A] text-[#e3ee6b] py-5 sm:py-6 rounded-full hover:bg-[#1A1A1A] transition-colors text-lg sm:text-xl md:text-2xl mb-4 sm:mb-5 flex items-center justify-center gap-3 group touch-manipulation active:scale-95 relative overflow-hidden font-semibold"

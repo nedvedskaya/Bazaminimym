@@ -5,6 +5,7 @@
 
 // URLs
 export const TELEGRAM_BOT_URL = 'https://t.me/clubmanagers_bot';
+export const PAYMENT_URL = 'https://da-school.online/bm';
 
 // Цвета
 export const COLORS = {
