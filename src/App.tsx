@@ -368,7 +368,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
               FAQ
             </a>
             <motion.a
-              href="https://t.me/clubmanagers_bot"
+              href="https://da-school.online/bm"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#e3ee6b] text-[#0A0A0A] px-6 py-2.5 rounded-full hover:bg-[#d4df5a] transition-colors text-sm lg:text-base font-semibold"
@@ -425,7 +425,7 @@ const Navigation = ({ scrollProgress, isMobileMenuOpen, setIsMobileMenuOpen, set
                 </motion.a>
               ))}
               <motion.a
-                href="https://t.me/clubmanagers_bot"
+                href="https://da-school.online/bm"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -932,7 +932,7 @@ const App = () => {
               
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <motion.a 
-                  href="https://t.me/clubmanagers_bot"
+                  href="https://da-school.online/bm"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Получить доступ к онлайн-интенсиву Базовый Минимум"
@@ -1711,7 +1711,7 @@ const App = () => {
 
                   {/* CTA Button */}
                   <motion.a
-                    href="https://t.me/clubmanagers_bot"
+                    href="https://da-school.online/bm"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative bg-[#0A0A0A] text-white px-10 sm:px-14 py-5 sm:py-7 rounded-full transition-all inline-flex items-center justify-center gap-3 sm:gap-4 text-xl sm:text-2xl md:text-3xl touch-manipulation overflow-hidden shadow-2xl border-2 border-[#e3ee6b]"
@@ -1915,9 +1915,11 @@ const App = () => {
                 Просто возьмите это, проверьте и сообщите сотрудникам. Порядок в кассе гарантирую.
               </p>
               
-              <motion.button 
+              <motion.a 
+                href="https://da-school.online/bm"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full bg-[#0A0A0A] text-[#e3ee6b] py-5 sm:py-6 rounded-full hover:bg-[#1A1A1A] transition-colors text-lg sm:text-xl md:text-2xl mb-4 sm:mb-5 flex items-center justify-center gap-3 group touch-manipulation active:scale-95 relative overflow-hidden font-semibold"
-                onClick={() => alert('Переход к оплате...')}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -1932,7 +1934,7 @@ const App = () => {
                   Купить за 2 490 ₽
                 </span>
                 <ArrowRight className="relative z-10 w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+              </motion.a>
 
               <motion.button 
                 className="w-full text-[#666] py-4 text-lg sm:text-xl hover:text-[#0A0A0A] transition-colors touch-manipulation font-medium"
