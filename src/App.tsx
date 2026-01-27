@@ -636,9 +636,9 @@ const App = () => {
   const programItems = [
     {
       id: 1,
-      title: "Студия и менеджер",
-      subtitle: "Фундамент высоких чеков",
-      desc: "Как выглядеть и позиционировать себя, чтобы цена не пугала, а обосновывала качество.",
+      title: "Фундамент и позиционирование",
+      subtitle: "психология высоких чеков",
+      desc: "Разбираем неочевидные маркеры, которые убивают продажу еще до начала диалога",
       icon: <Layers className="w-5 h-5" />,
       style: "dark",
       image: "https://images.unsplash.com/photo-1754149603303-7dd288629dd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaWx2ZXIlMjBtZXRhbGxpYyUyMGxpcXVpZCUyMHNjdWxwdHVyZXxlbnwxfHx8fDE3NjU0NDg2MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
@@ -647,16 +647,16 @@ const App = () => {
       id: 2,
       title: "Схема разговора",
       subtitle: "Закрываем клиента на услугу",
-      desc: "Готовая схема: какие вопросы задавать, чтобы вести клиента, а не следовать за ним.",
+      desc: "Готовая структура диалога: как за 30 секунд забрать ведение разговора на себя, квалифицировать клиента и вести его к записи.",
       icon: <Mic className="w-5 h-5" />,
       style: "light",
       image: null
     },
     {
       id: 3,
-      title: "«Дорого», «Я подумаю»",
-      subtitle: "Отработка возражений",
-      desc: "Разбор самых популярных барьеров. Как превратить сомнение в сделку.",
+      title: "Отработка возражений",
+      subtitle: "Истинные причины «дорого» и «я подумаю»",
+      desc: "Учимся вскрывать реальные сомнения клиента и экологично закрывать их аргументами, а не скидками.",
       icon: <ShieldAlert className="w-5 h-5" />,
       style: "dark",
       image: "https://images.unsplash.com/photo-1759259738810-0783f5db82bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHJvbWUlMjBtZXRhbCUyMGFic3RyYWN0JTIwd2F2ZXN8ZW58MXx8fHwxNzY1NDQ4NjA2fDA&ixlib=rb-4.1.0&q=80&w=1080"
@@ -664,8 +664,8 @@ const App = () => {
     {
       id: 4,
       title: "Техники допродаж",
-      subtitle: "И повышение чека",
-      desc: "Как экологично увеличить средний чек, повышая у клиента лояльность к студии.",
+      subtitle: "+30 % к выручке без вложений",
+      desc: "Как продавать допы так, чтобы клиент чувствовал заботу, а не навязывание. Скрипты для увеличения чека на этапе приемки и выдачи авто.",
       icon: <BarChart3 className="w-5 h-5" />,
       style: "light",
       image: null
@@ -673,8 +673,8 @@ const App = () => {
     {
       id: 5,
       title: "Работа с базой",
-      subtitle: "Повторные продажи",
-      desc: "Как сделать так, чтобы клиенты возвращались сами. LTV, напоминания и сервисная забота.",
+      subtitle: "«золотой актив» студиии",
+      desc: "Система работы с базой: как возвращать клиента на поддерживающие мойки и коррекцию, не превращаясь в назойливых спамеров. Превращаем разового посетителя в постоянного.",
       icon: <Database className="w-5 h-5" />,
       style: "dark",
       image: "https://images.unsplash.com/photo-1732698476659-2e5336bae219?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZXRhbGxpYyUyMHNpbHZlciUyMDNkJTIwZmx1aWR8ZW58MXx8fHwxNzY1NDQ4NjA2fDA&ixlib=rb-4.1.0&q=80&w=1080"
@@ -682,7 +682,7 @@ const App = () => {
   ];
 
   const stats = [
-    { value: 155, label: "Владельцев автобизнеса купили интенсив", suffix: "" },
+    { value: 155, label: "Участников купили интенсив", suffix: "" },
     { value: 89, label: "Средний рост конверсии", suffix: "%" },
     { value: 15, label: "Минут в день на обучение", suffix: "" }
   ];
@@ -753,7 +753,7 @@ const App = () => {
   const faqItems = [
     {
       q: "Сколько длится интенсив?",
-      a: "Уроки по 10–15 минут — самый сок. Весь интенсив можно изучить за 2–3 часа (как один хороший фильм)."
+      a: "Уроки по длительности 10–15 минут. Весь интенсив можно изучить за 2–3 часа."
     },
     {
       q: "Подойдет ли новичку?",
@@ -765,7 +765,7 @@ const App = () => {
     },
     {
       q: "Как получить доступ после оплаты?",
-      a: "После оплаты бот-помощник, в котором вы оплачивали обучение, вышлет ссылку на закрытый тг-канал. Доступ будет под рукой 24/7."
+      a: "После оплаты на вашу электронную почту придет письмо со доступом в закрытый тг-канал. Доступ будет под рукой 24/7."
     }
   ];
 
@@ -904,7 +904,7 @@ const App = () => {
                 variants={fadeInUp} 
                 className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-xl"
               >
-                Внедрите систему, которая поднимет средний чек и поможет менеджеру закрывать сделки с конверсией от 70 %.
+                Заберите готовый алгоритм записи клиента на услуги детейлинга с конверсией от 70 %. Без «впаривания» и работы за копейки.
               </motion.p>
               
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -1102,16 +1102,16 @@ const App = () => {
           >
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#0A0A0A] leading-relaxed mb-6 sm:mb-8">
             <span className="px-3 py-1.5 bg-[#e3ee6b] text-[#0A0A0A] rounded font-semibold text-base sm:text-lg md:text-xl">
-              Вы обучили мастеров
+              Ваши мастера умеют
             </span>
             {" "}круто полировать, клеить пленку{" "}
 без пузырей
-            , делать химчистку так, что салон авто выглядит как новый.
+            , делать химчистку так, что салон выглядит как новый.
             </p>
 
             <div className="bg-[#0A0A0A] rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 inline-block">
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-tight font-medium">
-                Вкладываете{" "}
+                Вы вкладываете{" "}
                 <span className="text-[#e3ee6b] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
                   сотни тысяч
                 </span>
@@ -1225,9 +1225,9 @@ const App = () => {
             
             <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-3xl mx-auto">
               {[
-                { icon: Mic, text: "Когда звонит клиент, менеджер мямлит в трубку и не может объяснить разницу в услугах?" },
-                { icon: ShieldAlert, text: "Боимся назвать реальную цену за свой труд и сразу даем скидку, когда ее даже не просили?" },
-                { icon: Users, text: "Клиент отправляется «подумать» и больше не отвечает?" }
+                { icon: Mic, text: "Клиент спрашивает: «Почему у вас дороже, чем у соседа?», а менеджер теряется и не может обосновать цену?" },
+                { icon: ShieldAlert, text: "Сами предлагаете скидку еще до того, как клиент начал возражать, и добровольно режете свою прибыль?" },
+                { icon: Users, text: "Верите фразе «я подумаю» и завершаете диалог, надеясь, что клиент вернется сам?" }
               ].map((card, i) => (
                 <motion.div
                   key={i}
@@ -1254,7 +1254,7 @@ const App = () => {
             >
               {/* Основной заголовок */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0A0A0A] leading-tight mb-6 sm:mb-8 px-4">
-                Мы создали первое в России обучение по продажам, полностью заточенное под специфику и тонкости детейлинга.
+                Забирайте алгоритмы продаж, полностью заточенные под специфику и тонкости детейлинга
               </h2>
               
               {/* Карточка с результатами */}
@@ -1266,7 +1266,7 @@ const App = () => {
                 transition={{ delay: 0.3, duration: 0.4, ease: "easeOut" }}
               >
                 <p className="text-base sm:text-lg md:text-xl text-[#0A0A0A]/70 mb-3 sm:mb-4 font-medium">
-                  Уже применяют {purchaseCount} владельцев автобизнеса
+                  Уже применяют {purchaseCount} студий
                 </p>
                 <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-[#e3ee6b] text-[#0A0A0A] rounded-xl font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl">
                   +40-100% к чеку
@@ -1277,7 +1277,7 @@ const App = () => {
 
           <motion.a 
             variants={fadeInUp}
-            href="https://t.me/clubmanagers_bot"
+            href="https://da-school.online/bm"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#0A0A0A] text-white px-10 py-5 sm:py-6 rounded-full hover:bg-[#1A1A1A] transition-all inline-flex items-center gap-3 group text-lg sm:text-xl md:text-2xl font-semibold touch-manipulation mt-8 sm:mt-10 md:mt-12"
@@ -1339,7 +1339,7 @@ const App = () => {
             </div>
             
             <motion.a 
-              href="https://t.me/clubmanagers_bot"
+              href="https://da-school.online/bm"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#e3ee6b] text-[#0A0A0A] px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-[#e3ee6b]-hover transition-all inline-flex items-center gap-3 group text-base sm:text-lg md:text-xl font-bold touch-manipulation"
@@ -1358,7 +1358,7 @@ const App = () => {
       {/* --- PROGRAM SECTION --- */}
       <section id="modules" className="relative py-16 sm:py-20 lg:py-24 px-4 bg-white">
         <div className="max-w-7xl mx-auto relative z-10">
-          <SectionHeader badge="Программа" title="Что внутри интенсива" />
+          <SectionHeader badge="ПРОГРАММА" title="Что внутри интенсива" />
 
           {/* Bento Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
@@ -1681,7 +1681,7 @@ const App = () => {
                   >
                     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-black/5 shadow-sm">
                       <p className="text-black/90 text-lg sm:text-xl md:text-2xl leading-relaxed">
-                        Мы специально поставили <span className="text-[#0A0A0A] font-bold">цену, над которой не надо думать</span>.
+                        <span className="text-[#0A0A0A] font-bold"> Инвестиция окупится с первой же проданной доп услуги по нашим скриптам</span>
                       </p>
                     </div>
                   </motion.div>
