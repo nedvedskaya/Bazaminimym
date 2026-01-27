@@ -18,10 +18,10 @@ export const COLORS = {
   grayLight: '#999',       // Светло-серый
 } as const;
 
-// Навигационные ссылки
+// Навигационные ссылки (соответствуют id секций в App.tsx)
 export const NAV_LINKS = [
-  { href: '#program', label: 'Программа' },
-  { href: '#testimonials', label: 'Отзывы' },
+  { href: '#modules', label: 'Программа' },
+  { href: '#reviews', label: 'Отзывы' },
   { href: '#price', label: 'Цена' },
   { href: '#faq', label: 'FAQ' },
 ] as const;

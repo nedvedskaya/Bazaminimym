@@ -1,12 +1,9 @@
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
-import { COLORS } from '../../constants';
 
 interface IconCircleProps {
   icon: LucideIcon;
   size?: 'sm' | 'md' | 'lg';
-  bgColor?: string;
-  iconColor?: string;
   className?: string;
 }
 
@@ -25,8 +22,6 @@ const iconSizeClasses = {
 export const IconCircle: React.FC<IconCircleProps> = ({
   icon: Icon,
   size = 'md',
-  bgColor = `bg-[${COLORS.primary}]`,
-  iconColor = `text-[${COLORS.dark}]`,
   className = '',
 }) => {
   return (
