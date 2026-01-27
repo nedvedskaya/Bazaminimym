@@ -1436,138 +1436,59 @@ const App = () => {
       </section>
 
       {/* --- RESULTS COMPARISON SECTION --- */}
-      <section className="relative py-16 sm:py-20 lg:py-24 px-4 bg-[#0A0A0A] overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0">
-          <motion.div 
-            className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-[#e3ee6b]/10 to-transparent rounded-full blur-3xl"
-            animate={{ opacity: [0.1, 0.2, 0.1] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div 
-            className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-[#e3ee6b]/8 to-transparent rounded-full blur-3xl"
-            animate={{ opacity: [0.08, 0.15, 0.08] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          />
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
+      <section className="relative py-16 sm:py-20 lg:py-24 px-4 bg-white">
+        <div className="max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-10 sm:mb-14"
+            className="text-center mb-12 sm:mb-16"
           >
-            <span className="text-sm sm:text-base md:text-lg text-white/60 uppercase tracking-wider mb-3 sm:mb-4 block font-semibold">
-              ТРАНСФОРМАЦИЯ
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#0A0A0A] font-bold">
               Результаты после прохождения
             </h2>
           </motion.div>
 
-          {/* Table Header */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-red-500/20 border border-red-500/30 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center"
-            >
-              <div className="flex items-center justify-center gap-2 sm:gap-3">
-                <TrendingDown className="w-5 h-5 sm:w-6 sm:h-6 text-red-400" />
-                <span className="text-lg sm:text-xl md:text-2xl font-bold text-red-400">Раньше</span>
+          {/* Minimalist Table */}
+          <div className="space-y-0">
+            {/* Header Row */}
+            <div className="grid grid-cols-2 border-b-2 border-[#0A0A0A] pb-4 mb-6">
+              <div className="text-center">
+                <span className="text-sm sm:text-base text-[#666] uppercase tracking-widest">Раньше</span>
               </div>
-              <p className="text-xs sm:text-sm text-red-300/80 mt-1">Теряете деньги</p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-[#e3ee6b]/20 border border-[#e3ee6b]/30 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center"
-            >
-              <div className="flex items-center justify-center gap-2 sm:gap-3">
-                <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#e3ee6b]" />
-                <span className="text-lg sm:text-xl md:text-2xl font-bold text-[#e3ee6b]">После интенсива</span>
+              <div className="text-center">
+                <span className="text-sm sm:text-base text-[#0A0A0A] uppercase tracking-widest font-semibold">После интенсива</span>
               </div>
-              <p className="text-xs sm:text-sm text-[#e3ee6b]/80 mt-1">Зарабатываете</p>
-            </motion.div>
-          </div>
+            </div>
 
-          {/* Comparison Rows */}
-          <div className="space-y-3 sm:space-y-4">
+            {/* Comparison Rows */}
             {[
-              {
-                before: "Работаете «ради работы»",
-                after: "Растите средний чек на 40–100 %"
-              },
-              {
-                before: "Полируете машину за базовый прайс, боясь предложить больше",
-                after: "Внедряете скрипты допродаж и с одной машины зарабатываете как с двух, не вкладываясь в рекламу"
-              },
-              {
-                before: "Сливаете 8 из 10 звонков",
-                after: "Закрываете 7 из 10 в запись"
-              },
-              {
-                before: "Клиент узнает цену и пропадает",
-                after: "Берете инициативу в свои руки за 30 секунд и ведете клиента по воронке к визиту, а не к «я подумаю»"
-              },
-              {
-                before: "Минус 15–20% прибыли на скидках",
-                after: "Продаете за 100% прайса"
-              },
-              {
-                before: "Даете скидку первым, чтобы удержать клиента",
-                after: "Владеете аргументами, которые обосновывают стоимость. Скидки даете только тогда, когда это выгодно вам."
-              },
-              {
-                before: "Голос дрожит, когда называете сумму выше 300 000 руб. Кажется, что это «дорого»",
-                after: "Уверенно называете стоимость комплексных работ, потому что транслируете ценность, а не просто цифры.",
-                highlight: "Боязнь высоких чеков → Спокойствие при чеках 500 000+"
-              },
-              {
-                before: "Приехал, помылся и забыл про вас. Вы каждый раз тратите деньги на поиск новых",
-                after: "Клиент возвращается строго по графику на коррекцию и уход, потому что вы «подсадили» его на сервис и заботу.",
-                highlight: "Клиент-одноразка → Рост базы постоянных клиентов"
-              },
-              {
-                before: "Покупаете курсы «для общего развития», которые лежат мертвым грузом",
-                after: "Стоимость интенсива окупается в 60 раз с первой же проданной услуги по новым алгоритмам."
-              }
+              { before: "Работаете «ради работы»", after: "Растите средний чек на 40–100 %" },
+              { before: "Полируете машину за базовый прайс, боясь предложить больше", after: "С одной машины зарабатываете как с двух" },
+              { before: "Сливаете 8 из 10 звонков", after: "Закрываете 7 из 10 в запись" },
+              { before: "Клиент узнает цену и пропадает", after: "Ведете клиента к визиту за 30 секунд" },
+              { before: "Минус 15–20% прибыли на скидках", after: "Продаете за 100% прайса" },
+              { before: "Даете скидку первым", after: "Скидки даете только когда выгодно вам" },
+              { before: "Голос дрожит при чеках от 300 000", after: "Спокойствие при чеках 500 000+" },
+              { before: "Клиент-одноразка", after: "База постоянных клиентов растет" },
+              { before: "Курсы лежат мертвым грузом", after: "Окупаемость в 60 раз с первой услуги" }
             ].map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="grid grid-cols-2 gap-3 sm:gap-4"
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="grid grid-cols-2 py-5 sm:py-6 border-b border-black/10 group hover:bg-[#e3ee6b]/5 transition-colors"
               >
-                {/* Before */}
-                <div className="bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 hover:bg-white/8 transition-colors">
-                  {item.highlight && (
-                    <span className="text-xs sm:text-sm text-red-400/80 font-medium mb-2 block">
-                      {item.highlight.split('→')[0].trim()}
-                    </span>
-                  )}
-                  <p className="text-sm sm:text-base md:text-lg text-white/70 leading-relaxed">
+                <div className="pr-4 sm:pr-8 flex items-center">
+                  <p className="text-sm sm:text-base md:text-lg text-[#999] leading-relaxed line-through decoration-[#ccc]">
                     {item.before}
                   </p>
                 </div>
-                
-                {/* After */}
-                <div className="bg-[#e3ee6b]/10 border border-[#e3ee6b]/20 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 hover:bg-[#e3ee6b]/15 transition-colors">
-                  {item.highlight && (
-                    <span className="text-xs sm:text-sm text-[#e3ee6b] font-medium mb-2 block">
-                      {item.highlight.split('→')[1].trim()}
-                    </span>
-                  )}
-                  <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed">
+                <div className="pl-4 sm:pl-8 flex items-center border-l border-black/10">
+                  <p className="text-sm sm:text-base md:text-lg text-[#0A0A0A] leading-relaxed font-medium">
                     {item.after}
                   </p>
                 </div>
@@ -1575,24 +1496,24 @@ const App = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-10 sm:mt-14 text-center"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-12 sm:mt-16 text-center"
           >
             <motion.a
               href={PAYMENT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#e3ee6b] text-[#0A0A0A] px-8 sm:px-10 py-4 sm:py-5 rounded-full text-lg sm:text-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-[#e3ee6b]/20"
+              className="inline-flex items-center gap-3 bg-[#e3ee6b] text-[#0A0A0A] px-8 sm:px-10 py-4 sm:py-5 rounded-full text-base sm:text-lg font-semibold hover:scale-105 transition-transform"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
               Получить результаты
-              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ArrowRight className="w-5 h-5" />
             </motion.a>
           </motion.div>
         </div>
