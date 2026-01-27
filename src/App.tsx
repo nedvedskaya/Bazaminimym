@@ -962,7 +962,7 @@ const App = () => {
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
                     >
-                      -75%
+                      -82%
                     </motion.div>
 
                     <motion.div 
@@ -972,7 +972,7 @@ const App = () => {
                     </motion.div>
                     <div className="flex-1">
                       <div className="flex items-baseline gap-3 mb-1 flex-wrap">
-                        <span className="text-white/40 text-base sm:text-lg line-through whitespace-nowrap">10 000 ₽</span>
+                        <span className="text-white/40 text-base sm:text-lg line-through whitespace-nowrap">13 990 ₽</span>
                         <span className="text-[#e3ee6b] text-3xl sm:text-4xl md:text-5xl whitespace-nowrap font-black">2 490 ₽</span>
                       </div>
                       <div className="text-white/70 text-sm sm:text-base font-medium">Специальное предложение</div>
@@ -1615,7 +1615,7 @@ const App = () => {
                     <div className="absolute inset-0 bg-[#e3ee6b] rounded-2xl blur-md opacity-50" />
                     <div className="relative text-center">
                       <div className="text-xs sm:text-sm uppercase tracking-wider font-bold mb-0.5">Скидка</div>
-                      <div className="text-2xl sm:text-3xl md:text-4xl font-black">-75%</div>
+                      <div className="text-2xl sm:text-3xl md:text-4xl font-black">-82%</div>
                     </div>
                   </motion.div>
                 </motion.div>
@@ -1633,7 +1633,7 @@ const App = () => {
                   >
                     {/* Old price */}
                     <div className="mb-4 sm:mb-6">
-                      <span className="text-[#999] text-2xl sm:text-3xl md:text-4xl line-through">10 000 ₽</span>
+                      <span className="text-[#999] text-2xl sm:text-3xl md:text-4xl line-through">13 990 ₽</span>
                     </div>
                     
                     {/* New price - MEGA */}
@@ -1663,7 +1663,7 @@ const App = () => {
                   >
                     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-black/5 shadow-sm">
                       <p className="text-black/90 text-lg sm:text-xl md:text-2xl leading-relaxed">
-                        <span className="text-[#0A0A0A] font-bold"> Инвестиция окупится с первой же проданной доп услуги по нашим скриптам</span>
+                        <span className="text-[#0A0A0A] font-bold"> Инвестиция окупится с первой же проданной доп услуги по нашей системе</span>
                       </p>
                     </div>
                   </motion.div>
