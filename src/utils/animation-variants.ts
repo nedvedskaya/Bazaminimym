@@ -40,3 +40,12 @@ export const createStaggeredFadeIn = (delay: number = 0) => ({
   viewport: { once: true },
   transition: { delay, duration: 0.4, ease: "easeOut" }
 });
+
+// Общие настройки для viewport и transition
+export const defaultViewport = { once: true } as const;
+export const defaultTransition = { duration: 0.4, ease: "easeOut" } as const;
+export const createDelayedTransition = (delay: number) => ({ 
+  delay, 
+  duration: 0.4, 
+  ease: "easeOut" 
+});

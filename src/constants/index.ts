@@ -53,3 +53,14 @@ export const Z_INDEX = {
   mobileMenu: 40,
   livePurchase: 40,
 } as const;
+
+// Переиспользуемые Tailwind классы
+export const STYLES = {
+  iconCircle: 'rounded-full flex items-center justify-center',
+  iconCircleSm: 'w-10 h-10',
+  iconCircleMd: 'w-10 h-10 sm:w-12 sm:h-12',
+  card: 'bg-white rounded-xl sm:rounded-2xl border-2 p-4 sm:p-6',
+  cardHover: 'hover:border-[#e3ee6b] transition-all',
+  sectionPadding: 'py-12 sm:py-16 md:py-20 px-4 sm:px-6',
+  sectionPaddingLg: 'py-16 sm:py-20 md:py-28 px-4 sm:px-6',
+} as const;
