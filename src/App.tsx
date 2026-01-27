@@ -1450,48 +1450,32 @@ const App = () => {
             </h2>
           </motion.div>
 
-          {/* Minimalist Table */}
-          <div className="space-y-0">
-            {/* Header Row */}
-            <div className="grid grid-cols-2 border-b-2 border-[#0A0A0A] pb-4 mb-6">
-              <div className="text-center">
-                <span className="text-sm sm:text-base text-[#666] uppercase tracking-widest">Раньше</span>
-              </div>
-              <div className="text-center">
-                <span className="text-sm sm:text-base text-[#0A0A0A] uppercase tracking-widest font-semibold">После интенсива</span>
-              </div>
-            </div>
-
-            {/* Comparison Rows */}
+          {/* Compact Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {[
-              { before: "Работаете «ради работы»", after: "Растите средний чек на 40–100 %" },
-              { before: "Полируете машину за базовый прайс, боясь предложить больше", after: "С одной машины зарабатываете как с двух" },
-              { before: "Сливаете 8 из 10 звонков", after: "Закрываете 7 из 10 в запись" },
-              { before: "Клиент узнает цену и пропадает", after: "Ведете клиента к визиту за 30 секунд" },
-              { before: "Минус 15–20% прибыли на скидках", after: "Продаете за 100% прайса" },
-              { before: "Даете скидку первым", after: "Скидки даете только когда выгодно вам" },
-              { before: "Голос дрожит при чеках от 300 000", after: "Спокойствие при чеках 500 000+" },
-              { before: "Клиент-одноразка", after: "База постоянных клиентов растет" },
-              { before: "Курсы лежат мертвым грузом", after: "Окупаемость в 60 раз с первой услуги" }
+              { before: "Работа «ради работы»", after: "Средний чек +40–100%" },
+              { before: "Базовый прайс", after: "Доход х2 с машины" },
+              { before: "8 из 10 — слив", after: "7 из 10 — запись" },
+              { before: "Клиент пропадает", after: "Визит за 30 секунд" },
+              { before: "−20% на скидках", after: "100% прайса" },
+              { before: "Скидка первым делом", after: "Скидки на ваших условиях" },
+              { before: "Страх чеков 300к+", after: "Уверенность при 500к+" },
+              { before: "Клиент-одноразка", after: "База постоянников" },
+              { before: "Курсы пылятся", after: "Окупаемость х60" }
             ].map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="grid grid-cols-2 py-5 sm:py-6 border-b border-black/10 group hover:bg-[#e3ee6b]/5 transition-colors"
+                transition={{ duration: 0.3, delay: index * 0.04 }}
+                className="bg-[#f8f8f8] rounded-2xl p-5 hover:bg-[#e3ee6b]/20 transition-colors group"
               >
-                <div className="pr-4 sm:pr-8 flex items-center">
-                  <p className="text-sm sm:text-base md:text-lg text-[#999] leading-relaxed line-through decoration-[#ccc]">
-                    {item.before}
-                  </p>
-                </div>
-                <div className="pl-4 sm:pl-8 flex items-center border-l border-black/10">
-                  <p className="text-sm sm:text-base md:text-lg text-[#0A0A0A] leading-relaxed font-medium">
-                    {item.after}
-                  </p>
-                </div>
+                <p className="text-sm text-[#999] mb-2">{item.before}</p>
+                <p className="text-base sm:text-lg text-[#0A0A0A] font-semibold flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#e3ee6b] rounded-full flex-shrink-0"></span>
+                  {item.after}
+                </p>
               </motion.div>
             ))}
           </div>
